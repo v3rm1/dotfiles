@@ -1,0 +1,16 @@
+[[manager.prepend_keymap]]
+# Smart enter
+on   = "l"
+run  = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
+
+[[manager.prepend_keymap]]
+# Mount
+on  = "M"
+run = "plugin mount"
+
+[[manager.prepend_keymap]]
+# Jump to char
+on   = "f"
+run  = "plugin jump-to-char"
+desc = "Jump to char"
