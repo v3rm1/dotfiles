@@ -23,6 +23,7 @@
     "memory",
     "battery",
     "network",
+    "custom/exit"
   ],
 
   // Modules configuration
@@ -209,22 +210,11 @@
     "on-scroll-up": "pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob",
     "on-scroll-down": "pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob"
   },
-  "custom/pacman": {
-    "format": " {}",
-    "interval": 7200, // every two hours
-    "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'", // # of updates and tooltip details
-    "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "alacritty -e sudo pacman -Syu", // update system
-    "signal": 8
+   
+  "custom/exit": {
+    "format": "",
+    "on-click": "~/.config/ml4w/scripts/wlogout.sh",
+    "on-click-right": "hyprlock",
+    "tooltip-format": "Left: Power menu\nRight: Lock screen"
   },
-  "custom/power": {
-    "format": "⏻",
-    "on-click": "nwgbar",
-    "tooltip": false
-  },
-  "custom/launcher": {
-    "format": " ",
-    "on-click": "exec wofi --show drun",
-    "tooltip": false
-  }
 }
