@@ -1,0 +1,45 @@
+# Alias for common commands
+alias cl='clear'
+alias s="source"
+
+# Eza is better ls
+alias ls="eza -l --icons=always --no-user --no-permissions"
+alias lst="eza -l --tree --icons=always --no-user --no-permissions"
+
+alias yz="yazi"
+alias cd="z"
+alias n="nvim"
+alias top="btop"
+
+# Git aliases (as in the OMZ git plugin)
+alias g='git'
+alias ga='git add'
+alias gbl='git blame -w'
+alias gb='git branch'
+alias gclean='git clean --interactive -d'
+alias gch="git checkout"
+alias gcl='git clone --recurse-submodules'
+alias gcm='git commit --message'
+alias gcf='git config --list'
+alias gd='git diff'
+alias gdt='git diff-tree --no-commit-id --name-only -r'
+alias gm='git merge'
+alias gl='git pull'
+alias gp='git push'
+alias grm='git rm'
+alias gcount='git shortlog --summary --numbered'
+alias gsh='git show'
+alias gst='git status'
+alias gsw='git switch'
+alias gwt='git worktree'
+
+
+# Filetype aliases to attach editors
+alias -s txt=nvim
+alias -s py=nvim
+alias -s toml=nvim
+
+# CAIR GPU5 Alias
+alias cgpu="ssh -i ~/.ssh/cairgpu5 varunrv@cair-gpu05"
+
+
