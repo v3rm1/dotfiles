@@ -8,3 +8,6 @@ print_command=true
 layer=overlay
 insensitive=true
 prompt=
+allow_images=true
+matching=fuzzy
+terminal=kitty

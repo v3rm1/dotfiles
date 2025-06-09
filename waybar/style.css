@@ -24,7 +24,7 @@
     border: 0;
     padding: 0 0;
     font-family: "ProggyClean Nerd Font";
-    font-size: 28px;
+    font-size: 20px;
     transition: all 0.5s ease;
 }
 
@@ -147,7 +147,7 @@ window#waybar {
 #mpd.3,
 #mpd.4 {
     background-color: @base;
-    font-size: 28px;
+    font-size: 20px;
 }
 
 #clock {
