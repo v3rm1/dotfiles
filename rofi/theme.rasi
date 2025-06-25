@@ -29,17 +29,6 @@
   crust:          #11111b;
 }
 
-/* 
-  bg - background
-  fg - foreground
-  br - border
-*/
-
 * {
-  main-bg:        @crust;
-  main-fg:        @text;
-  main-br:        @overlay2;
-  input-bg:       @mantle;
-  select-bg:      @overlay2;
-  select-fg:      @crust;
-}
+  wallpaper: url("~/.config/wallpapers/Cloudsnight.jpg", width);
+  }
