@@ -5,12 +5,14 @@
 // CONFIGURATION
 configuration {
     modi:                       "drun,run,filebrowser";
-    show-icons:                 false;
+    show-icons:                 true;
     display-drun:               " APPS";
     display-run:                "󰲌 RUN";
     display-filebrowser:        " FILES"; 
     drun-display-format:        "{name}";
     window-format:              "{w} · {c}";
+    matching:                   "normal";
+    drun-match-fields:          "name";
 }
 
 
