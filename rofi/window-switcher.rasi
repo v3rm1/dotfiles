@@ -17,14 +17,14 @@ window {
   width:                    250px;
   border:                   3px;
   border-radius:            10px;
-  border-color:             @sapphire;
+  border-color:             @lavender;
   background-color:         @crust;
   children:                 [ mainbox ];
 }
 
 mainbox {
   spacing:                  0;
-  background-color:         @sapphire;
+  background-color:         @lavender;
   text-color:               @text;
   children:                 [ textbox-custom, listview ];
 }
@@ -35,7 +35,7 @@ textbox-custom {
   padding:                  1px 0;
   expand:                   false;
   background-color:         @surface0;
-  text-color:               @sapphire;
+  text-color:               @lavender;
   expand:                   false;
   content:                  "󰲋  Task View";
 }
@@ -45,7 +45,7 @@ textbox-custom {
 listview {
   border:                   2px 0 0 0;
   border-radius:            8px;
-  border-color:             @sapphire;
+  border-color:             @lavender;
   lines:                    6;
   fixed-height:             false;
   dynamic:                  false;
@@ -65,7 +65,7 @@ element selected active,
 element selected normal {
   border-radius:            6px;
   background-color:         @surface0;
-  text-color:               @sapphire;
+  text-color:               @lavender;
 }
 element-text {
   padding:                  0 6px;

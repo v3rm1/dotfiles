@@ -10,6 +10,7 @@ alias yz="yazi"
 alias cd="z"
 alias n="nvim"
 alias top="btop"
+alias fz="fzf --height 40% --layout reverse"
 
 # Git aliases (as in the OMZ git plugin)
 alias g='git'
