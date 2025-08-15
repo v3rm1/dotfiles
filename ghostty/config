@@ -1,0 +1,48 @@
+# Window settings
+shell-integration = zsh
+
+# Cursor settings
+shell-integration-features = no-cursor
+cursor-style = underline
+cursor-style-blink = false
+
+# Default working directory settings
+working-directory = home
+
+# Font settings
+font-family = "MesloLGL Nerd Font Mono"
+font-family-bold = "MesloLGL Nerd Font Mono"
+font-family-italic = "MesloLGL Nerd Font Mono"
+font-family-bold-italic = "MesloLGL Nerd Font Mono"
+font-size = 16
+
+# Theme settings
+theme = catppuccin-mocha.conf
+
+# Quick terminal settings
+quick-terminal-position = center
+quick-terminal-autohide = true
+quick-terminal-space-behavior = move
+
+# tmux style key bindings
+mouse-hide-while-typing = true
+scrollback-limit = 1000000
+
+keybind = ctrl+n=new_window
+
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+keybind = ctrl+a>h=new_split:left
+keybind = ctrl+a>j=new_split:down
+keybind = ctrl+a>k=new_split:up
+keybind = ctrl+a>l=new_split:right
+keybind = ctrl+a>f=toggle_split_zoom
+keybind = ctrl+a>q=close_surface
+
+keybind = ctrl+a>n=next_tab
+keybind = ctrl+a>p=previous_tab
+
+window-save-state = always
