@@ -43,4 +43,5 @@ alias -s toml=nvim
 # CAIR GPU5 Alias
 alias cgpu="ssh -i ~/.ssh/cairgpu5 varunrv@cair-gpu05"
 
-
+# yay clear unused packages and dependencies
+alias cyay="yay -Rnscu $(yay -Qdtq)"
