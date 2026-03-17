@@ -42,4 +42,5 @@ alias -s toml=nvim
 
 # CAIR GPU5 Alias
 
-
+# yay clear unused packages and dependencies
+alias cyay="yay -Rnscu $(yay -Qdtq)"
