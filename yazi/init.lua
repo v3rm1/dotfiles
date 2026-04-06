@@ -5,3 +5,5 @@ require("smart-enter"):setup({
 })
 
 require("git"):setup()
+
+require("gvfs"):setup({})

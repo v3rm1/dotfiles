@@ -11,7 +11,8 @@ alias cd="z"
 alias n="nvim"
 alias top="btop"
 alias fz="fzf --height 40% --layout reverse"
-
+alias cat="bat"
+alias du="dust -H -D"
 # Git aliases (as in the OMZ git plugin)
 alias g='git'
 alias ga='git add'
