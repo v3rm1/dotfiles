@@ -35,14 +35,14 @@ keybind = ctrl+j=goto_split:bottom
 keybind = ctrl+k=goto_split:top
 keybind = ctrl+l=goto_split:right
 
-keybind = ctrl+a>h=new_split:left
-keybind = ctrl+a>j=new_split:down
-keybind = ctrl+a>k=new_split:up
-keybind = ctrl+a>l=new_split:right
-keybind = ctrl+a>f=toggle_split_zoom
-keybind = ctrl+a>q=close_surface
+keybind = ctrl+`>h=new_split:left
+keybind = ctrl+`>j=new_split:down
+keybind = ctrl+`>k=new_split:up
+keybind = ctrl+`>l=new_split:right
+keybind = ctrl+`>f=toggle_split_zoom
+keybind = ctrl+`>q=close_surface
 
-keybind = ctrl+a>n=next_tab
-keybind = ctrl+a>p=previous_tab
+keybind = ctrl+`>n=next_tab
+keybind = ctrl+`>p=previous_tab
 
 window-save-state = always

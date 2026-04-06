@@ -9,12 +9,14 @@
 input {
     keyboard {
         xkb {
-            options "apple:alupckeys"
+            layout "us"
+            // variant "colemak_dh_ortho"
+            // options "compose:ralt,ctrl:nocaps"
+            // model ""
+            // rules ""
+            // file "~/.config/keymap.xkb"
         }
-        repeat-delay 400
-        repeat-rate 30
     }
-
     touchpad {
         // tap
         // dwt
@@ -31,7 +33,7 @@ input {
 
     mouse {
         // off
-        natural-scroll
+        // natural-scroll
         // accel-speed 0.2
         accel-profile "flat"
         // scroll-method "no-scroll"
@@ -145,14 +147,14 @@ window-rule {
 
 // Open web browsers maximized by default.
 window-rule {
-    match app-id=r#"(chromium$|app\.zen_browser\.zen$|brave-browser$)"#
+    match app-id=r#"(chromium$|brave-browser$)"#
     exclude title="^Picture-in-Picture$"
     open-maximized true
 }
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
-    match app-id=r#"(chromium$|app\.zen_browser\.zen$)"# title="^Picture-in-Picture$"
+    match app-id=r#"(chromium$|brave-browser$)"# title="^Picture-in-Picture$"
     open-floating true
     default-column-width { proportion 0.2; }
     default-window-height { proportion 0.2; }
@@ -249,14 +251,14 @@ binds {
     Mod+Shift+Slash hotkey-overlay-title="Show Keybinds" { spawn "dms" "ipc" "keybinds" "toggle" "niri"; }
 
     // Programs
-    Mod+Return hotkey-overlay-title="Terminal" { spawn-sh "kitty"; }
+    Mod+Return hotkey-overlay-title="Terminal" { spawn-sh "ghostty"; }
     Mod+Space hotkey-overlay-title="Launcher" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
     Mod+B hotkey-overlay-title="Browser" { spawn "flatpak" "run" "com.brave.Browser"; }
     Mod+Shift+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
     Mod+Shift+Escape hotkey-overlay-title="Btop" { spawn "ghostty" "-e" "btop"; }
-    Mod+E hotkey-overlay-title="File Manager" { spawn-sh "dolphin"; }
+    Mod+E hotkey-overlay-title="File Manager" { spawn-sh "nautilus"; }
     Mod+Shift+E hotkey-overlay-title="Yazi" { spawn-sh "ghostty -e yazi"; }
-    Mod+N hotkey-overlay-title="Obsidian notes" { spawn-sh "xdg-open 'obsidian://open?vault=Notes&file=Notes'";}
+    Mod+N hotkey-overlay-title="Obsidian notes" { spawn-sh "xdg-open 'obsidian://open?vault=obsidian-dashboard&file=HOME.canvas'";}
 
     // Tuxedo key
     Super+Alt+F6 hotkey-overlay-title="Cycle power profiles" { spawn-sh "case $(tlpctl get | grep -oP 'power-saver|balanced|performance') in power-saver) tlpctl balanced;; balanced) tlpctl performance;; *) tlpctl power-saver;; esac"; }
@@ -292,7 +294,7 @@ binds {
     // or do a four-finger swipe up on a touchpad.
     Mod+O repeat=false { toggle-overview; }
 
-    Mod+W repeat=false { close-window; }
+    Mod+Q repeat=false { close-window; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
@@ -409,8 +411,8 @@ binds {
     Mod+Shift+Equal { set-window-height "+2%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+Q       { toggle-window-floating; }
-    Mod+Shift+Q { switch-focus-between-floating-and-tiling; }
+    Mod+W       { toggle-window-floating; }
+    Mod+Shift+W { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
