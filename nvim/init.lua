@@ -1,39 +1,63 @@
--- Load lua tables
-require("options")
-require("keymaps")
-require("autocmds")
+-- Options
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
--- Install Lazy
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		error("Error cloning lazy.nvim:\n" .. out)
-	end
-end ---@diagnostic disable-next-line: undefined-field
-vim.opt.rtp:prepend(lazypath)
+vim.opt.number = true
+vim.opt.clipboard = "unnamedplus"
+vim.opt.undofile = true
+vim.opt.signcolumn = "yes"
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.inccommand = "split"
+vim.opt.confirm = true
+vim.opt.scrolloff = 10
+vim.opt.cursorline = true
+vim.opt.title = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.mouse = "a"
 
-require("lazy").setup({
-	spec = {
-		{ import = "plugins" },
-	},
-	defaults = { lazy = false },
-	install = { colorscheme = { "habamax" } },
-	checker = { enabled = true, notify = false },
-	change_detection = {
-		enabled = false,
-	},
-	performance = {
-		rtp = {
-			disabled_plugins = {},
-		},
-	},
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.showbreak = "↪ "
+vim.opt.breakindent = true
+vim.opt.laststatus = 3
+vim.opt.sessionoptions:remove{"terminal"}
+
+vim.opt.foldlevel = 99
+vim.opt.termguicolors = true
+
+vim.cmd("packadd nvim.undotree")
+
+-- Experimental new UI
+require("vim._core.ui2").enable({
+    enable = true,
 })
 
--- Set colorsheme
-require("catppuccin").load()
+require("keymaps")
+require("autocmds")
+require("plugins")
+require("lsp_setup").setup()
 
--- Enable lsp
-local lsp = require("lsp")
-lsp.enable()
+-- Remove inactive plugins
+vim.api.nvim_create_user_command("Packsync", function()
+    local inactive = vim.iter(vim.pack.get())
+        :filter(function(x)
+            return not x.active
+        end)
+        :map(function(x)
+            return x.spec.name
+        end)
+        :totable()
+    if #inactive == 0 then
+        vim.notify("PackSync: nothing to remove")
+        return
+    end
+    vim.notify("PackSync: removing " .. table.concat(inactive, ", "))
+    vim.pack.del(inactive)
+end, { desc = "Remove inactive pack plugins" })
+
+vim.cmd("colorscheme dark_pastel")
