@@ -1,0 +1,46 @@
+{
+    "Debug Print": {
+        "prefix": "dbg",
+        "body": ["print(f'{${1}=}')$0"],
+        "description": "Debug print with f-string"
+    },
+    "Marimo Init": {
+        "prefix": "minit",
+        "body": [
+            "import marimo",
+            "app = marimo.App()",
+            "",
+            "with app.setup:",
+            "    import marimo as mo",
+            "",
+            "@app.cell",
+            "def _():",
+            "    return",
+            "",
+            "if __name__ == \"__main__\":",
+            "    app.run()"
+        ],
+        "description": "Marimo app initialization"
+    },
+    "Marimo Cell": {
+        "prefix": "mcell",
+        "body": [
+            "@app.cell",
+            "def ${1:_}():",
+            "    $0",
+            "    return"
+        ],
+        "description": "Marimo cell definition"
+    },
+    "Marimo Markdown": {
+        "prefix": "mdown",
+        "body": [
+            "@app.cell(hide_code=True)",
+            "def ${1:_}():",
+            "    mo.md(r\"\"\"",
+            "    $0",
+            "    \"\"\")"
+        ],
+        "description": "Marimo markdown cell"
+    }
+}
