@@ -114,6 +114,12 @@ function M.setup()
             map("glr", Snacks.picker.lsp_references, "References")
             map("gli", Snacks.picker.lsp_implementations, "Implementations")
             map("glt", Snacks.picker.lsp_type_definitions, "Type Definitions")
+<<<<<<< HEAD
+=======
+            if client.name == "clangd" then
+                map("<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", "Switch Source/Header")
+            end
+>>>>>>> 2b4f0a6 (Updated gitignore, nvim config)
             map("K", function()
                 vim.lsp.buf.hover({ border = "single" })
             end, "Hover")

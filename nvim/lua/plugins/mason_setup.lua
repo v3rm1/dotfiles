@@ -50,6 +50,11 @@ local function tool_list()
         "shfmt",
         "bibtex-tidy",
         "latexindent",
+<<<<<<< HEAD
+=======
+        "debugpy",
+        "codelldb",
+>>>>>>> 2b4f0a6 (Updated gitignore, nvim config)
     }
     for name, _ in pairs(require("lsp_setup").servers) do
         table.insert(tools, name_to_mason[name] or name)
