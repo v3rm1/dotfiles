@@ -1,0 +1,6 @@
+[services.cgpu-5]
+type = "sftp"
+host = "cair-gpu05"
+user = "varunrv"
+port = 22
+key_file = "~/.ssh/cairgpu5"

@@ -5,7 +5,7 @@ alias s="source"
 # Eza is better ls
 alias ls="eza -l --icons=always --no-user --no-permissions"
 alias lst="eza -l --tree --icons=always --no-user --no-permissions"
-
+alias ct="bat"
 alias yz="yazi"
 alias cd="z"
 alias n="nvim"

@@ -31,6 +31,13 @@ vim.pack.add({
     "https://github.com/rafamadriz/friendly-snippets",
     "https://github.com/zbirenbaum/copilot.lua",
     "https://github.com/NickvanDyke/opencode.nvim",
+<<<<<<< HEAD
+=======
+    "https://github.com/mfussenegger/nvim-dap",
+    "https://github.com/rcarriga/nvim-dap-ui",
+    "https://github.com/nvim-neotest/nvim-nio",
+    "https://github.com/mfussenegger/nvim-dap-python",
+>>>>>>> 2b4f0a6 (Updated gitignore, nvim config)
 })
 
 -- Plugin configs
@@ -46,6 +53,10 @@ require("plugins.conform_setup")
 require("plugins.markdown_setup")
 require("plugins.mason_setup")
 require("plugins.ai_setup")
+<<<<<<< HEAD
+=======
+require("plugins.dap_setup")
+>>>>>>> 2b4f0a6 (Updated gitignore, nvim config)
 
 require("lazydev").setup({
     library = {
@@ -65,6 +76,10 @@ require("which-key").setup({
         { "<leader>c", group = "+code" },
         { "<leader>s", group = "+search" },
         { "<leader>l", group = "+lsp" },
+<<<<<<< HEAD
+=======
+        { "<leader>d", group = "+debug" },
+>>>>>>> 2b4f0a6 (Updated gitignore, nvim config)
         { "gl", group = "+lsp_snacks" },
         { "gr", group = "+lsp_default" },
         { "<localleader>l", group = "+vimtex" },
