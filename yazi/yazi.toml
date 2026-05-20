@@ -7,11 +7,13 @@ wrap = "yes"
 image_filter = "triangle"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
-name = "*"
-run  = "git"
+id    = "git"
+url   = "*"
+run   = "git"
+group = "git"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
-name = "*/"
-run  = "git"
+id    = "git"
+url   = "*/"
+run   = "git"
+group = "git"

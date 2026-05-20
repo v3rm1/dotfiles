@@ -49,7 +49,7 @@ local c = {
 -- 2. CORE UI
 hl("Normal", { fg = c.fg, bg = c.bg })
 hl("NormalFloat", { fg = c.fg, bg = "#080808" })
-hl("FloatBorder", { fg = c.surface, bg = "#080808" })
+hl("FloatBorder", { fg = c.sage, bg = c.bg })
 hl("CursorLine", { bg = "#0F0F0F" })
 hl("Visual", { bg = c.selection })
 hl("Search", { fg = c.black, bg = c.yellow, bold = true })
@@ -57,6 +57,7 @@ hl("IncSearch", { fg = c.black, bg = c.rose, bold = true })
 hl("LineNr", { fg = "#444444" })
 hl("CursorLineNr", { fg = c.peach, bold = true })
 hl("WinSeparator", { fg = c.surface })
+hl("StatusLine", { bg = c.surface, fg = c.periwinkle})
 
 -- 3. STANDARD SYNTAX (Using Sage for Comments)
 hl("Comment", { fg = c.grey, italic = true })

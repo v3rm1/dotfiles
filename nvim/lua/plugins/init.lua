@@ -8,6 +8,7 @@ vim.pack.add({
     "https://github.com/folke/trouble.nvim",
     "https://github.com/folke/persistence.nvim",
     "https://github.com/echasnovski/mini.nvim",
+    "https://github.com/lewis6991/gitsigns.nvim",
     "https://github.com/stevearc/oil.nvim",
     "https://github.com/stevearc/conform.nvim",
     {
@@ -51,6 +52,7 @@ require("plugins.markdown_setup")
 require("plugins.mason_setup")
 require("plugins.ai_setup")
 require("plugins.dap_setup")
+require("plugins.statusline_setup")
 
 require("lazydev").setup({
     library = {

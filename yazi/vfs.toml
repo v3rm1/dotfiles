@@ -1,6 +1,11 @@
-[services.cgpu-5]
+[services.cgpu]
 type = "sftp"
-host = "cair-gpu05"
+host = "cair-gpu05.uia.no"
 user = "varunrv"
 port = 22
-key_file = "~/.ssh/cairgpu5"
+
+[services.cgpu-ip]
+type = "sftp"
+host = "128.39.54.35"
+user = "varunrv"
+port = 22
