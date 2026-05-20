@@ -4,7 +4,7 @@ vim.pack.add({
     "https://github.com/tpope/vim-sleuth",
     "https://github.com/folke/lazydev.nvim",
     "https://github.com/folke/which-key.nvim",
-    "https://github.com/folke/snacks.nvim",
+    "https://github.com/ibhagwan/fzf-lua",
     "https://github.com/folke/trouble.nvim",
     "https://github.com/folke/persistence.nvim",
     "https://github.com/echasnovski/mini.nvim",
@@ -39,7 +39,12 @@ vim.pack.add({
 })
 
 -- Plugin configs
-require("plugins.snacks_setup")
+require("native.bigfile")
+require("native.toggle")
+require("plugins.fzf_setup")
+vim.keymap.set("n", "<leader>gg", function()
+    require("native.lazygit").open()
+end, { desc = "Lazygit" })
 require("plugins.oil_setup")
 require("plugins.treesitter_setup")
 require("plugins.mini_setup")
@@ -57,7 +62,6 @@ require("plugins.statusline_setup")
 require("lazydev").setup({
     library = {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-        { path = "snacks.nvim", words = { "Snacks" } },
     },
 })
 
@@ -73,7 +77,7 @@ require("which-key").setup({
         { "<leader>s", group = "+search" },
         { "<leader>l", group = "+lsp" },
         { "<leader>d", group = "+debug" },
-        { "gl", group = "+lsp_snacks" },
+        { "gl", group = "+lsp" },
         { "gr", group = "+lsp_default" },
         { "<localleader>l", group = "+vimtex" },
     },

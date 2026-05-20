@@ -23,17 +23,13 @@ tsc.setup({
     mode = "cursor",
     max_lines = 4,
 })
-Snacks.toggle({
-    name = "Treesitter Context",
-    get = tsc.enabled,
-    set = function(state)
-        if state then
-            tsc.enable()
-        else
-            tsc.disable()
-        end
-    end,
-}):map("<leader>ut")
+vim.keymap.set("n", "<leader>ut", function()
+    if tsc.enabled() then
+        tsc.disable()
+    else
+        tsc.enable()
+    end
+end, { desc = "Toggle Treesitter Context" })
 
 local function move_mappings(key, query, desc_name)
     vim.keymap.set({ "n", "x", "o" }, "[" .. key, function()

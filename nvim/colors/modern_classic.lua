@@ -108,13 +108,13 @@ highlight("NeogitSectionHeader", { fg = c.orchid, bold = true })
 highlight("NeogitDiffAddHighlight", { link = "DiffAdd" })
 highlight("NeogitDiffDeleteHighlight", { link = "DiffDelete" })
 
--- Navigation & Files (Oil / Snacks / Telescope)
+-- Navigation & Files (Oil / fzf-lua)
 highlight("Directory", { fg = c.gold, bold = true }) -- Oil folders now "glow" gold
 highlight("OilDir", { link = "Directory" })
 highlight("OilDirIcon", { link = "Directory" })
-highlight("SnacksPickerMatch", { fg = c.ice, bold = true })
-highlight("SnacksIndent", { fg = "#121212" })
-highlight("SnacksIndentScope", { fg = "#2a2a2a" })
+highlight("FzfLuaBorder",         { fg = c.gold })
+highlight("FzfLuaFzfMatch",       { fg = c.ice, bold = true })
+highlight("MiniIndentscopeSymbol", { fg = "#2a2a2a" })
 
 -- Diagnostics (Trouble / LSP / Rustacean)
 highlight("DiagnosticError", { fg = c.red })
