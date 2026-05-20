@@ -182,6 +182,10 @@ if.app-id = 'com.hnc.Discord'
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
+if.app-id = 'com.apple.Notes'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
 if.app-id = 'com.apple.Safari'
 run = "move-node-to-workspace 2"
 
@@ -198,7 +202,7 @@ if.app-id = 'com.microsoft.Outlook'
 run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
-if.app-id = 'ai.perplexity.comet'
+if.app-id = 'net.imput.helium'
 run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
@@ -206,7 +210,15 @@ if.app-id = 'md.obsidian'
 run = "move-node-to-workspace 6"
 
 [[on-window-detected]]
-if.app-id = 'com.spotify.client'
+if.app-id = 'com.apple.Safari.WebApp.B29A41B3-85CB-4DFB-8139-0D289F60A363'
+run = "move-node-to-workspace 6"
+
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = "move-node-to-workspace 7"
+
+[[on-window-detected]]
+if.app-id = 'com.google.antigravity'
 run = "move-node-to-workspace 7"
 
 [[on-window-detected]]
@@ -214,16 +226,16 @@ if.app-id = 'com.apple.Preview'
 run = "move-node-to-workspace 8"
 
 [[on-window-detected]]
-if.app-id = 'org.zotero.zotero'
-run = "move-node-to-workspace 2"
+if.app-id = 'net.sourceforge.skim-app.skim'
+run = "move-node-to-workspace 8"
 
 [[on-window-detected]]
-if.app-id = 'com.apple.Safari.WebApp.B29A41B3-85CB-4DFB-8139-0D289F60A363'
+if.app-id = 'org.zotero.zotero'
 run = "move-node-to-workspace 9"
 
 [[on-window-detected]]
-if.app-id = 'net.sourceforge.skim-app.skim'
-run = "move-node-to-workspace 3"
+if.app-id = 'com.apple.Safari.WebApp.D4D9A454-54EC-43BB-82C4-2234F80A5A5D'
+run = "move-node-to-workspace 9"
 
 # Assign workspaces to monitors
 [workspace-to-monitor-force-assignment]
