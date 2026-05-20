@@ -19,12 +19,6 @@ csvview.setup({
     },
 })
 
-Snacks.toggle({
-    name = "CSV View",
-    get = function()
-        return csvview.is_enabled(0)
-    end,
-    set = function(state)
-        csvview.toggle(0)
-    end,
-}):map("<leader>uv")
+vim.keymap.set("n", "<leader>uv", function()
+    require("csvview").toggle(0)
+end, { desc = "Toggle CSV View" })

@@ -198,24 +198,14 @@ hl("RenderMarkdownDash", { fg = c.peach })
 hl("RenderMarkdownTableHead", { fg = c.red })
 hl("RenderMarkdownTableRow", { fg = c.peach })
 
--- 9. SNACKS.NVIM
-hl("SnacksNotifierError", { fg = c.fg })
-hl("SnacksNotifierIconError", { fg = c.red })
-hl("SnacksNotifierTitleError", { fg = c.red })
-hl("SnacksNotifierWarn", { fg = c.fg })
-hl("SnacksNotifierIconWarn", { fg = c.yellow })
-hl("SnacksNotifierInfo", { fg = c.fg })
-hl("SnacksNotifierIconInfo", { fg = c.sky_blue })
-hl("SnacksDashboardHeader", { fg = c.blue })
-hl("SnacksDashboardIcon", { fg = c.periwinkle })
-hl("SnacksDashboardKey", { fg = c.peach })
-hl("SnacksDashboardDesc", { fg = c.mint })
-hl("SnacksDashboardSpecial", { fg = c.purple })
-hl("SnacksIndent", { fg = "#121212", nocombine = true })
-hl("SnacksIndentScope", { fg = c.periwinkle, nocombine = true })
-hl("SnacksInputTitle", { fg = c.yellow })
-hl("SnacksPickerInputBorder", { fg = c.peach, bg = "#080808" })
-hl("SnacksPickerSelected", { fg = c.orchid })
+-- 9. FZF-LUA
+hl("FzfLuaBorder",     { fg = c.peach })
+hl("FzfLuaTitle",      { fg = c.yellow })
+hl("FzfLuaCursorLine", { bg = "#1a1a1a" })
+hl("FzfLuaFzfMatch",   { fg = c.orchid, bold = true })
+
+-- mini.indentscope
+hl("MiniIndentscopeSymbol", { fg = c.periwinkle, nocombine = true })
 
 -- 10. TROUBLE & WHICH-KEY
 hl("TroubleNormal", { fg = c.fg, bg = "NONE" })

@@ -36,13 +36,6 @@ vim.keymap.set({ "n", "v" }, "<leader>cf", function()
     require("conform").format({ async = true })
 end, { desc = "Format buffer" })
 
-Snacks.toggle({
-    id = "autoformat",
-    name = "Format on save",
-    get = function()
-        return vim.g.autoformat
-    end,
-    set = function(_)
-        vim.g.autoformat = not vim.g.autoformat
-    end,
-}):map("<leader>uf")
+vim.keymap.set("n", "<leader>uf", function()
+    vim.g.autoformat = not vim.g.autoformat
+end, { desc = "Toggle Format on Save" })

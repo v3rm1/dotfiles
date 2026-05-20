@@ -68,52 +68,21 @@ function M.setup()
         },
     })
 
-    local lsp_source_labels = {
-        "def",
-        "dec",
-        "ref",
-        "impl",
-        "type",
-    }
-
-    local function lsp_picker()
-        Snacks.picker({
-            title = "LSP: All",
-            multi = {
-                "lsp_definitions",
-                "lsp_declarations",
-                "lsp_references",
-                "lsp_implementations",
-                "lsp_type_definitions",
-            },
-            format = function(item, picker)
-                local ret = Snacks.picker.format.file(item, picker)
-                local label = lsp_source_labels[item.source_id] or "?"
-                table.insert(ret, 1, { " ", virtual = true })
-                table.insert(
-                    ret,
-                    1,
-                    { label, "SnacksPickerLabel" }
-                )
-                return ret
-            end,
-        })
-    end
-
     vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("my_nvim_lsp_attach", { clear = true }),
         callback = function(event)
+            local fzf = require("fzf-lua")
             local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
             local bufnr = event.buf
             local map = function(keys, func, desc)
                 vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
             end
-            map("gll", lsp_picker, "All (picker)")
-            map("gld", Snacks.picker.lsp_definitions, "Definitions")
-            map("glD", Snacks.picker.lsp_declarations, "Declarations")
-            map("glr", Snacks.picker.lsp_references, "References")
-            map("gli", Snacks.picker.lsp_implementations, "Implementations")
-            map("glt", Snacks.picker.lsp_type_definitions, "Type Definitions")
+            map("gll", fzf.lsp_finder,          "All (picker)")
+            map("gld", fzf.lsp_definitions,    "Definitions")
+            map("glD", fzf.lsp_declarations,    "Declarations")
+            map("glr", fzf.lsp_references,      "References")
+            map("gli", fzf.lsp_implementations, "Implementations")
+            map("glt", fzf.lsp_typedefs,        "Type Definitions")
             if client.name == "clangd" then
                 map("<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", "Switch Source/Header")
             end

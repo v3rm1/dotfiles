@@ -72,15 +72,11 @@ require("mini.icons").setup()
 require("mini.icons").mock_nvim_web_devicons()
 require("mini.comment").setup()
 
-Snacks.toggle
-    .new({
-        id = "minipairs",
-        name = "Mini.Pairs",
-        get = function()
-            return not vim.g.minipairs_disable
-        end,
-        set = function(_)
-            vim.g.minipairs_disable = not vim.g.minipairs_disable
-        end,
-    })
-    :map("<leader>up")
+vim.keymap.set("n", "<leader>up", function()
+    vim.g.minipairs_disable = not vim.g.minipairs_disable
+end, { desc = "Toggle Mini.Pairs" })
+
+require("mini.indentscope").setup({
+    symbol  = "│",
+    options = { try_as_border = true },
+})
