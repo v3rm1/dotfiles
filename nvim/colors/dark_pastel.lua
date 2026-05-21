@@ -46,7 +46,20 @@ local c = {
     sand       = "#E6DFB3",
 }
 
--- 2. CORE UI
+-- 2. STYLES CONFIG (tokyonight-style — override via vim.g.dark_pastel_styles)
+local styles = vim.tbl_deep_extend("force", {
+    comments  = { italic = true },
+    keywords  = { bold = true },
+    functions = { bold = true },
+    variables = {},
+    types     = { italic = true },
+}, vim.g.dark_pastel_styles or {})
+
+local s = function(base, style)
+    return vim.tbl_extend("force", base, style)
+end
+
+-- 3. CORE UI
 hl("Normal", { fg = c.fg, bg = c.bg })
 hl("NormalFloat", { fg = c.fg, bg = "#080808" })
 hl("FloatBorder", { fg = c.sage, bg = c.bg })
@@ -59,21 +72,21 @@ hl("CursorLineNr", { fg = c.peach, bold = true })
 hl("WinSeparator", { fg = c.surface })
 hl("StatusLine", { bg = c.surface, fg = c.periwinkle})
 
--- 3. STANDARD SYNTAX (Using Sage for Comments)
-hl("Comment", { fg = c.grey, italic = true })
-hl("Constant", { fg = c.peach, bold = true })
-hl("String", { fg = c.tan })
-hl("Identifier", { fg = c.blue })
-hl("Function", { fg = c.periwinkle, bold = true })
-hl("Statement", { fg = c.teal, bold = true })
-hl("PreProc", { fg = c.purple })
-hl("Type", { fg = c.deep_teal, italic = true })
+-- 4. STANDARD SYNTAX (Using Sage for Comments)
+hl("Comment",    s({ fg = c.grey },       styles.comments))
+hl("Constant",   { fg = c.peach, bold = true })
+hl("String",     { fg = c.tan })
+hl("Identifier", s({ fg = c.blue },       styles.variables))
+hl("Function",   s({ fg = c.periwinkle }, styles.functions))
+hl("Statement",  s({ fg = c.teal },       styles.keywords))
+hl("PreProc",    { fg = c.purple })
+hl("Type",       s({ fg = c.deep_teal },  styles.types))
 hl("Special", { fg = c.rose })
 hl("Error", { fg = c.red, bold = true })
 hl("Todo", { fg = c.ice, bold = true })
 hl("Underlined", { underline = true })
 
--- 4. TREESITTER (@Logic)
+-- 5. TREESITTER (@Logic)
 hl("@annotation", { fg = c.orchid })
 hl("@attribute", { fg = c.plum })
 hl("@boolean", { fg = c.seafoam, bold = true })
@@ -96,11 +109,11 @@ hl("@diff.plus", { link = "DiffAdd" })
 hl("@function", { link = "Function" })
 hl("@function.builtin", { fg = c.rose })
 hl("@function.macro", { fg = c.purple })
-hl("@keyword", { fg = c.teal, bold = true })
-hl("@keyword.function", { fg = c.orchid })
-hl("@keyword.import", { fg = c.purple })
+hl("@keyword",          s({ fg = c.teal },    styles.keywords))
+hl("@keyword.function", s({ fg = c.orchid },  styles.keywords))
+hl("@keyword.import",   s({ fg = c.purple },  styles.keywords))
 hl("@keyword.operator", { fg = c.lavender })
-hl("@keyword.return", { fg = c.teal, italic = true })
+hl("@keyword.return",   s({ fg = c.teal, italic = true }, styles.keywords))
 hl("@label", { fg = c.blue })
 hl("@number", { fg = c.seafoam })
 hl("@operator", { fg = c.lavender })
@@ -118,10 +131,10 @@ hl("@tag.attribute", { fg = c.coral })
 hl("@tag.delimiter", { fg = c.steel })
 hl("@type", { link = "Type" })
 hl("@type.builtin", { fg = c.periwinkle })
-hl("@variable", { fg = c.fg })
-hl("@variable.builtin", { fg = c.red })
-hl("@variable.member", { fg = c.sky_blue })
-hl("@variable.parameter", { fg = c.sage })
+hl("@variable",           s({ fg = c.fg },       styles.variables))
+hl("@variable.builtin",   { fg = c.red })
+hl("@variable.member",    s({ fg = c.sky_blue }, styles.variables))
+hl("@variable.parameter", s({ fg = c.sage },     styles.variables))
 
 -- LSP modification
 hl("@lsp.mod.builtin", { fg = c.red, bold = true })
@@ -149,7 +162,7 @@ hl("@markup.strong", { bold = true })
 -- Treesitter context
 hl("TreesitterContext", { bg = "#0D0D0D" })
 
--- 5. NEOGIT
+-- 6. NEOGIT
 hl("NeogitBranch", { fg = c.orchid })
 hl("NeogitRemote", { fg = c.purple })
 hl("NeogitHunkHeader", { bg = c.surface, fg = c.fg })
@@ -158,7 +171,7 @@ hl("NeogitDiffContextHighlight", { bg = "#0D0D0D", fg = c.steel })
 hl("NeogitDiffDeleteHighlight", { fg = c.crimson, bg = "#220000" })
 hl("NeogitDiffAddHighlight", { fg = c.emerald, bg = "#002200" })
 
--- 6. BLINK.CMP & COPILOT 
+-- 7. BLINK.CMP & COPILOT
 hl("BlinkCmpDoc", { fg = c.fg, bg = "#080808" })
 hl("BlinkCmpDocBorder", { fg = c.surface, bg = "#080808" })
 hl("BlinkCmpGhostText", { fg = c.clay })
@@ -175,7 +188,7 @@ hl("BlinkCmpSignatureHelpBorder", { fg = c.surface, bg = "#080808" })
 hl("CopilotAnnotation", { fg = c.clay })
 hl("CopilotSuggestion", { fg = c.clay, italic = true })
 
--- 7. MINI.NVIM 
+-- 8. MINI.NVIM
 hl("MiniFilesBorder", { link = "FloatBorder" })
 hl("MiniFilesDirectory", { fg = c.gold, bold = true })
 hl("MiniFilesFile", { fg = c.fg })
@@ -191,14 +204,14 @@ hl("MiniIconsOrange", { fg = c.peach })
 hl("MiniIconsRed", { fg = c.red })
 hl("MiniSurround", { bg = c.peach, fg = c.black })
 
--- 8. RENDER-MARKDOWN
+-- 9. RENDER-MARKDOWN
 hl("RenderMarkdownBullet", { fg = c.peach })
 hl("RenderMarkdownCode", { bg = "#0A0A0A" })
 hl("RenderMarkdownDash", { fg = c.peach })
 hl("RenderMarkdownTableHead", { fg = c.red })
 hl("RenderMarkdownTableRow", { fg = c.peach })
 
--- 9. FZF-LUA
+-- 10. FZF-LUA
 hl("FzfLuaBorder",     { fg = c.peach })
 hl("FzfLuaTitle",      { fg = c.yellow })
 hl("FzfLuaCursorLine", { bg = "#1a1a1a" })
@@ -207,7 +220,7 @@ hl("FzfLuaFzfMatch",   { fg = c.orchid, bold = true })
 -- mini.indentscope
 hl("MiniIndentscopeSymbol", { fg = c.periwinkle, nocombine = true })
 
--- 10. TROUBLE & WHICH-KEY
+-- 11. TROUBLE & WHICH-KEY
 hl("TroubleNormal", { fg = c.fg, bg = "NONE" })
 hl("TroubleText", { fg = c.steel })
 hl("TroubleCount", { fg = c.orchid, bg = c.surface })
