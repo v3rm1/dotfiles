@@ -28,6 +28,7 @@ vim.pack.add({
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/sindrets/diffview.nvim",
     "https://github.com/MeanderingProgrammer/render-markdown.nvim",
+    "https://github.com/3rd/image.nvim",
     "https://github.com/mason-org/mason.nvim",
     "https://github.com/rafamadriz/friendly-snippets",
     "https://github.com/zbirenbaum/copilot.lua",
@@ -57,6 +58,7 @@ require("plugins.markdown_setup")
 require("plugins.mason_setup")
 require("plugins.ai_setup")
 require("plugins.dap_setup")
+require("plugins.image_setup")
 require("plugins.statusline_setup")
 
 require("lazydev").setup({

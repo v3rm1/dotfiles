@@ -9,7 +9,7 @@ fzf.setup({
 
 local map = vim.keymap.set
 
-map("n", "<leader><space>", fzf.files,                                                    { desc = "Find Files (smart)" })
+map("n", "<leader><space>", fzf.files,       { desc = "Find Files (smart)" })
 map("n", "<leader>/",       fzf.live_grep,                                                { desc = "Grep" })
 map("n", "<leader>fb",      fzf.buffers,                                                  { desc = "Find Buffers" })
 map("n", "<leader>fc",      function() fzf.files({ cwd = vim.fn.stdpath("config") }) end, { desc = "Find Config File" })
@@ -32,3 +32,10 @@ map("n", "<leader>sl",      fzf.loclist,                                        
 map("n", "<leader>sq",      fzf.quickfix,                                                 { desc = "Quickfix List" })
 map("n", "<leader>ss",      fzf.lsp_document_symbols,                                     { desc = "LSP Symbols" })
 map("n", "<leader>sS",      fzf.lsp_workspace_symbols,                                    { desc = "LSP Workspace Symbols" })
+map("n", "<leader>s?",      function()
+    local doc_dirs = vim.tbl_filter(
+        function(p) return vim.fn.isdirectory(p) == 1 end,
+        vim.tbl_map(function(p) return p .. "/doc" end, vim.opt.runtimepath:get())
+    )
+    fzf.live_grep({ search_paths = doc_dirs, prompt = "HelpGrep> " })
+end, { desc = "Help Grep" })
