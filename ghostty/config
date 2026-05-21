@@ -1,48 +1,41 @@
+# App icon settings
+macos-icon = xray
+
 # Window settings
-shell-integration = zsh
+macos-titlebar-style = "transparent"
+shell-integration = "detect"
 
 # Cursor settings
-shell-integration-features = no-cursor
+shell-integration-features = sudo, no-cursor, title
 cursor-style = underline
 cursor-style-blink = false
+# mac opt as alt
+macos-option-as-alt = left
 
 # Default working directory settings
 working-directory = home
 
 # Font settings
-font-family = "MesloLGL Nerd Font Mono"
-font-family-bold = "MesloLGL Nerd Font Mono"
-font-family-italic = "MesloLGL Nerd Font Mono"
-font-family-bold-italic = "MesloLGL Nerd Font Mono"
-font-size = 16
+font-family = "MesloLGS Nerd Font Mono"
+font-family-bold = "MesloLGS Nerd Font Mono"
+font-family-italic = "MesloLGS Nerd Font Mono"
+font-family-bold-italic = "MesloLGS Nerd Font Mono"
+font-size = 15
 
 # Theme settings
 theme = catppuccin-mocha.conf
 
 # Quick terminal settings
+keybind = global:cmd+`=toggle_quick_terminal
 quick-terminal-position = center
 quick-terminal-autohide = true
 quick-terminal-space-behavior = move
 
-# tmux style key bindings
+# tmux handles splits/windows — ghostty is just the container
 mouse-hide-while-typing = true
-scrollback-limit = 1000000
-
-keybind = ctrl+n=new_window
-
-keybind = ctrl+h=goto_split:left
-keybind = ctrl+j=goto_split:bottom
-keybind = ctrl+k=goto_split:top
-keybind = ctrl+l=goto_split:right
-
-keybind = ctrl+`>h=new_split:left
-keybind = ctrl+`>j=new_split:down
-keybind = ctrl+`>k=new_split:up
-keybind = ctrl+`>l=new_split:right
-keybind = ctrl+`>f=toggle_split_zoom
-keybind = ctrl+`>q=close_surface
-
-keybind = ctrl+`>n=next_tab
-keybind = ctrl+`>p=previous_tab
+scrollback-limit = 10000
+command = /Users/varunv/.config/ghostty/tmux-start.sh
 
 window-save-state = always
+
+background-opacity = 1.00
