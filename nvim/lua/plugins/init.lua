@@ -29,6 +29,7 @@ vim.pack.add({
     "https://github.com/sindrets/diffview.nvim",
     "https://github.com/MeanderingProgrammer/render-markdown.nvim",
     "https://github.com/3rd/image.nvim",
+    "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/mason-org/mason.nvim",
     "https://github.com/rafamadriz/friendly-snippets",
     "https://github.com/zbirenbaum/copilot.lua",
@@ -59,6 +60,7 @@ require("plugins.mason_setup")
 require("plugins.ai_setup")
 require("plugins.dap_setup")
 require("plugins.image_setup")
+require("plugins.ibl_setup")
 require("plugins.statusline_setup")
 
 require("lazydev").setup({
@@ -96,11 +98,6 @@ end, { expr = true })
 
 require("fidget").setup({})
 
-vim.keymap.set("n", "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>", { desc = "tmux left" })
-vim.keymap.set("n", "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>", { desc = "tmux down" })
-vim.keymap.set("n", "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>", { desc = "tmux up" })
-vim.keymap.set("n", "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>", { desc = "tmux right" })
-vim.keymap.set("n", "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>", { desc = "tmux previous" })
 
 require("persistence").setup({})
 vim.keymap.set("n", "<leader>qs", function()
