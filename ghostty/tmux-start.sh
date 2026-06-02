@@ -1,8 +1,8 @@
-#!/bin/zsh
+#!/bin/sh
 # Skip if already inside tmux
-[ -n "$TMUX" ] && exec $SHELL
+[ -n "$TMUX" ] && exec "$SHELL"
 
-TMUX=/opt/homebrew/bin/tmux
+TMUX=$(command -v tmux)
 
 if ! $TMUX list-sessions &>/dev/null; then
     # No sessions — create default

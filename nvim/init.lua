@@ -73,6 +73,7 @@ require("vim._core.ui2").enable({
 require("keymaps")
 require("autocmds")
 require("lsp_setup").setup()
+require("statusline")
 require("plugins")
 
 -- Remove inactive plugins
@@ -92,4 +93,4 @@ vim.api.nvim_create_user_command("Packsync", function()
     vim.notify("PackSync: removing " .. table.concat(inactive, ", "))
     vim.pack.del(inactive)
 end, { desc = "Remove inactive pack plugins" })
-vim.cmd("colorscheme dark_pastel")
+vim.cmd("colorscheme tokyonight")

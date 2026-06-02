@@ -41,6 +41,9 @@ alias -s txt=nvim
 alias -s py=nvim
 alias -s toml=nvim
 
+# tmux: attach to main session or create it
+alias t='tmux new-session -A -s main'
+
 # CAIR GPU5 Alias
 alias cgpu="ssh -i ~/.ssh/cairgpu5 varunrv@cair-gpu05"
 
