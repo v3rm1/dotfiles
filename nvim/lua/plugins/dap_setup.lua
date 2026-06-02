@@ -14,8 +14,17 @@ dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
 
--- Python setup
-require("dap-python").setup("python3") -- Uses the python in your path or venv
+-- Python setup: resolve pixi env lazily per session
+local function resolve_python()
+    local pixi = vim.fn.getcwd() .. "/.pixi/envs/default/bin/python"
+    return vim.fn.filereadable(pixi) == 1 and pixi or "python3"
+end
+
+require("dap-python").setup("python3")
+
+for _, config in ipairs(dap.configurations.python or {}) do
+    config.pythonPath = resolve_python
+end
 
 -- C / C++ / Rust setup (codelldb)
 dap.adapters.codelldb = {

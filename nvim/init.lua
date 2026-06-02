@@ -37,6 +37,7 @@ vim.opt.confirm = true
 vim.opt.linebreak = true
 vim.opt.showbreak = "↪ "
 vim.opt.laststatus = 3
+vim.opt.winbar = "%=%m %f"
 vim.opt.sessionoptions:remove({ "terminal" })
 
 vim.opt.foldlevel = 99

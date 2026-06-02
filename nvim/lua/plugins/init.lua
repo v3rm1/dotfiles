@@ -73,6 +73,7 @@ require("which-key").setup({
     preset = "helix",
     delay = 300,
     spec = {
+        { "<leader>b", group = "+buffer" },
         { "<leader>u", group = "+toggle" },
         { "<leader>g", group = "+git" },
         { "<leader>q", group = "+session" },
