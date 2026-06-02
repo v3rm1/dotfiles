@@ -2,6 +2,16 @@ local function augroup(name)
     return vim.api.nvim_create_augroup("my_nvim_" .. name, { clear = true })
 end
 
+-- Auto-save on focus loss / buffer leave
+vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
+    group = augroup("autosave"),
+    callback = function()
+        if vim.bo.modified and vim.bo.buftype == "" and vim.fn.expand("%") ~= "" then
+            vim.cmd("silent! write")
+        end
+    end,
+})
+
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking (copying) text",
