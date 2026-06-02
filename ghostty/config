@@ -23,7 +23,7 @@ font-family-bold-italic = "MesloLGS Nerd Font Mono"
 font-size = 15
 
 # Theme settings
-theme = catppuccin-mocha.conf
+theme = TokyoNight Night
 
 # Quick terminal settings
 keybind = global:cmd+`=toggle_quick_terminal
@@ -34,7 +34,7 @@ quick-terminal-space-behavior = move
 # tmux handles splits/windows — ghostty is just the container
 mouse-hide-while-typing = true
 scrollback-limit = 10000
-command = /Users/varunv/.config/ghostty/tmux-start.sh
+# command = ~/.config/ghostty/tmux-start.sh
 
 window-save-state = always
 

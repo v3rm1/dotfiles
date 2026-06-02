@@ -38,6 +38,7 @@ vim.pack.add({
     "https://github.com/rcarriga/nvim-dap-ui",
     "https://github.com/nvim-neotest/nvim-nio",
     "https://github.com/mfussenegger/nvim-dap-python",
+    "https://github.com/folke/tokyonight.nvim",
 })
 
 -- Plugin configs
@@ -61,7 +62,6 @@ require("plugins.ai_setup")
 require("plugins.dap_setup")
 require("plugins.image_setup")
 require("plugins.ibl_setup")
-require("plugins.statusline_setup")
 
 require("lazydev").setup({
     library = {
