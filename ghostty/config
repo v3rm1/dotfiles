@@ -16,14 +16,14 @@ macos-option-as-alt = left
 working-directory = home
 
 # Font settings
-font-family = "MesloLGS Nerd Font Mono"
-font-family-bold = "MesloLGS Nerd Font Mono"
-font-family-italic = "MesloLGS Nerd Font Mono"
-font-family-bold-italic = "MesloLGS Nerd Font Mono"
+font-family = "MesloLGS Nerd Font"
+font-family-bold = "MesloLGS Nerd Font"
+font-family-italic = "MesloLGS Nerd Font"
+font-family-bold-italic = "MesloLGS Nerd Font"
 font-size = 15
 
 # Theme settings
-theme = TokyoNight Night
+theme = TokyoNight Storm
 
 # Quick terminal settings
 keybind = global:cmd+`=toggle_quick_terminal
