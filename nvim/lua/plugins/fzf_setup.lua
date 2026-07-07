@@ -39,3 +39,12 @@ map("n", "<leader>s?",      function()
     )
     fzf.live_grep({ search_paths = doc_dirs, prompt = "HelpGrep> " })
 end, { desc = "Help Grep" })
+
+map("n", "<leader>ag", function()
+    local dir = vim.fn.getcwd() .. "/graphify-out"
+    if vim.fn.isdirectory(dir) == 0 then
+        vim.notify("No graphify-out/ in cwd", vim.log.levels.WARN)
+        return
+    end
+    fzf.files({ cwd = dir, prompt = "Graphify> " })
+end, { desc = "Browse graphify-out/" })

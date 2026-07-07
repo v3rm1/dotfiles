@@ -48,6 +48,9 @@ require("plugins.fzf_setup")
 vim.keymap.set("n", "<leader>gg", function()
     require("native.lazygit").open()
 end, { desc = "Lazygit" })
+vim.keymap.set("n", "<leader>ac", function()
+    require("native.claude").open()
+end, { desc = "Claude" })
 require("plugins.oil_setup")
 require("plugins.treesitter_setup")
 require("plugins.mini_setup")
@@ -73,6 +76,7 @@ require("which-key").setup({
     preset = "helix",
     delay = 300,
     spec = {
+        { "<leader>a", group = "+ai" },
         { "<leader>b", group = "+buffer" },
         { "<leader>u", group = "+toggle" },
         { "<leader>g", group = "+git" },
