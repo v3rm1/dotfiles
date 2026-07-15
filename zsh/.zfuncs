@@ -8,3 +8,13 @@ s () {
       --preview "command bat -p --color=always {1} --highlight-line {2}" \
       --preview-window 'up:80%,border-bottom,~3,+{2}+3/3'
 }
+
+# Give each tmux pane's nvim instance a predictable RPC socket so
+# keymaster can query its live keymaps/mode.
+nvim() {
+    if [ -n "$TMUX" ]; then
+        command nvim --listen "/tmp/nvim-$(tmux display -p '#{pane_id}').sock" "$@"
+    else
+        command nvim "$@"
+    fi
+}
