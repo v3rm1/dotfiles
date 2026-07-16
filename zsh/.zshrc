@@ -139,7 +139,7 @@ command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
 source ~/.aliases
 source ~/.zfuncs
 
-export HF_TOKEN="REDACTED_HF_TOKEN"
+[[ -f ~/.hf_token ]] && export HF_TOKEN="$(<~/.hf_token)"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
