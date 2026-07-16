@@ -1,0 +1,8 @@
+[[session]]
+name = "dev"
+path = "~"
+windows = ["home"]
+
+[[window]]
+name = "home"
+startup_script = "tmux split-window -h -t \"$TMUX_PANE\" -c \"$PWD\""
