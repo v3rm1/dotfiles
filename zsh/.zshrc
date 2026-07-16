@@ -137,7 +137,17 @@ command -v thefuck &>/dev/null && eval "$(thefuck --alias fuck fk)"
 command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
 
 # ---- sesh (tmux session picker) ----
-command -v sesh &>/dev/null && alias s='sesh connect "$(sesh list -i | fzf)"'
+sesh-connect() {
+  local raw session
+  raw="$(sesh list -i -t -c -z | fzf --ansi --reverse --height 40%)" || return
+  [[ -n "$raw" ]] || return
+  session="${raw##*·}"
+  sesh connect "$session"
+}
+if command -v sesh &>/dev/null; then
+  zle -N sesh-connect
+  bindkey '^G' sesh-connect
+fi
 
 source ~/.aliases
 source ~/.zfuncs

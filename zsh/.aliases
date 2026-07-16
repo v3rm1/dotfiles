@@ -1,6 +1,5 @@
 # Alias for common commands
 alias cl='clear'
-alias s="source"
 
 # Eza is better ls
 alias ls="eza -l --icons=always --no-user --no-permissions"
@@ -40,9 +39,6 @@ alias gwt='git worktree'
 alias -s txt=nvim
 alias -s py=nvim
 alias -s toml=nvim
-
-# tmux: attach to main session or create it
-alias t='sesh connect main'
 
 # CAIR GPU5 Alias
 alias cgpu="ssh -i ~/.ssh/cairgpu5 varunrv@cair-gpu05"
