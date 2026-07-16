@@ -321,5 +321,5 @@ yellow = '#e0af68'
 
 # Claude statusline config
 [profiles]
-claude-code = "$claude_model|$directory|$git_branch|$claude_context"
+claude-code = "$claude_model| $directory| $git_branch| $claude_context"
 
