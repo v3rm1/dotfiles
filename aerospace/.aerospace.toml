@@ -242,11 +242,11 @@ run = "move-node-to-workspace 9"
 # Assign workspaces to monitors
 [workspace-to-monitor-force-assignment]
 1 = 'built-in'
-2 = ['LEN P27h-10 \(2\)', 'built-in']
+2 = ['PHL 241B8Q', 'LEN P27h-10 \(2\)', 'built-in']
 3 = ['LEN P27h-10 \(1\)', 'built-in']
-4 = 'built-in'
+4 = ['PHL 241B8Q', 'LEN P27h-10 \(2\)', 'built-in']
 5 = ['LEN P27h-10 \(2\)', 'built-in']
-6 = ['LEN P27h-10 \(1\)', 'built-in']
+6 = ['PHL 241B8Q', 'LEN P27h-10 \(1\)', 'built-in']
 7 = 'built-in'
-8 = ['LEN P27h-10 \(2\)', 'built-in']
+8 = ['PHL 241B8Q', 'LEN P27h-10 \(2\)', 'built-in']
 9 = ['LEN P27h-10 \(1\)', 'built-in']

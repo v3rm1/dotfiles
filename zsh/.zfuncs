@@ -1,4 +1,9 @@
-s () {
+# Exec into a docker container on cair-gpu05 via docker's ssh transport
+cgdm () {
+  DOCKER_HOST=ssh://cair-gpu05 docker exec -it "$1" bash
+}
+
+sg () {
   fz --ansi --disabled \
       --bind "change:reload:command \
           rg --line-number --no-heading --color=always --smart-case {q} \

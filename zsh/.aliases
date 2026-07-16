@@ -48,4 +48,8 @@ alias t='tmux new-session -A -s main'
 alias cgpu="ssh -i ~/.ssh/cairgpu5 varunrv@cair-gpu05"
 
 # yay clear unused packages and dependencies
-alias cyay="yay -Rnscu $(yay -Qdtq)"
+if command -v yay; then
+    alias cyay="yay -Rnscu $(yay -Qdtq)"
+fi
+
+# vim: ft=sh
