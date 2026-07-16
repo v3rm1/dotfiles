@@ -1,5 +1,5 @@
 [[session]]
-name = "dev"
+name = "main"
 path = "~"
 windows = ["home"]
 
