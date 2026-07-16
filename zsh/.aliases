@@ -47,4 +47,8 @@ alias t='tmux new-session -A -s main'
 # CAIR GPU5 Alias
 
 # yay clear unused packages and dependencies
-alias cyay="yay -Rnscu $(yay -Qdtq)"
+if command -v yay; then
+    alias cyay="yay -Rnscu $(yay -Qdtq)"
+fi
+
+# vim: ft=sh
