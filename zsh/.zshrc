@@ -142,7 +142,8 @@ sesh-connect() {
   raw="$(sesh list -i -t -c -z | fzf --ansi --reverse --height 40%)" || return
   [[ -n "$raw" ]] || return
   session="${raw##*·}"
-  sesh connect "$session"
+  BUFFER="sesh connect \"$session\""
+  zle accept-line
 }
 if command -v sesh &>/dev/null; then
   zle -N sesh-connect
