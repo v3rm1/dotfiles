@@ -18,22 +18,21 @@ $lua\
 $sudo\
 $jobs\
 $battery\
-$custom\
 $cmd_duration\
 $status\
 $fill\
 $shlvl\
 $memory_usage\
-$time\
+$custom\
 $line_break\
 $character"""
 
 palette = "tokyonight_storm"
 
 [character]
-success_symbol = "[➜](bold green)"
-error_symbol = "[✗](bold red)"
-vimcmd_symbol = "[❮](bold green)"
+success_symbol = "[](bold green)"
+error_symbol = "[](bold red)"
+vimcmd_symbol = "[](bold blue)"
 
 [aws]
 symbol = "  "
@@ -225,24 +224,24 @@ symbol = " "
 
 
 [fill]
-symbol = " "
+symbol = "·"
 
 [git_metrics]
 disabled = false
 
 [memory_usage]
 symbol = "󰍛 "
-disabled = false
+disabled = true
 threshold = 90
 format = "$symbol[$ram]($style) "
 
 [cmd_duration]
-min_time = 500
-format = "took [$duration]($style) "
+min_time = 5000
+format = "[$duration]($style) "
 
 [status]
 disabled = false
-symbol = "✗ "
+symbol = " "
 format = "[$symbol$common_meaning$signal_name$maybe_int]($style) "
 
 [sudo]
@@ -252,17 +251,17 @@ symbol = " "
 [shlvl]
 disabled = false
 threshold = 2
-symbol = "↕ "
+symbol = "󰽜 "
 
 [jobs]
 symbol = " "
 
 [container]
-symbol = "⬢ "
+symbol = " "
 
 [kubernetes]
 disabled = false
-symbol = "☸ "
+symbol = "󱃾 "
 
 [terraform]
 symbol = "󱁢 "
@@ -276,14 +275,14 @@ threshold = 60
 style = "bold yellow"
 
 [time]
-disabled = false
-format = "[$time]($style) "
+disabled = true
 
 [custom.uptime]
-command = "uptime -p 2>/dev/null || uptime | sed 's/.*up //;s/,.*//'"
-symbol = " "
+command = "echo $(( $(date +%s) - $(sysctl -n kern.boottime | awk '{print $4}' | tr -d ,) ))"
+symbol = " "
+format = "[$symbol$output]($style) "
+style = "dark3"
 when = true
-shell = ["bash", "-c"]
 
 [claude_model]
 symbol = "󱙺 "
@@ -322,5 +321,5 @@ yellow = '#e0af68'
 
 # Claude statusline config
 [profiles]
-claude-code = "$claude_model$directory$git_branch$claude_context"
+claude-code = "$claude_model|$directory|$git_branch|$claude_context"
 
