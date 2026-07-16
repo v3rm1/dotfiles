@@ -136,6 +136,9 @@ command -v thefuck &>/dev/null && eval "$(thefuck --alias fuck fk)"
 # ---- Zoxide (better cd) ----
 command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
 
+# ---- sesh (tmux session picker) ----
+command -v sesh &>/dev/null && alias s='sesh connect "$(sesh list -i | fzf)"'
+
 source ~/.aliases
 source ~/.zfuncs
 
