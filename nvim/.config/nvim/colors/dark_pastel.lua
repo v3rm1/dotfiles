@@ -171,12 +171,11 @@ hl("NeogitDiffContextHighlight", { bg = "#0D0D0D", fg = c.steel })
 hl("NeogitDiffDeleteHighlight", { fg = c.crimson, bg = "#220000" })
 hl("NeogitDiffAddHighlight", { fg = c.emerald, bg = "#002200" })
 
--- 7. BLINK.CMP & COPILOT
+-- 7. BLINK.CMP
 hl("BlinkCmpDoc", { fg = c.fg, bg = "#080808" })
 hl("BlinkCmpDocBorder", { fg = c.surface, bg = "#080808" })
 hl("BlinkCmpGhostText", { fg = c.clay })
 hl("BlinkCmpKindCodeium", { fg = c.teal })
-hl("BlinkCmpKindCopilot", { fg = c.teal })
 hl("BlinkCmpKindDefault", { fg = c.steel })
 hl("BlinkCmpLabel", { fg = c.fg })
 hl("BlinkCmpLabelDeprecated", { fg = c.grey, strikethrough = true })
@@ -185,8 +184,6 @@ hl("BlinkCmpMenu", { fg = c.fg, bg = "#080808" })
 hl("BlinkCmpMenuBorder", { fg = c.surface, bg = "#080808" })
 hl("BlinkCmpSignatureHelp", { fg = c.fg, bg = "#080808" })
 hl("BlinkCmpSignatureHelpBorder", { fg = c.surface, bg = "#080808" })
-hl("CopilotAnnotation", { fg = c.clay })
-hl("CopilotSuggestion", { fg = c.clay, italic = true })
 
 -- 8. MINI.NVIM
 hl("MiniFilesBorder", { link = "FloatBorder" })

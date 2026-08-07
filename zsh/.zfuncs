@@ -3,6 +3,11 @@ cgdm () {
   DOCKER_HOST=ssh://cair-gpu05 docker exec -it "$1" bash
 }
 
+# Exec into a docker container on uni-server via docker's ssh transport
+unidm () {
+  DOCKER_HOST=ssh://uni-server docker exec -it "${1:-varun_dc}" bash
+}
+
 sg () {
   fz --ansi --disabled \
       --bind "change:reload:command \

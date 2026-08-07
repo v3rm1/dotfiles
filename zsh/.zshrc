@@ -1,5 +1,3 @@
-# Prompt
-eval "$(starship init zsh)"
 # ------------------------------------------------------------------------------
 # Environment
 # ------------------------------------------------------------------------------
@@ -29,6 +27,10 @@ _extend_path() {
 # Add custom bin to $PATH
 _extend_path "$HOME/.local/bin"
 _extend_path "$CONFIG"
+
+# Prompt -- must come after PATH is extended, since starship may live in
+# $HOME/.local/bin on machines where it isn't packaged system-wide
+eval "$(starship init zsh)"
 
 # less options
 less_opts=(
@@ -146,7 +148,11 @@ source ~/.zfuncs
 
 [[ -f ~/.hf_token ]] && export HF_TOKEN="$(<~/.hf_token)"
 
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
+fpath+=~/.zfunc; autoload -Uz compinit
+# Dump file lives on local disk, not $HOME -- avoids compinit hanging on
+# NFS/Ceph-style network homes where lock/write contention on a shared
+# .zcompdump can stall shell startup indefinitely.
+compinit -d "${TMPDIR:-/tmp}/zcompdump-$HOST-$ZSH_VERSION"
 
 zstyle ':completion:*' menu select
 
@@ -179,3 +185,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
   # Added by Antigravity CLI installer
   export PATH="/Users/varunv/.local/bin:$PATH"
 fi
+
+# Per-machine overrides, untracked
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

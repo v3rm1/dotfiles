@@ -93,11 +93,10 @@ highlight("@operator", { fg = c.lavender })
 
 -- 5. PLUGIN CONSISTENCY
 
--- Completion (Blink.cmp / CoPilot)
+-- Completion (Blink.cmp)
 highlight("BlinkCmpMenu", { link = "NormalFloat" })
 highlight("BlinkCmpMenuBorder", { link = "FloatBorder" })
 highlight("BlinkCmpLabelMatch", { fg = c.ice, bold = true })
-highlight("CopilotSuggestion", { fg = c.clay, italic = true })
 
 -- Git (Fugitive / Neogit / Gitsigns / Diffview)
 highlight("DiffAdd", { bg = "#002200", fg = c.emerald })

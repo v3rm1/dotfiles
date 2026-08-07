@@ -32,7 +32,6 @@ vim.pack.add({
     "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/mason-org/mason.nvim",
     "https://github.com/rafamadriz/friendly-snippets",
-    "https://github.com/zbirenbaum/copilot.lua",
     "https://github.com/NickvanDyke/opencode.nvim",
     "https://github.com/mfussenegger/nvim-dap",
     "https://github.com/rcarriga/nvim-dap-ui",
