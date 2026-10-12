@@ -32,7 +32,6 @@ vim.pack.add({
     "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/mason-org/mason.nvim",
     "https://github.com/rafamadriz/friendly-snippets",
-    "https://github.com/NickvanDyke/opencode.nvim",
     "https://github.com/mfussenegger/nvim-dap",
     "https://github.com/rcarriga/nvim-dap-ui",
     "https://github.com/nvim-neotest/nvim-nio",
@@ -60,7 +59,6 @@ require("plugins.git_setup")
 require("plugins.conform_setup")
 require("plugins.markdown_setup")
 require("plugins.mason_setup")
-require("plugins.ai_setup")
 require("plugins.dap_setup")
 require("plugins.image_setup")
 require("plugins.ibl_setup")

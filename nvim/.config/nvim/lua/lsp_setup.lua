@@ -31,11 +31,11 @@ M.servers = {
 
     -- python
     ruff = {},
-    pyrefly = {},
     ty = {},
 
     -- c, cpp
     clangd = {
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
         cmd = {
             "clangd",
             "--background-index",
