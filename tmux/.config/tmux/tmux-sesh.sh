@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
-# tmux session picker: live sessions + zoxide dirs, fzf-picked, attach or create.
+# tmux session picker: live sessions + fd-listed dirs, fzf-picked, attach or create.
 set -euo pipefail
 
 cur=$(tmux display-message -p '#S' 2>/dev/null || true)
 
 {
     tmux list-sessions -F '#S' 2>/dev/null | grep -v "^${cur}\$" | sed 's/^/[session] /' || true
-    zoxide query -l
-} | fzf --no-sort --ansi --border-label ' sesh ' \
+    # live listing each open, so new dirs show up without any index
+    fd -t d -d 1 . "$HOME" "$HOME/Downloads" 2>/dev/null || true
+    fd -t d -d 3 . "$HOME/Documents" 2>/dev/null || true
+} | sed 's:/$::' | fzf --no-sort --ansi --border-label ' sesh ' \
     --preview 'n={}; n=${n#\[session\] }; tmux has-session -t "$n" 2>/dev/null && tmux capture-pane -ept "$n" || eza -1 --color=always "$n" 2>/dev/null || ls "$n"' \
     > /tmp/tmux-sesh-pick
 
