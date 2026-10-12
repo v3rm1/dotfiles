@@ -98,7 +98,7 @@ environment {
     QT_QPA_PLATFORMTHEME_QT6 "qt6ct"
 }
 
-spawn-at-startup "keepassxc"
+// spawn-at-startup "keepassxc" // moved to systemd user unit keepassxc.service, ordered after dms.service
 
 // spawn-at-startup "waybar"
 // spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
