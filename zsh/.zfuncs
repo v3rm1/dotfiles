@@ -18,3 +18,38 @@ sg () {
       --preview "command bat -p --color=always {1} --highlight-line {2}" \
       --preview-window 'up:80%,border-bottom,~3,+{2}+3/3'
 }
+
+# Recent-dir history (zoxide replacement): zsh records every cd into
+# ~/.chpwd-recent-dirs, which cd/cdi below fuzzy-search with fzf
+autoload -Uz chpwd_recent_dirs add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 500
+zstyle ':chpwd:*' recent-dirs-prune 'pattern:/private/tmp/*' 'pattern:/tmp/*'
+
+_recent_dirs () {
+  local d
+  for d in ${(Qf)"$(<${ZDOTDIR:-$HOME}/.chpwd-recent-dirs)"}; do
+    [[ -d $d ]] && print -r -- $d
+  done 2>/dev/null
+}
+
+# cd: normal cd for real paths, otherwise fuzzy-jump to a recent dir
+# matching the query (auto-selects when only one match)
+cd () {
+  if (( $# == 0 )) || [[ $1 == -* || -d $1 ]]; then
+    builtin cd "$@"
+    return
+  fi
+  local dir
+  dir=$(_recent_dirs | fzf --height 40% --query "$*" --select-1 --exit-0 \
+    --preview 'eza --tree --level=2 --color=always {} | head -200') \
+    && builtin cd "$dir" || { print -u2 "cd: no match for '$*'"; return 1 }
+}
+
+# cdi: interactive pick from recent dirs (zoxide's zi)
+cdi () {
+  local dir
+  dir=$(_recent_dirs | fzf --height 40% --query "$*" \
+    --preview 'eza --tree --level=2 --color=always {} | head -200') \
+    && builtin cd "$dir"
+}

@@ -9,8 +9,6 @@ export CONFIG=${CONFIG:="$HOME/.config"}
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
-# Stop zoxide from crying
-export _ZO_DOCTOR=0
 
 # Do not override files using `>`, but it's still possible using `>!`
 set -o noclobber
@@ -26,6 +24,7 @@ _extend_path() {
 
 # Add custom bin to $PATH
 _extend_path "$HOME/.local/bin"
+_extend_path "$HOME/.cargo/bin"
 _extend_path "$CONFIG"
 
 # Prompt -- must come after PATH is extended, since starship may live in
@@ -132,11 +131,11 @@ if command -v fzf &>/dev/null; then
   }
 fi
 
-# ---- TheFuck -----
-command -v thefuck &>/dev/null && eval "$(thefuck --alias fuck fk)"
-
-# ---- Zoxide (better cd) ----
-command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
+# ---- pay-respects (thefuck replacement) -----
+if command -v pay-respects &>/dev/null; then
+  eval "$(pay-respects zsh --alias fk)"
+  alias fuck=fk
+fi
 
 # ---- tmux session picker ----
 if command -v tmux &>/dev/null; then
