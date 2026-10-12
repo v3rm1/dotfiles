@@ -37,6 +37,7 @@ vim.pack.add({
     "https://github.com/nvim-neotest/nvim-nio",
     "https://github.com/mfussenegger/nvim-dap-python",
     "https://github.com/folke/tokyonight.nvim",
+    "https://github.com/coder/claudecode.nvim",
 })
 
 -- Plugin configs
@@ -46,9 +47,7 @@ require("plugins.fzf_setup")
 vim.keymap.set("n", "<leader>gg", function()
     require("native.lazygit").open()
 end, { desc = "Lazygit" })
-vim.keymap.set("n", "<leader>ac", function()
-    require("native.claude").open()
-end, { desc = "Claude" })
+require("plugins.claude_setup")
 require("plugins.oil_setup")
 require("plugins.treesitter_setup")
 require("plugins.mini_setup")
