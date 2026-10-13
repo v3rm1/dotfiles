@@ -5,3 +5,5 @@ graphify-out/
 
 # versioned Claude Code config (global ignore excludes .claude/)
 !claude/.claude/
+claude/.claude/scripts/*.log
+!claude/.claude/CLAUDE.md

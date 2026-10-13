@@ -1,0 +1,124 @@
+{
+  "skillListingMaxDescChars": 600,
+  "skillListingBudgetFraction": 0.005,
+  "env": {
+    "CAVEMAN_DEFAULT_MODE": "ultra"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "permissions": {
+    "allow": [
+      "Edit(~/Documents/obsidian-files/obsidian-dashboard/**)",
+      "Bash(tlmgr *)",
+      "Bash(tlmgr)"
+    ],
+    "deny": [
+      "Bash(git push *)"
+    ],
+    "defaultMode": "auto"
+  },
+  "model": "opus",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $HOME/.claude/scripts/cleanup-unnamed-sessions.py 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $HOME/.claude/scripts/save-memory-graph.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $HOME/.claude/scripts/sync-config-memory.py --target '$HOME/Documents/obsidian-files/obsidian-dashboard/agent_memory/claude-sync/claude-md-and-settings.md' --heading '## `~/.claude/CLAUDE.md` (verbatim)' --source $HOME/.claude/CLAUDE.md 2>&1 || true",
+            "if": "Edit(~/.claude/CLAUDE.md)"
+          },
+          {
+            "type": "command",
+            "command": "python3 $HOME/.claude/scripts/sync-config-memory.py --target '$HOME/Documents/obsidian-files/obsidian-dashboard/agent_memory/claude-sync/claude-md-and-settings.md' --heading '## `~/.claude/CLAUDE.md` (verbatim)' --source $HOME/.claude/CLAUDE.md 2>&1 || true",
+            "if": "Write(~/.claude/CLAUDE.md)"
+          },
+          {
+            "type": "command",
+            "command": "python3 $HOME/.claude/scripts/sync-config-memory.py --target '$HOME/Documents/obsidian-files/obsidian-dashboard/agent_memory/claude-sync/claude-md-and-settings.md' --heading '## `~/.claude/settings.json` — non-plugin special instructions' --source $HOME/.claude/settings.json 2>&1 || true",
+            "if": "Edit(~/.claude/settings.json)"
+          },
+          {
+            "type": "command",
+            "command": "python3 $HOME/.claude/scripts/sync-config-memory.py --target '$HOME/Documents/obsidian-files/obsidian-dashboard/agent_memory/claude-sync/claude-md-and-settings.md' --heading '## `~/.claude/settings.json` — non-plugin special instructions' --source $HOME/.claude/settings.json 2>&1 || true",
+            "if": "Write(~/.claude/settings.json)"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "starship statusline claude-code"
+  },
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "caveman@caveman": true,
+    "academic-research-skills@academic-research-skills": false,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "academic-research-skills": {
+      "source": {
+        "source": "github",
+        "repo": "Imbad0202/academic-research-skills"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "awaySummaryEnabled": false,
+  "tui": "fullscreen",
+  "theme": "dark-ansi",
+  "editorMode": "vim",
+  "verbose": true,
+  "preferredNotifChannel": "ghostty",
+  "agentPushNotifEnabled": true,
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "worktree": {
+    "baseRef": "fresh"
+  },
+  "enableWorkflows": true,
+  "askUserQuestionTimeout": "never"
+}
