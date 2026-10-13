@@ -11,6 +11,7 @@ from pathlib import Path
 MEMORY_DIR = Path.home() / "Documents/obsidian-files/obsidian-dashboard/agent_memory"
 INDEX_FILE = MEMORY_DIR / "_INDEX.md"
 CLAUDE_BIN = shutil.which("claude") or "claude"
+CHILD_ENV = "MEMORY_GRAPH_CHILD"
 TODAY = datetime.now().strftime("%Y-%m-%d")
 
 
@@ -93,9 +94,11 @@ Rules:
 - If the conversation is too short or trivial, output: {{"topics":[],"entities":[],"decisions":[],"summary":"","links":[]}}
 """
     try:
+        # CHILD_ENV stops the nested claude's own hooks from re-running this script
         result = subprocess.run(
-            [CLAUDE_BIN, "-p", prompt],
-            capture_output=True, text=True, timeout=90
+            [CLAUDE_BIN, "-p", "--model", "haiku", prompt],
+            capture_output=True, text=True, timeout=90,
+            env={**os.environ, CHILD_ENV: "1"},
         )
         return parse_json(result.stdout.strip())
     except Exception as e:
@@ -207,6 +210,10 @@ def update_index(extracted: dict) -> None:
 
 
 def main() -> None:
+    if os.environ.get(CHILD_ENV):
+        print("{}")
+        return
+
     try:
         raw = sys.stdin.read()
         hook_input = json.loads(raw) if raw.strip() else {}

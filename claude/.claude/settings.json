@@ -32,17 +32,6 @@
         ]
       }
     ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 $HOME/.claude/scripts/save-memory-graph.py"
-          }
-        ]
-      }
-    ],
     "PostToolUse": [
       {
         "matcher": "Edit|Write",
@@ -66,6 +55,17 @@
             "type": "command",
             "command": "python3 $HOME/.claude/scripts/sync-config-memory.py --target '$HOME/Documents/obsidian-files/obsidian-dashboard/agent_memory/claude-sync/claude-md-and-settings.md' --heading '## `~/.claude/settings.json` — non-plugin special instructions' --source $HOME/.claude/settings.json 2>&1 || true",
             "if": "Write(~/.claude/settings.json)"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $HOME/.claude/scripts/save-memory-graph.py"
           }
         ]
       }
