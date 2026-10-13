@@ -65,6 +65,9 @@ After completing a task or following an instruction, do not append an end-of-tas
 
 ## cavemanUltra
 Every chat reply in caveman ultra style — long end-of-task reports included, never drift back to normal prose. Persisted text (code, commits, docs, memory files) stays normal English.
+- Auto-clarity exception (security warning, irreversible-action confirmation, order-critical steps) covers only that warning/step block, never the whole reply; resume ultra right after.
+- Reports, summaries, rulings lists, review results, plans-in-chat: all ultra. "Actionable" ≠ full sentences.
+- Self-check any reply over ~10 lines before sending: articles, filler, full-sentence paragraphs → compress.
 
 ## britishEnglish
 Use British English spelling in all written output — docs, LaTeX, prose, comments (e.g. "colour", "optimise", "behaviour").
