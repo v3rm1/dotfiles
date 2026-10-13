@@ -12,7 +12,7 @@ Only for project related memory sharing between different AI agents. Do not crea
 - Index: `~/Documents/obsidian-files/obsidian-dashboard/agent_memory/_INDEX.md` — lists topics/entities, short summary of each, lists only.
 - Node files: group by project (project is a directory), file named by topic holds detail. Index entry links to its node file.
 - Note format: `## <date-stamp>` heading per update, entry content below it. New updates append a new dated heading rather than rewriting prior ones.
-- Store lives in `obsidian-dashboard` repo — see [[multiRepoCommit]] for its commit pairing.
+- Store lives in `obsidian-dashboard` repo — edit notes only; user handles all commits/pushes there (see [[obsidianCommitPolicy]]).
 
 ## Usage
 - Session start: read `_INDEX.md`, filtered by project, to recall prior context.
@@ -38,8 +38,8 @@ Whenever git project encountered: check `.gitignore`, update to ignore graphify 
 ## gitPushPolicy
 Never run `git push` — local git ops (add/commit/rebase/etc) only, always. Never add a Claude signature/co-author line to commit messages.
 
-## multiRepoCommit
-Paper repos (`uia-documents/phd-latex-files/...`) and `obsidian-dashboard` (holds [[agentMemory]] store) often change together in a session — commit both when both touched, don't leave one dangling.
+## obsidianCommitPolicy
+Never commit or push in `obsidian-dashboard` (holds [[agentMemory]] store) — user handles all git ops there. Edit notes freely; leave changes uncommitted. Paper repos commit on their own.
 
 ## overleafSync
 Paper repos synced to an Overleaf git remote — before committing there, `fetch` + `rebase` first (Overleaf-side/collaborator edits cause divergence often).
@@ -62,6 +62,9 @@ For one-off/temporary Python tool or dependency needs (e.g. a script needing a l
 
 ## noTrailingSummaries
 After completing a task or following an instruction, do not append an end-of-task summary or restate what was just done/asked. State results inline as you go; stop when done.
+
+## cavemanUltra
+Every chat reply in caveman ultra style — long end-of-task reports included, never drift back to normal prose. Persisted text (code, commits, docs, memory files) stays normal English.
 
 ## britishEnglish
 Use British English spelling in all written output — docs, LaTeX, prose, comments (e.g. "colour", "optimise", "behaviour").

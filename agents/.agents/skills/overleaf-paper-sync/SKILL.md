@@ -1,6 +1,6 @@
 ---
 name: overleaf-paper-sync
-description: Safely sync, compile and commit a LaTeX paper repository that has an Overleaf git remote, and commit the paired obsidian-dashboard agent-memory changes alongside it. Use whenever working in ~/Documents/uia-documents/phd-latex-files/papers/* or any repo whose remote is git.overleaf.com — before editing (to pull collaborator changes), after editing (to compile and commit), when the user says "sync with Overleaf", "commit the paper", "make a latexdiff", "pull Overleaf changes", or when a rebase against Overleaf has diverged.
+description: Safely sync, compile and commit a LaTeX paper repository that has an Overleaf git remote. Use whenever working in ~/Documents/uia-documents/phd-latex-files/papers/* or any repo whose remote is git.overleaf.com — before editing (to pull collaborator changes), after editing (to compile and commit), when the user says "sync with Overleaf", "commit the paper", "make a latexdiff", "pull Overleaf changes", or when a rebase against Overleaf has diverged.
 ---
 
 # Overleaf paper sync
@@ -41,14 +41,9 @@ Write a short imperative commit message describing the change to the paper (e.g.
 
 **Do not run `git push`.** The user pushes themselves. Finish by giving them the exact command, e.g. `git -C ~/Documents/uia-documents/phd-latex-files/papers/<paper> push origin HEAD`. If the push is likely to be rejected (remote moved since your fetch), say so and tell them to fetch and rebase first.
 
-## Paired agent-memory commit
+## Agent-memory notes
 
-When the session touched the project's agent-memory note in `~/Documents/obsidian-files/obsidian-dashboard`, commit that repo too so the two never drift apart:
-
-```bash
-git -C ~/Documents/obsidian-files/obsidian-dashboard add agent_memory/
-git -C ~/Documents/obsidian-files/obsidian-dashboard commit -m "agent_memory: <project> — <what changed>"
-```
+Never commit or push in `~/Documents/obsidian-files/obsidian-dashboard`. The user handles all git operations there; leave agent-memory edits uncommitted.
 
 ## latexdiff on request
 

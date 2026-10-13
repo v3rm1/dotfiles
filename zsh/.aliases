@@ -46,4 +46,7 @@ if command -v yay &>/dev/null; then
     alias cyay="yay -Rnscu $(yay -Qdtq)"
 fi
 
+# Refresh portfolio GoatCounter stats for the Obsidian HOME dashboard
+alias portstats="python3 ~/Documents/projects/portfolio/scripts/analytics_report.py"
+
 # vim: ft=sh
