@@ -1,0 +1,77 @@
+{
+  "version": 3,
+  "skills": {
+    "academic-paper": {
+      "source": "Imbad0202/academic-research-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Imbad0202/academic-research-skills.git",
+      "skillPath": "academic-paper/SKILL.md",
+      "skillFolderHash": "8294e34cd39e39d41bf776345f20e5a1421c6235",
+      "installedAt": "2026-05-21T12:09:04.073Z",
+      "updatedAt": "2026-05-21T12:09:04.073Z"
+    },
+    "academic-paper-reviewer": {
+      "source": "Imbad0202/academic-research-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Imbad0202/academic-research-skills.git",
+      "skillPath": "academic-paper-reviewer/SKILL.md",
+      "skillFolderHash": "e89cc5bb00e777ce6ce1aaa98fb20433f28093f9",
+      "installedAt": "2026-05-21T12:09:04.077Z",
+      "updatedAt": "2026-05-21T12:09:04.077Z"
+    },
+    "academic-pipeline": {
+      "source": "Imbad0202/academic-research-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Imbad0202/academic-research-skills.git",
+      "skillPath": "academic-pipeline/SKILL.md",
+      "skillFolderHash": "30bd5c5a512e859cdcb79b0e56310b4cf70d3ecd",
+      "installedAt": "2026-05-21T12:09:04.078Z",
+      "updatedAt": "2026-05-21T12:09:04.078Z"
+    },
+    "deep-research": {
+      "source": "Imbad0202/academic-research-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Imbad0202/academic-research-skills.git",
+      "skillPath": "deep-research/SKILL.md",
+      "skillFolderHash": "87bdb5fb98ed6eae4778760675e2a4ca99d4ce65",
+      "installedAt": "2026-05-21T12:09:04.079Z",
+      "updatedAt": "2026-05-21T12:09:04.079Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "3013fdeb8a11b10b1eb795ec3ae8bfca38f7c26d",
+      "installedAt": "2026-05-21T12:09:08.670Z",
+      "updatedAt": "2026-05-21T12:09:08.670Z"
+    },
+    "zotlit-template": {
+      "source": "zotlit.aidenlx.site",
+      "sourceType": "well-known",
+      "sourceUrl": "https://zotlit.aidenlx.site/.well-known/agent-skills/zotlit-template/ab0a4b389017f8c4279c69675855d30b3857371e/archive.zip",
+      "skillFolderHash": "",
+      "installedAt": "2026-08-05T14:11:44.431Z",
+      "updatedAt": "2026-08-05T14:11:44.431Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "antigravity",
+    "antigravity-cli",
+    "cline",
+    "codex",
+    "cursor",
+    "deepagents",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed",
+    "claude-code"
+  ]
+}
