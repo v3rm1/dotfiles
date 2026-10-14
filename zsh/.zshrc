@@ -184,7 +184,7 @@ source ~/.zfuncs
 alias claude-plugin-updates='~/.claude/scripts/check-plugin-updates.sh'
 
 # ------------------------------------------------------------------------------
-# macOS-only (Homebrew, Antigravity IDE, mlflow tunnel)
+# macOS-only (Homebrew, Antigravity IDE)
 # ------------------------------------------------------------------------------
 if [[ "$(uname)" == "Darwin" ]]; then
   _extend_path "/opt/homebrew/sbin"
@@ -201,8 +201,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
   # Antigravity IDE
   _extend_path "$HOME/.antigravity/antigravity/bin"
 
-  # One tunnel for all shells, not one per new shell/tmux pane
-  pgrep -qf 'autossh.*mlflow-tunnel' || autossh -M 0 -f -N mlflow-tunnel
   alias burp="brew update && brew upgrade && brew doctor && brew cleanup"
 fi
 

@@ -14,13 +14,10 @@ command -v dust &>/dev/null && alias du="dust -H -D"
 # Git shorthands live in ~/.config/zsh-abbr/user-abbreviations (zsh-abbr),
 # so they expand inline and history keeps the full command.
 
-
 # Filetype aliases to attach editors
 alias -s txt=nvim
 alias -s py=nvim
 alias -s toml=nvim
-
-# CAIR GPU5 Alias
 
 # yay clear unused packages and dependencies
 if command -v yay &>/dev/null; then
