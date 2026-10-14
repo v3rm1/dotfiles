@@ -146,6 +146,29 @@ window-rule {
     draw-border-with-background false
 }
 
+// Phosphor glow: faint P1-green CRT halo on the focused window, plain dark shadow on the rest.
+// Matches the ASCII wallpapers; window-rule wins over dms/colors.kdl.
+window-rule {
+    shadow {
+        on
+        softness 20
+        spread 6
+        offset x=0 y=0
+        color "#33ff6670"
+        inactive-color "#00000055"
+    }
+}
+
+// Translucent windows so the live sky shows through; unfocused ones fade further.
+window-rule {
+    opacity 0.92
+}
+
+window-rule {
+    match is-active=false
+    opacity 0.82
+}
+
 
 // Open web browsers maximized by default.
 window-rule {
@@ -259,7 +282,6 @@ binds {
     Mod+Shift+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
     Mod+Shift+Escape hotkey-overlay-title="Btop" { spawn "ghostty" "-e" "btop"; }
     Mod+E hotkey-overlay-title="File Manager" { spawn-sh "nautilus"; }
-    Mod+Shift+E hotkey-overlay-title="Yazi" { spawn-sh "ghostty -e yazi"; }
     Mod+N hotkey-overlay-title="Obsidian notes" { spawn-sh "xdg-open 'obsidian://open?vault=obsidian-dashboard&file=HOME.canvas'";}
 
     // Tuxedo key
