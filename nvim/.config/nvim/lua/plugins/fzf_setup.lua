@@ -1,10 +1,24 @@
-local fzf = require("fzf-lua")
+require("lazyload").add({
+    plugins = { "fzf-lua" },
+    modules = { "fzf-lua" },
+    cmd = { "FzfLua" },
+    setup = function()
+        require("fzf-lua").setup({
+            winopts = {
+                border  = "single",
+                preview = { border = "single" },
+            },
+        })
+    end,
+})
 
-fzf.setup({
-    winopts = {
-        border  = "single",
-        preview = { border = "single" },
-    },
+-- Proxy: fzf.files etc. resolve on call, so the plugin loads on first use.
+local fzf = setmetatable({}, {
+    __index = function(_, k)
+        return function(...)
+            return require("fzf-lua")[k](...)
+        end
+    end,
 })
 
 local map = vim.keymap.set

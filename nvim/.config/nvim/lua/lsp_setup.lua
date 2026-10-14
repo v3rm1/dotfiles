@@ -29,6 +29,17 @@ M.servers = {
         },
     },
 
+    -- prose: grammar checking (British spelling) and markdown links/headings
+    harper_ls = {
+        filetypes = { "markdown", "tex", "gitcommit", "typst" },
+        settings = {
+            ["harper-ls"] = {
+                dialect = "British",
+            },
+        },
+    },
+    marksman = {},
+
     -- python
     ruff = {},
     ty = {},
@@ -71,7 +82,14 @@ function M.setup()
     vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("my_nvim_lsp_attach", { clear = true }),
         callback = function(event)
-            local fzf = require("fzf-lua")
+            -- resolve on call so attaching a client doesn't load fzf-lua
+            local fzf = setmetatable({}, {
+                __index = function(_, k)
+                    return function(...)
+                        return require("fzf-lua")[k](...)
+                    end
+                end,
+            })
             local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
             local bufnr = event.buf
             local map = function(keys, func, desc)

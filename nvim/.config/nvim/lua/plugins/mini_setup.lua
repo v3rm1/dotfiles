@@ -68,8 +68,6 @@ require("mini.pairs").setup({
         ["`"] = false,
     },
 })
-require("mini.icons").setup()
-require("mini.icons").mock_nvim_web_devicons()
 require("mini.comment").setup()
 
 vim.keymap.set("n", "<leader>up", function()

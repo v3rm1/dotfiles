@@ -3,7 +3,7 @@ require("conform").setup({
         lua = { "stylua" },
         sh = { "shfmt" },
         bib = { "bibtex-tidy" },
-        tex = { "latexindent" },
+        tex = { "tex-fmt" },
     },
     default_format_opts = {
         lsp_format = "fallback",
@@ -15,6 +15,10 @@ require("conform").setup({
         end
     end,
     formatters = {
+        -- No wrapping: rewrapped paragraphs make noisy Overleaf diffs.
+        ["tex-fmt"] = {
+            prepend_args = { "--nowrap" },
+        },
         ["latexindent"] = {
             command = "latexindent",
             args = { "-l", "-m" },

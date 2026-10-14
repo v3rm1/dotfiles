@@ -1,19 +1,30 @@
 -- claudecode.nvim: Claude Code IDE integration (same protocol as the VS Code /ide
 -- extension). Claude sees the current file, selection and diagnostics, and proposes
 -- edits as diffs to accept/deny here. Hiding the terminal keeps the session alive.
-require("claudecode").setup({
-    track_selection = true,
-    focus_after_send = true,
-    terminal = {
-        provider = "native",
-        split_side = "right",
-        split_width_percentage = 0.38,
-        diff_split_width_percentage = 0.25,
+require("lazyload").add({
+    plugins = { "claudecode.nvim" },
+    modules = { "claudecode" },
+    cmd = {
+        "ClaudeCode", "ClaudeCodeFocus", "ClaudeCodeSelectModel", "ClaudeCodeAdd", "ClaudeCodeSend",
+        "ClaudeCodeSendText", "ClaudeCodeTreeAdd", "ClaudeCodeDiffAccept", "ClaudeCodeDiffDeny",
+        "ClaudeCodeStart", "ClaudeCodeStop", "ClaudeCodeStatus", "ClaudeCodeOpen", "ClaudeCodeClose",
     },
-    diff_opts = {
-        layout = "vertical",
-        open_in_new_tab = false,
-    },
+    setup = function()
+        require("claudecode").setup({
+            track_selection = true,
+            focus_after_send = true,
+            terminal = {
+                provider = "native",
+                split_side = "right",
+                split_width_percentage = 0.38,
+                diff_split_width_percentage = 0.25,
+            },
+            diff_opts = {
+                layout = "vertical",
+                open_in_new_tab = false,
+            },
+        })
+    end,
 })
 
 local map = function(mode, lhs, rhs, desc)

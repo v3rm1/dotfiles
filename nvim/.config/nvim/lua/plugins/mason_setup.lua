@@ -42,6 +42,7 @@ end
 
 local name_to_mason = {
     lua_ls = "lua-language-server",
+    harper_ls = "harper-ls",
 }
 
 local function tool_list()
@@ -50,6 +51,7 @@ local function tool_list()
         "shfmt",
         "bibtex-tidy",
         "latexindent",
+        "tex-fmt",
         "debugpy",
         "codelldb",
     }
@@ -59,11 +61,16 @@ local function tool_list()
     return tools
 end
 
-require("mason").setup()
-vim.api.nvim_create_autocmd("VimEnter", {
-    once = true,
-    callback = function()
-        local tools = tool_list()
-        install_missing(tools)
+-- Mason's bin dir on PATH now (LSP servers start before mason loads);
+-- mason itself loads after the first screen to install anything missing.
+vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
+require("lazyload").add({
+    defer = true,
+    plugins = { "mason.nvim" },
+    modules = { "mason", "mason-registry", "mason-core" },
+    cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonUpdate", "MasonLog" },
+    setup = function()
+        require("mason").setup({ PATH = "skip" })
+        install_missing(tool_list())
     end,
 })
