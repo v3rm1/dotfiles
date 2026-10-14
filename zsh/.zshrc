@@ -13,13 +13,11 @@ export LANGUAGE=en_US.UTF-8
 # Do not override files using `>`, but it's still possible using `>!`
 set -o noclobber
 
-# Extend $PATH without duplicates
+# Extend $PATH without duplicates: `typeset -U` keeps the path array unique,
+# and missing directories are skipped so per-machine entries are harmless.
+typeset -U path PATH
 _extend_path() {
-  [[ -d "$1" ]] || return
-
-  if ! $( echo "$PATH" | tr ":" "\n" | grep -qx "$1" ) ; then
-    export PATH="$1:$PATH"
-  fi
+  [[ -d "$1" ]] && path=("$1" $path)
 }
 
 # Add custom bin to $PATH
@@ -65,13 +63,12 @@ bindkey '^[[B' history-search-forward
 # direnv settings
 command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 
-if command -v brew &>/dev/null; then
-  source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-elif [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+# Completion: compinit must run before fzf-tab (loaded by antidote below).
+fpath+=~/.zfunc; autoload -Uz compinit
+# Dump file lives on local disk, not $HOME -- avoids compinit hanging on
+# NFS/Ceph-style network homes where lock/write contention on a shared
+# .zcompdump can stall shell startup indefinitely.
+compinit -d "${TMPDIR:-/tmp}/zcompdump-$HOST-$ZSH_VERSION"
 
 # ---- FZF -----
 if command -v fzf &>/dev/null; then
@@ -134,6 +131,39 @@ if command -v fzf &>/dev/null; then
   }
 fi
 
+# ---- atuin: SQLite shell history on Ctrl-R (after fzf, so it owns Ctrl-R) -----
+if command -v atuin &>/dev/null; then
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
+# ---- Plugins via antidote (cloned on first run; same set on every machine) -----
+# fzf-tab, zsh-abbr, forgit, autosuggestions, syntax-highlighting: see
+# ~/.zsh_plugins.txt. Forgit aliases that clash with the git abbreviations
+# get an "f" prefix.
+export ABBR_USER_ABBREVIATIONS_FILE="$HOME/.config/zsh-abbr/user-abbreviations"
+export forgit_add=fga forgit_diff=fgd forgit_checkout_file=fgcf forgit_switch_branch=fgsw
+export forgit_clean=fgclean forgit_blame=fgbl forgit_worktree=fgwt
+[[ -d ${ZDOTDIR:-$HOME}/.antidote ]] ||
+  git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
+source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
+antidote load
+
+# fzf-tab: completion menu in fzf, with previews
+zstyle ':completion:*' menu no
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:complete:(cd|z|eza|ls):*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:(nvim|n|bat|cat):*' fzf-preview 'bat -n --color=always --line-range :200 $realpath 2>/dev/null || eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview 'git diff $word | delta 2>/dev/null || git diff --color=always $word'
+zstyle ':fzf-tab:complete:git-(checkout|switch):*' fzf-preview 'git log --oneline --graph --color=always $word | head -50'
+# Keep fzf's `**<Tab>` trigger: fzf-completion handles `**`, else falls back to fzf-tab
+if (( $+widgets[fzf-completion] )); then
+  fzf_default_completion=fzf-tab-complete
+  bindkey '^I' fzf-completion
+fi
+
 # ---- pay-respects (thefuck replacement) -----
 if command -v pay-respects &>/dev/null; then
   eval "$(pay-respects zsh --alias fk)"
@@ -150,42 +180,30 @@ source ~/.zfuncs
 
 [[ -f ~/.hf_token ]] && export HF_TOKEN="$(<~/.hf_token)"
 
-fpath+=~/.zfunc; autoload -Uz compinit
-# Dump file lives on local disk, not $HOME -- avoids compinit hanging on
-# NFS/Ceph-style network homes where lock/write contention on a shared
-# .zcompdump can stall shell startup indefinitely.
-compinit -d "${TMPDIR:-/tmp}/zcompdump-$HOST-$ZSH_VERSION"
-
-zstyle ':completion:*' menu select
 
 alias claude-plugin-updates='~/.claude/scripts/check-plugin-updates.sh'
 
 # ------------------------------------------------------------------------------
-# macOS-only (Homebrew, Android SDK, Antigravity IDE, mlflow tunnel)
+# macOS-only (Homebrew, Antigravity IDE, mlflow tunnel)
 # ------------------------------------------------------------------------------
 if [[ "$(uname)" == "Darwin" ]]; then
   _extend_path "/opt/homebrew/sbin"
   _extend_path "$HOME/.rvm/bin"
-  _extend_path "/Users/varunv/Library/Python/3.9/bin"
+  _extend_path "$HOME/Library/Python/3.9/bin"
   _extend_path "/usr/local/texlive/2023basic/bin/universal-darwin"
   _extend_path "$HOME/.pixi/bin"
 
   # Lynx config
   export LYNX_CFG=~/.config/lynx/lynx.cfg
-  # Declare android home
-  export ANDROID_HOME="$HOME/Library/Android/sdk"
-  _extend_path "$ANDROID_HOME/platform-tools:$PATH"
 
-  export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+  _extend_path "/opt/homebrew/opt/openjdk@17/bin"
 
-  # Added by Antigravity
-  export PATH="/Users/varunv/.antigravity/antigravity/bin:$PATH"
+  # Antigravity IDE
+  _extend_path "$HOME/.antigravity/antigravity/bin"
 
-  autossh -M 0 -f -N mlflow-tunnel
+  # One tunnel for all shells, not one per new shell/tmux pane
+  pgrep -qf 'autossh.*mlflow-tunnel' || autossh -M 0 -f -N mlflow-tunnel
   alias burp="brew update && brew upgrade && brew doctor && brew cleanup"
-
-  # Added by Antigravity CLI installer
-  export PATH="/Users/varunv/.local/bin:$PATH"
 fi
 
 # Per-machine overrides, untracked

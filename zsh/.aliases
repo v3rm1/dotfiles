@@ -11,27 +11,8 @@ alias top="btop"
 alias fz="fzf --height 40% --layout reverse"
 alias cat="bat"
 command -v dust &>/dev/null && alias du="dust -H -D"
-# Git aliases (as in the OMZ git plugin)
-alias g='git'
-alias ga='git add'
-alias gbl='git blame -w'
-alias gb='git branch'
-alias gclean='git clean --interactive -d'
-alias gch="git checkout"
-alias gcl='git clone --recurse-submodules'
-alias gcm='git commit --message'
-alias gcf='git config --list'
-alias gd='git diff'
-alias gdt='git diff-tree --no-commit-id --name-only -r'
-alias gm='git merge'
-alias gl='git pull'
-alias gp='git push'
-alias grm='git rm'
-alias gcount='git shortlog --summary --numbered'
-alias gsh='git show'
-alias gst='git status'
-alias gsw='git switch'
-alias gwt='git worktree'
+# Git shorthands live in ~/.config/zsh-abbr/user-abbreviations (zsh-abbr),
+# so they expand inline and history keeps the full command.
 
 
 # Filetype aliases to attach editors

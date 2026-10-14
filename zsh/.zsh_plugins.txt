@@ -1,0 +1,8 @@
+# antidote plugin list (cloned into antidote's cache on first shell start).
+# Order matters: fzf-tab needs compinit to have run and must wrap completion
+# before autosuggestions/syntax-highlighting, which go last.
+Aloxaf/fzf-tab
+olets/zsh-abbr
+wfxr/forgit
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting

@@ -1,0 +1,11 @@
+# Atuin: shell history in SQLite. Ctrl-R opens the search UI; the up arrow
+# keeps zsh's prefix search (atuin is initialised with --disable-up-arrow).
+# Sync is off until `atuin register`/`atuin login` is run on a machine.
+update_check = false
+search_mode = "fuzzy"
+filter_mode = "global"
+style = "compact"
+inline_height = 20
+show_preview = true
+# Enter puts the command on the prompt for editing; Tab does the same.
+enter_accept = false
