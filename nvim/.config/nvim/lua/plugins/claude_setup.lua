@@ -47,6 +47,29 @@ map("v", "<leader>at", send_selection_with("Write tests for the selected code, r
 map("v", "<leader>ax", send_selection_with("Review the selected code for bugs and edge cases. Reproduce before claiming."), "Claude: check selection")
 map("n", "<leader>ak", "<cmd>ClaudeCodeSendText check<cr>", "Claude: check my latest changes")
 
+-- Prose (markdown/LaTeX): the same <leader>a keys drive agy instead of Claude.
+-- Buffer-local maps shadow the global Claude ones; code buffers keep Claude.
+-- Neovim has no filetype for .mdx, so register one for the autocmd to match.
+vim.filetype.add({ extension = { mdx = "mdx" } })
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("my_agy_prose", { clear = true }),
+    pattern = { "markdown", "quarto", "rmd", "mdx", "pandoc", "livebook", "tex", "plaintex", "bib" },
+    callback = function(ev)
+        local agy = require("native.agy")
+        local bmap = function(mode, lhs, rhs, desc)
+            vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
+        end
+        bmap("n", "<leader>ac", function() agy.toggle() end, "agy: toggle")
+        bmap("n", "<leader>af", agy.focus, "agy: focus")
+        bmap("n", "<leader>aC", function() agy.toggle({ "-c" }) end, "agy: continue last session")
+        bmap("n", "<leader>ab", agy.send_buffer, "agy: add buffer")
+        bmap("v", "<leader>as", function() agy.send_selection() end, "agy: send selection")
+        bmap("v", "<leader>ax", function()
+            agy.send_selection("Proofread the selection: grammar, clarity, British spelling. Propose edits, don't apply.")
+        end, "agy: proofread selection")
+    end,
+})
+
 -- oil.nvim: add the file under the cursor to Claude's context
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "oil",
