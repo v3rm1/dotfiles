@@ -31,6 +31,48 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
     end,
 })
 
+-- AI terminals (claude, agy) behave like a plain terminal: always typing on
+-- entry, Esc goes straight to the app (no <Esc><Esc> wait), no scrolloff
+-- shifting the view. <C-h/j/k/l> still move between windows;
+-- <C-\><C-n> drops to normal mode for scrollback.
+-- Terminal buffers are named term://{cwd}//{pid}:{cmd}; match on the program.
+local function is_ai_term(buf)
+    if vim.bo[buf].buftype ~= "terminal" then
+        return false
+    end
+    local prog = vim.api.nvim_buf_get_name(buf):match("//%d+:(%S+)")
+    prog = prog and vim.fs.basename(prog)
+    return prog == "claude" or prog == "agy"
+end
+
+vim.api.nvim_create_autocmd("TermOpen", {
+    group = augroup("ai_term_keys"),
+    callback = function(ev)
+        if is_ai_term(ev.buf) then
+            vim.keymap.set("t", "<Esc>", "<Esc>", { buffer = ev.buf, nowait = true })
+        end
+    end,
+})
+
+vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter", "TermOpen" }, {
+    group = augroup("ai_term_view"),
+    callback = function(ev)
+        if not is_ai_term(ev.buf) then
+            return
+        end
+        local win = vim.api.nvim_get_current_win()
+        if vim.api.nvim_win_get_buf(win) == ev.buf then
+            vim.wo[win].scrolloff = 0
+            vim.wo[win].sidescrolloff = 0
+            vim.wo[win].number = false
+            vim.wo[win].relativenumber = false
+            vim.wo[win].signcolumn = "no"
+            vim.wo[win].cursorline = false
+            vim.cmd("startinsert")
+        end
+    end,
+})
+
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
     group = augroup("resize_splits"),

@@ -11,6 +11,8 @@ require("lazyload").add({
     },
     setup = function()
         require("claudecode").setup({
+            -- Claude's own vim input mode fights nvim's; use plain input here only
+            terminal_cmd = [[claude --settings '{"editorMode":"normal"}']],
             track_selection = true,
             focus_after_send = true,
             terminal = {
