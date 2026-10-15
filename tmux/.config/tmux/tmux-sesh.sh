@@ -2,7 +2,10 @@
 # tmux session picker: live sessions + fd-listed dirs, fzf-picked, attach or create.
 set -euo pipefail
 
-cur=$(tmux display-message -p '#S' 2>/dev/null || true)
+# only hide the current session when inside tmux; outside, display-message
+# still returns the most recent session and would wrongly filter it out
+cur=""
+[ -n "${TMUX:-}" ] && cur=$(tmux display-message -p '#S' 2>/dev/null || true)
 
 {
     tmux list-sessions -F '#S' 2>/dev/null | grep -v "^${cur}\$" | sed 's/^/[session] /' || true
