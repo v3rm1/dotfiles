@@ -107,6 +107,7 @@
   "awaySummaryEnabled": false,
   "tui": "fullscreen",
   "theme": "dark-ansi",
+  "spinnerTipsEnabled": false,
   "editorMode": "vim",
   "verbose": true,
   "preferredNotifChannel": "ghostty",
