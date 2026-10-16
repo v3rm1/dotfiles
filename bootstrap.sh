@@ -6,14 +6,24 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MACHINES_DIR="$REPO_ROOT/machines"
 
 usage() {
-  echo "Usage: $0 <machine> [--dry-run]" >&2
+  echo "Usage: $0 <machine> [--dry-run] [--tools]" >&2
+  echo "  --tools  also install the machine's dev toolchain" >&2
+  echo "           (machines/<machine>.Brewfile or machines/<machine>.pacman)" >&2
   exit 1
 }
 
 [[ $# -ge 1 ]] || usage
 MACHINE="$1"
+shift
 DRY_RUN=false
-[[ "${2:-}" == "--dry-run" ]] && DRY_RUN=true
+TOOLS=false
+for arg in "$@"; do
+  case "$arg" in
+    --dry-run) DRY_RUN=true ;;
+    --tools) TOOLS=true ;;
+    *) usage ;;
+  esac
+done
 
 PKGS_FILE="$MACHINES_DIR/$MACHINE.pkgs"
 [[ -f "$PKGS_FILE" ]] || { echo "No such machine profile: $PKGS_FILE" >&2; exit 1; }
@@ -76,3 +86,23 @@ for pkg in "${PACKAGES[@]}"; do
     stow -v -d "$REPO_ROOT" -t "$HOME" --restow "$pkg"
   fi
 done
+
+if $TOOLS; then
+  echo "== tools =="
+  if [[ -f "$MACHINES_DIR/$MACHINE.Brewfile" ]]; then
+    if $DRY_RUN; then
+      brew bundle check --verbose --file="$MACHINES_DIR/$MACHINE.Brewfile" || true
+    else
+      brew bundle --file="$MACHINES_DIR/$MACHINE.Brewfile"
+    fi
+  elif [[ -f "$MACHINES_DIR/$MACHINE.pacman" ]]; then
+    mapfile -t TOOL_PKGS < <(grep -v '^[[:space:]]*#' "$MACHINES_DIR/$MACHINE.pacman" | grep -v '^[[:space:]]*$')
+    if $DRY_RUN; then
+      echo "  would install: ${TOOL_PKGS[*]}"
+    else
+      sudo pacman -S --needed "${TOOL_PKGS[@]}"
+    fi
+  else
+    echo "  no tool list for $MACHINE" >&2
+  fi
+fi

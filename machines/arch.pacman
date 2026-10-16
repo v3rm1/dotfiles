@@ -1,0 +1,29 @@
+# Dev toolchain for Arch: ./bootstrap.sh arch --tools (pacman -S --needed)
+
+# Rust
+rustup
+
+# C/C++
+base-devel
+clang
+lldb
+gdb
+cmake
+ninja
+bear
+ccache
+sccache
+mold
+
+# Systems / emulation / profiling
+qemu-system-aarch64
+aarch64-linux-gnu-gcc
+perf
+strace
+valgrind
+
+# General
+just
+hyperfine
+git-delta
+jq
