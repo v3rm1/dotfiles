@@ -116,8 +116,8 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd({ "CursorMoved", "WinScrolled" }, {
     group = augroup("scroll_past_eof"),
     callback = function(ev)
-        local ignored_filetypes = { terminal = true }
-        if ignored_filetypes[vim.bo.filetype] then
+        -- Terminal buffers have no filetype; their buftype is "terminal"
+        if vim.bo.buftype == "terminal" then
             return
         end
 
