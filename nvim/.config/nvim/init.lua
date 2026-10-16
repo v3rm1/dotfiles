@@ -33,6 +33,8 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
+-- Silence every bell except ones rung by terminal apps (Claude/agy waiting for input)
+vim.opt.belloff = "backspace,cursor,complete,copy,ctrlg,error,esc,ex,hangul,lang,mess,showmatch,operator,register,shell,spell,wildmode"
 vim.opt.confirm = true
 
 vim.opt.linebreak = true

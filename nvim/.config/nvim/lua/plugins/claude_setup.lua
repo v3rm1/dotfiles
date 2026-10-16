@@ -11,8 +11,10 @@ require("lazyload").add({
     },
     setup = function()
         require("claudecode").setup({
-            -- Claude's own vim input mode fights nvim's; use plain input here only
-            terminal_cmd = [[claude --settings '{"editorMode":"normal"}']],
+            -- Claude's own vim input mode fights nvim's; use plain input here only.
+            -- nvim's terminal leaks Ghostty's OSC 777 notifications into the
+            -- prompt as text, so notify with the bell, which nvim passes on.
+            terminal_cmd = [[claude --settings '{"editorMode":"normal","preferredNotifChannel":"terminal_bell"}']],
             track_selection = true,
             focus_after_send = true,
             terminal = {
