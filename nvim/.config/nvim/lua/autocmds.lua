@@ -68,7 +68,27 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter", "TermOpen" }, {
             vim.wo[win].relativenumber = false
             vim.wo[win].signcolumn = "no"
             vim.wo[win].cursorline = false
+            -- Terminals default to nowrap, so a cursor parked past the last
+            -- column scrolls the view sideways; wrap keeps it in place.
+            vim.wo[win].wrap = true
             vim.cmd("startinsert")
+        end
+    end,
+})
+
+-- Pin AI terminals to the left edge if anything still scrolls them sideways.
+vim.api.nvim_create_autocmd("WinScrolled", {
+    group = augroup("ai_term_leftcol"),
+    callback = function()
+        for id in pairs(vim.v.event) do
+            local win = tonumber(id)
+            if win and vim.api.nvim_win_is_valid(win) and is_ai_term(vim.api.nvim_win_get_buf(win)) then
+                vim.api.nvim_win_call(win, function()
+                    if vim.fn.winsaveview().leftcol ~= 0 then
+                        vim.fn.winrestview({ leftcol = 0 })
+                    end
+                end)
+            end
         end
     end,
 })
