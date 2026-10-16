@@ -40,9 +40,14 @@ local function install_missing(tools)
     end
 end
 
+-- lspconfig name -> mason package, where they differ
 local name_to_mason = {
     lua_ls = "lua-language-server",
     harper_ls = "harper-ls",
+    bashls = "bash-language-server",
+    neocmake = "neocmakelsp",
+    yamlls = "yaml-language-server",
+    jsonls = "json-lsp",
 }
 
 local function tool_list()
@@ -54,6 +59,7 @@ local function tool_list()
         "tex-fmt",
         "debugpy",
         "codelldb",
+        "clang-format",
     }
     for name, _ in pairs(require("lsp_setup").servers) do
         table.insert(tools, name_to_mason[name] or name)

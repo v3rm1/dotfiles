@@ -4,6 +4,10 @@ require("conform").setup({
         sh = { "shfmt" },
         bib = { "bibtex-tidy" },
         tex = { "tex-fmt" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        rust = { "rustfmt" },
+        python = { "ruff_organize_imports", "ruff_format" },
     },
     default_format_opts = {
         lsp_format = "fallback",

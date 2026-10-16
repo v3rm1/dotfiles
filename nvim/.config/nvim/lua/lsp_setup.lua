@@ -42,7 +42,18 @@ M.servers = {
 
     -- python
     ruff = {},
-    ty = {},
+    -- ty finds .venv itself but not pixi envs (conda layout); point CONDA_PREFIX at the
+    -- project's default pixi env when there is one.
+    ty = {
+        cmd = function(dispatchers, config)
+            local env = {}
+            local pixi = config.root_dir and config.root_dir .. "/.pixi/envs/default"
+            if pixi and vim.uv.fs_stat(pixi) then
+                env.CONDA_PREFIX = pixi
+            end
+            return vim.lsp.rpc.start({ "ty", "server" }, dispatchers, { cwd = config.root_dir, env = env })
+        end,
+    },
 
     -- c, cpp
     clangd = {
@@ -65,6 +76,13 @@ M.servers = {
 
     -- zig
     zls = {},
+
+    -- build, config and system files
+    bashls = {},
+    neocmake = {},
+    taplo = {},
+    yamlls = {},
+    jsonls = {},
 }
 
 function M.setup()

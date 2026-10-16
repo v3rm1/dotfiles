@@ -65,6 +65,7 @@ require("plugins.oil_setup")
 require("plugins.treesitter_setup")
 require("plugins.tex_setup")
 require("plugins.conform_setup")
+require("plugins.rust_setup")
 
 -- Keymaps and command stubs here, plugin setup on first use
 require("plugins.fzf_setup")
