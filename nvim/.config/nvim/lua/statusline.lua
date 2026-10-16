@@ -22,9 +22,18 @@ local modes = setmetatable({
     end,
 })
 
+-- AI terminals swap the mode glyph for their own icon, keeping the mode colour.
+-- Terminal buffers are named term://{cwd}//{pid}:{cmd}; match on the program.
+local ai_icons = { claude = "󰚩 ", agy = "󰊭 " }
+
 local function section_mode()
     local m = modes[vim.fn.mode()]
-    return "%#" .. m.hl .. "#" .. m.short .. "%*"
+    local icon = m.short
+    if vim.bo.buftype == "terminal" then
+        local prog = vim.api.nvim_buf_get_name(0):match("//%d+:(%S+)")
+        icon = prog and ai_icons[vim.fs.basename(prog)] or icon
+    end
+    return "%#" .. m.hl .. "#" .. icon .. "%*"
 end
 
 local function section_filesize()
