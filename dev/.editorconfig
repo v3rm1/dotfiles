@@ -1,0 +1,14 @@
+# Fallback for projects without their own .editorconfig. Project files with
+# root = true stop the search before reaching this one.
+# Whitespace fixes are limited to code so prose/LaTeX diffs (Overleaf) stay clean.
+
+[*]
+charset = utf-8
+end_of_line = lf
+
+[*.{c,h,cc,cpp,hpp,rs,py,lua,sh,zsh,toml,yaml,yml,json,cmake}]
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[{Makefile,*.mk,Kconfig*}]
+indent_style = tab

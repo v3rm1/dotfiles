@@ -1,0 +1,7 @@
+# Fallback style for C/C++ outside projects with their own .clang-format
+# (the kernel, Buildroot packages etc. ship one and take precedence).
+BasedOnStyle: LLVM
+IndentWidth: 4
+ColumnLimit: 100
+AllowShortFunctionsOnASingleLine: Empty
+PointerAlignment: Right

@@ -1,0 +1,29 @@
+[user]
+	name = v3rm1_UiA
+	email = varun.ravi.varma@uia.no
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+	updateRefs = true
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[diff]
+	algorithm = histogram
+	colorMoved = default
+[merge]
+	conflictStyle = zdiff3
+[rerere]
+	enabled = true
+[branch]
+	sort = -committerdate
+[help]
+	autocorrect = prompt
+
+# Machine-specific settings (credential helper, signing keys) live here, untracked.
+[include]
+	path = ~/.gitconfig.local
