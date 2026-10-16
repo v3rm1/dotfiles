@@ -33,10 +33,18 @@ local map = function(mode, lhs, rhs, desc)
     vim.keymap.set(mode, lhs, rhs, { desc = desc })
 end
 
-map("n", "<leader>ac", "<cmd>ClaudeCode<cr>", "Claude: toggle")
+-- Claude keeps transcripts in ~/.claude/projects/<cwd with non-alphanumerics as "-">.
+-- Continue the last one if this project has any; `claude -c` errors out otherwise.
+local function has_saved_session()
+    local dir = vim.fs.normalize("~/.claude/projects") .. "/" .. vim.fn.getcwd():gsub("[^%w]", "-")
+    return vim.fn.glob(dir .. "/*.jsonl") ~= ""
+end
+
+map("n", "<leader>ac", function()
+    vim.cmd(has_saved_session() and "ClaudeCode --continue" or "ClaudeCode")
+end, "Claude: toggle (continue last session)")
 map("n", "<leader>af", "<cmd>ClaudeCodeFocus<cr>", "Claude: focus")
 map("n", "<leader>ar", "<cmd>ClaudeCode --resume<cr>", "Claude: resume session")
-map("n", "<leader>aC", "<cmd>ClaudeCode --continue<cr>", "Claude: continue last session")
 map("n", "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", "Claude: select model")
 map("n", "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", "Claude: add buffer")
 map("v", "<leader>as", "<cmd>ClaudeCodeSend<cr>", "Claude: send selection")
@@ -74,7 +82,6 @@ vim.api.nvim_create_autocmd("FileType", {
         end
         bmap("n", "<leader>ac", function() agy.toggle() end, "agy: toggle")
         bmap("n", "<leader>af", agy.focus, "agy: focus")
-        bmap("n", "<leader>aC", function() agy.toggle({ "-c" }) end, "agy: continue last session")
         bmap("n", "<leader>ab", agy.send_buffer, "agy: add buffer")
         bmap("v", "<leader>as", function() agy.send_selection() end, "agy: send selection")
         bmap("v", "<leader>ax", function()

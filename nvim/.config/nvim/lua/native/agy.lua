@@ -19,15 +19,21 @@ local function open_win()
     vim.wo[state.win].winbar = "%= agy "
 end
 
+-- With no args, continue the last conversation ("-c"). If that exits with an
+-- error straight away (no saved conversation here), start a new one instead.
 local function start(args)
+    local resume = args == nil
+    args = args or { "-c" }
     open_win()
     state.buf = vim.api.nvim_create_buf(false, true)
     vim.api.nvim_win_set_buf(state.win, state.buf)
-    local cmd = vim.list_extend({ "agy" }, args or {})
+    local cmd = vim.list_extend({ "agy" }, args)
+    local started = vim.uv.now()
     state.job = vim.fn.jobstart(cmd, {
         term = true,
         cwd = vim.fn.getcwd(),
-        on_exit = function()
+        on_exit = function(_, code)
+            local retry = resume and code ~= 0 and vim.uv.now() - started < 3000
             if state.win and vim.api.nvim_win_is_valid(state.win) then
                 vim.api.nvim_win_close(state.win, true)
             end
@@ -35,6 +41,9 @@ local function start(args)
                 vim.api.nvim_buf_delete(state.buf, { force = true })
             end
             state = { buf = nil, win = nil, job = nil }
+            if retry then
+                start({})
+            end
         end,
     })
     vim.cmd("startinsert")
@@ -62,8 +71,8 @@ local function show(focus)
     end
 end
 
--- Toggle visibility; hiding keeps the session alive. Extra args (e.g. "-c")
--- only apply when a new session is started.
+-- Toggle visibility; hiding keeps the session alive. Extra args only apply
+-- when a new session is started; without them the last one is continued.
 function M.toggle(args)
     if visible() then
         vim.api.nvim_win_close(state.win, true)
