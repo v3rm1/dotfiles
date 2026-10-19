@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Moves new windows to their OmniWM app rule's workspace; see rule-watcher.py -->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.github.v3rm1.omniwm-rule-watcher</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/varunv/.config/omniwm/rule-watcher.py</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <!-- restart if OmniWM wasn't up yet at login (initial connect fails) -->
+    <key>KeepAlive</key>
+    <true/>
+    <key>ThrottleInterval</key>
+    <integer>10</integer>
+    <key>StandardOutPath</key>
+    <string>/tmp/omniwm-rule-watcher.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/omniwm-rule-watcher.log</string>
+</dict>
+</plist>

@@ -10,13 +10,24 @@ tabRailAppIcons = false
 
 [borders]
 enabled = true
-width = 5.0
+width = 2.0
 
 [borders.color]
 alpha = 1.0
-blue = 0.979300037944676
+blue = 0.9921568627
+green = 0.5294117647
+red = 0.4470588235
+
+[borders.glow]
+enabled = true
+opacity = 0.44
+radius = 20.0
+
+[borders.glow.color]
+alpha = 1.0
+blue = 0.4
 green = 1.0
-red = 0.08458520228437894
+red = 0.2
 
 [clipboard]
 historyEnabled = false
@@ -39,7 +50,7 @@ followsMouse = false
 followsWindowToMonitor = false
 lockModifier = "off"
 moveCrossesMonitorAtEdge = false
-moveMouseToFocusedWindow = false
+moveMouseToFocusedWindow = true
 raiseOnMouseFocus = false
 
 [gaps]
@@ -58,7 +69,7 @@ animationsEnabled = true
 defaultLayoutType = "niri"
 hotkeysEnabled = true
 hyperKeyModifiers = "Control+Option+Shift+Command"
-ipcEnabled = false
+ipcEnabled = true
 preventSleepEnabled = false
 systemHyperTrigger = "None"
 updateChecksEnabled = true
@@ -97,7 +108,7 @@ margin = 1
 alwaysCenterSingleColumn = false
 centerFocusedColumn = "always"
 containerPrimarySpanPresets = [0.3333333333333333, 0.5, 0.6666666666666666, 1.0]
-edgeGaps = false
+edgeGaps = true
 infiniteLoop = true
 resizeStepPercent = 5
 singleWindowFit = "fill"
@@ -1137,6 +1148,11 @@ id = "toggleOverview"
 binding = "Unassigned"
 id = "toggleSystemStats"
 
+[[monitorOrientationOverrides]]
+monitorDisplayUUID = "DE84EE58-6EC0-4B88-A605-5D0A4B1BE99C"
+monitorName = "LEN P27h-10"
+orientation = "horizontal"
+
 [[workspaces]]
 id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0"
 layoutType = "niri"
@@ -1244,8 +1260,3 @@ type = "specificDisplay"
 [workspaces.monitorAssignment.output]
 displayUUID = "DE84EE58-6EC0-4B88-A605-5D0A4B1BE99C"
 name = "LEN P27h-10"
-
-[[monitorOrientationOverrides]]
-monitorDisplayUUID = "DE84EE58-6EC0-4B88-A605-5D0A4B1BE99C"
-monitorName = "LEN P27h-10"
-orientation = "horizontal"
