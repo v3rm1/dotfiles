@@ -15,6 +15,9 @@ brew "sccache"
 brew "qemu"
 brew "aarch64-elf-gdb"
 
+# Window management
+cask "omniwm"
+
 # General
 brew "just"
 brew "hyperfine"
