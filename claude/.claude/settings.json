@@ -69,6 +69,18 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $HOME/.claude/scripts/caveman-stop-check.py",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -121,5 +133,6 @@
     "baseRef": "fresh"
   },
   "enableWorkflows": true,
-  "askUserQuestionTimeout": "never"
+  "askUserQuestionTimeout": "never",
+  "outputStyle": "caveman"
 }
