@@ -146,6 +146,11 @@ export forgit_clean=fgclean forgit_blame=fgbl forgit_worktree=fgwt
 [[ -d ${ZDOTDIR:-$HOME}/.antidote ]] ||
   git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
 source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
+# fzf-tab saves the current Tab widget as its fallback. `fzf --zsh` above bound
+# Tab to fzf-completion, which (below) falls back to fzf-tab-complete: an infinite
+# loop. Reset Tab to the builtin first so the chain ends in expand-or-complete.
+bindkey -M emacs '^I' expand-or-complete
+bindkey -M viins '^I' expand-or-complete
 antidote load
 
 # fzf-tab: completion menu in fzf, with previews
