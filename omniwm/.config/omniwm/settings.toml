@@ -733,19 +733,19 @@ binding = "Unassigned"
 id = "moveColumnToWorkspace.8"
 
 [[hotkeys]]
-binding = "Option+Shift+Left Arrow"
+binding = "Control+Shift+Left Arrow"
 id = "move.left"
 
 [[hotkeys]]
-binding = "Option+Shift+Down Arrow"
+binding = "Control+Shift+Down Arrow"
 id = "move.down"
 
 [[hotkeys]]
-binding = "Option+Shift+Up Arrow"
+binding = "Control+Shift+Up Arrow"
 id = "move.up"
 
 [[hotkeys]]
-binding = "Option+Shift+Right Arrow"
+binding = "Control+Shift+Right Arrow"
 id = "move.right"
 
 [[hotkeys]]
@@ -817,7 +817,7 @@ binding = "Unassigned"
 id = "moveWindowToMonitor.down"
 
 [[hotkeys]]
-binding = "Option+Return"
+binding = "Unassigned"
 id = "toggleFullscreen"
 
 [[hotkeys]]
@@ -849,7 +849,7 @@ binding = "Control+Option+End"
 id = "moveColumnToLast"
 
 [[hotkeys]]
-binding = "Option+T"
+binding = "Unassigned"
 id = "toggleColumnTabbed"
 
 [[hotkeys]]
@@ -969,11 +969,11 @@ binding = "Unassigned"
 id = "moveColumnToIndex.9"
 
 [[hotkeys]]
-binding = "Option+Period"
+binding = "Unassigned"
 id = "cycleSizeForward"
 
 [[hotkeys]]
-binding = "Option+Comma"
+binding = "Unassigned"
 id = "cycleSizeBackward"
 
 [[hotkeys]]
@@ -993,23 +993,23 @@ binding = "Unassigned"
 id = "cycleWindowSecondarySpanBackward"
 
 [[hotkeys]]
-binding = "Option+Shift+F"
+binding = "Unassigned"
 id = "toggleContainerFullPrimarySpan"
 
 [[hotkeys]]
-binding = "Control+Option+F"
+binding = "Unassigned"
 id = "expandContainerToAvailablePrimarySpan"
 
 [[hotkeys]]
-binding = "Control+Option+R"
+binding = "Unassigned"
 id = "resetWindowSecondarySpan"
 
 [[hotkeys]]
-binding = "Option+Minus"
+binding = "Unassigned"
 id = "setContainerPrimarySpan.decrease10Percent"
 
 [[hotkeys]]
-binding = "Option+Equal"
+binding = "Unassigned"
 id = "setContainerPrimarySpan.increase10Percent"
 
 [[hotkeys]]
@@ -1021,15 +1021,15 @@ binding = "Unassigned"
 id = "setWindowPrimarySpan.increase10Percent"
 
 [[hotkeys]]
-binding = "Option+Shift+Minus"
+binding = "Unassigned"
 id = "setWindowSecondarySpan.decrease10Percent"
 
 [[hotkeys]]
-binding = "Option+Shift+Equal"
+binding = "Unassigned"
 id = "setWindowSecondarySpan.increase10Percent"
 
 [[hotkeys]]
-binding = "Option+Shift+B"
+binding = "Unassigned"
 id = "balanceSizes"
 
 [[hotkeys]]
@@ -1105,7 +1105,7 @@ binding = "Unassigned"
 id = "rescueOffscreenWindows"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Control+Option+F"
 id = "toggleFocusedWindowFloating"
 
 [[hotkeys]]
@@ -1137,7 +1137,7 @@ binding = "Option+Grave"
 id = "toggleQuakeTerminal"
 
 [[hotkeys]]
-binding = "Option+Shift+L"
+binding = "Unassigned"
 id = "toggleWorkspaceLayout"
 
 [[hotkeys]]
