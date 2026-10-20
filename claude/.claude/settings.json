@@ -83,6 +83,10 @@
       }
     ]
   },
+  "worktree": {
+    "baseRef": "fresh"
+  },
+  "enableWorkflows": true,
   "statusLine": {
     "type": "command",
     "command": "starship statusline claude-code"
@@ -115,24 +119,20 @@
       }
     }
   },
-  "effortLevel": "medium",
-  "awaySummaryEnabled": false,
-  "tui": "fullscreen",
-  "theme": "dark-ansi",
+  "outputStyle": "caveman",
   "spinnerTipsEnabled": false,
-  "editorMode": "vim",
-  "verbose": true,
-  "preferredNotifChannel": "ghostty",
-  "agentPushNotifEnabled": true,
+  "effortLevel": "medium",
   "modelSettings": {
     "claude-opus-5-5": {
       "effortLevel": "medium"
     }
   },
-  "worktree": {
-    "baseRef": "fresh"
-  },
-  "enableWorkflows": true,
+  "awaySummaryEnabled": false,
   "askUserQuestionTimeout": "never",
-  "outputStyle": "caveman"
+  "tui": "fullscreen",
+  "theme": "dark-ansi",
+  "editorMode": "vim",
+  "verbose": false,
+  "preferredNotifChannel": "ghostty",
+  "agentPushNotifEnabled": true
 }
