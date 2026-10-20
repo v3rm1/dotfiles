@@ -189,7 +189,6 @@ fi
 source ~/.aliases
 source ~/.zfuncs
 
-[[ -f ~/.hf_token ]] && export HF_TOKEN="$(<~/.hf_token)"
 
 
 # ------------------------------------------------------------------------------
