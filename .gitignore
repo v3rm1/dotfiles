@@ -2,6 +2,9 @@
 ._*
 docs/
 graphify-out/
+*.log
+__pycache__/
+*.pyc
 
 # versioned Claude Code config (global ignore excludes .claude/)
 !claude/.claude/

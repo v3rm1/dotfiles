@@ -22,6 +22,27 @@ perf
 strace
 valgrind
 
+# Shell (everything .zshrc, .aliases and tmux.conf call out to)
+stow
+tmux
+neovim
+starship
+atuin
+direnv
+fzf
+fd
+ripgrep
+bat
+eza
+dust
+btop
+lazygit
+
+# Repo hygiene: pre-commit hooks for this repo
+pre-commit
+gitleaks
+shellcheck
+
 # General
 just
 hyperfine

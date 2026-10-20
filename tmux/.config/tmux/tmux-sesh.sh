@@ -7,6 +7,7 @@ set -euo pipefail
 cur=""
 [ -n "${TMUX:-}" ] && cur=$(tmux display-message -p '#S' 2>/dev/null || true)
 
+# shellcheck disable=SC2016  # fzf preview string is expanded by its own shell
 {
     tmux list-sessions -F '#S' 2>/dev/null | grep -v "^${cur}\$" | sed 's/^/[session] /' || true
     # live listing each open, so new dirs show up without any index

@@ -14,4 +14,5 @@ Machine-specific or private settings stay out of the repo: `~/.gitconfig.local`
 (credential helper, signing) and `~/.ssh/config.local` (private hosts) are
 included by the tracked configs when present.
 
-The quickshell config is still a work in progress, modifying caelestia for my usage.
+A pre-commit config runs gitleaks (secret scanning) and shellcheck. Enable it
+once per clone with `pre-commit install`.
