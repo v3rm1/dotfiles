@@ -9,3 +9,6 @@ inline_height = 20
 show_preview = true
 # Enter puts the command on the prompt for editing; Tab does the same.
 enter_accept = false
+
+[ai]
+enabled = false
