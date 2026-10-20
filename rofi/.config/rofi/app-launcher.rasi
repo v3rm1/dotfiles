@@ -30,9 +30,9 @@ window {
     enabled:                     true;
     border:                      2px solid;
     border-radius:               15px;
-    border-color:                @sapphire;
+    border-color:                @cyan;
     cursor:                      "default";
-    background-color:            @crust;
+    background-color:            @bg-dark;
     padding:                     0;
 }
 
@@ -61,7 +61,7 @@ inputbar {
     padding:                     50px 30px;
     background-color:            transparent;
     background-image:            @wallpaper;
-    text-color:                  @text;
+    text-color:                  @fg;
     orientation:                 horizontal;
     children:                    [ "textbox-prompt-colon", "entry", "dummy", "mode-switcher" ];
 }
@@ -71,8 +71,8 @@ textbox-prompt-colon {
     str:                         " :";
     padding:                     12px 15px;
     border-radius:               100%;
-    background-color:            @surface0;
-    text-color:                  @sapphire;
+    background-color:            @bg-highlight;
+    text-color:                  @cyan;
 }
 entry {
     enabled:                     true;
@@ -80,7 +80,7 @@ entry {
     width:                       250px;
     padding:                     12px 16px;
     border-radius:               100%;
-    background-color:            @mantle;
+    background-color:            @bg;
     text-color:                  inherit;
     cursor:                      text;
     placeholder:                 "Search";
@@ -100,13 +100,13 @@ button {
     width:                       75px;
     padding:                     0px;
     border-radius:               100%;
-    background-color:            @surface0;
-    text-color:                  @sapphire;
+    background-color:            @bg-highlight;
+    text-color:                  @cyan;
     cursor:                      pointer;
 }
 button select-fg {
-    background-color:            @crust;
-    text-color:                  @text;
+    background-color:            @bg-dark;
+    text-color:                  @fg;
 }
 
 // LIST
@@ -123,7 +123,7 @@ listview {
     fixed-columns:               true;
     spacing:                     10px;
     background-color:            transparent;
-    text-color:                  @text;
+    text-color:                  @fg;
     cursor:                      "default";
 }
 
@@ -134,7 +134,7 @@ element {
     padding:                     10px;
     border-radius:               10px;
     background-color:            transparent;
-    text-color:                  @text;
+    text-color:                  @fg;
     cursor:                      pointer;
 }
 element normal.normal {
@@ -147,19 +147,19 @@ element normal.urgent {
 }
 element normal.active{
     background-color:            inherit;
-    text-color:                  @text;
+    text-color:                  @fg;
 }
 element selected.normal {
-    background-color:            @surface0;
-    text-color:                  @sapphire;
+    background-color:            @bg-highlight;
+    text-color:                  @cyan;
 }
 element selected.urgent {
-    background-color:            @surface0;
+    background-color:            @bg-highlight;
     text-color:                  @red;
 }
 element selected.active{
-    background-color:            @surface0;
-    text-color:                  @text;
+    background-color:            @bg-highlight;
+    text-color:                  @fg;
 }
 element-icon {
     background-color:            transparent;
@@ -183,14 +183,14 @@ message {
 textbox {
     padding:                     15px;
     border-radius:               15px;
-    background-color:            @mantle;
-    text-color:                  @text;
+    background-color:            @bg;
+    text-color:                  @fg;
     vertical-align:              0.5;
     horizontal-align:            0.0;
 }
 error-message {
     padding:                     15px;
     border-radius:               15px;
-    background-color:            @crust;
+    background-color:            @bg-dark;
     text-color:                  @red;
 }

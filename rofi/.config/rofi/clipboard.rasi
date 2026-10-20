@@ -14,15 +14,15 @@ window {
   width:                    250px;
   border:                   3px;
   border-radius:            10px;
-  border-color:             @mauve;
-  background-color:         @crust;
+  border-color:             @magenta;
+  background-color:         @bg-dark;
   children:                 [ mainbox ];
 }
 
 mainbox {
   spacing:                  0;
-  background-color:         @mauve;
-  text-color:               @text;
+  background-color:         @magenta;
+  text-color:               @fg;
   children:                 [ textbox-custom, listview, inputbar ];
 }
 
@@ -31,8 +31,8 @@ textbox-custom {
   horizontal-align:         0.5;
   padding:                  1px 0;
   expand:                   false;
-  background-color:         @surface0;
-  text-color:               @mauve;
+  background-color:         @bg-highlight;
+  text-color:               @magenta;
   expand:                   false;
   content:                  "󰅍  Clipboard";
 }
@@ -43,7 +43,7 @@ inputbar {
   margin:                   -32px 6px 6px;
   border-radius:            6px;
   spacing:                  inherit;
-  background-color:         @mantle;
+  background-color:         @bg;
   text-color:               inherit;
   children:                 [ prompt, entry ];
 }
@@ -65,27 +65,27 @@ entry {
 listview {
   border:                   2px 0 0 0;
   border-radius:            8px;
-  border-color:             @mauve;
+  border-color:             @magenta;
   lines:                    6;
   fixed-height:             false;
   dynamic:                  false;
   cycle:                    false;
   margin:                   0 0 -2px;
   padding:                  6px 6px 40px;
-  background-color:         @crust;
+  background-color:         @bg-dark;
 }
 
 element {
   padding:                  6px;
   cursor:                   pointer;
   background-color:         inherit;
-  text-color:               @text;
+  text-color:               @fg;
 }
 element selected active,
 element selected normal {
   border-radius:            6px;
-  background-color:         @surface0;
-  text-color:               @mauve;
+  background-color:         @bg-highlight;
+  text-color:               @magenta;
 }
 element-text {
   padding:                  0 6px;
