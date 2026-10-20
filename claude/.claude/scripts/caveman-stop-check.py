@@ -3,7 +3,8 @@
 
 Reads the Stop hook payload on stdin, extracts the last assistant message (from
 `last_assistant_message`, else the transcript), strips code, tables and warning
-blocks, then scores the remaining prose. On failure it prints a JSON
+blocks, then scores the remaining prose. Blockquotes (quoted third-party text such
+as messages drafted for someone else) are exempt too. On failure it prints a JSON
 `{"decision": "block", "reason": ...}` so Claude rewrites the reply. It never
 blocks twice in a row (`stop_hook_active`), so it cannot loop.
 
@@ -15,7 +16,7 @@ import re
 import sys
 
 MIN_WORDS = 30          # short replies are never checked
-MAX_ARTICLE_RATIO = 0.035
+MAX_ARTICLE_RATIO = 0.06  # 3.5% blocked nearly every reply; duplicate output costs more than mild drift
 MAX_FILLER = 1
 MAX_LINE_WORDS = 32     # a single prose line longer than this is a paragraph, not a fragment
 
@@ -30,12 +31,17 @@ def strip_exempt(text: str) -> str:
     text = re.sub(r"```.*?```", " ", text, flags=re.S)
     text = re.sub(r"`[^`]*`", " ", text)
     text = re.sub(r"https?://\S+", " ", text)
+    warning = re.compile(r"\s*(?:>\s*)?(?:[-*+]\s+|\d+\.\s+)?\*\*(warning|caution|danger)", flags=re.I)
     kept = []
     for para in re.split(r"\n\s*\n", text):
-        # auto-clarity exception: security / irreversible-action warnings may use full prose
+        # auto-clarity exception: security / irreversible-action warnings may use full
+        # prose, whether the paragraph or just a bullet inside it carries the marker
         if re.match(r"\s*(>\s*)?\*\*(warning|caution|danger)", para, flags=re.I):
             continue
-        kept.extend(line for line in para.splitlines() if not line.lstrip().startswith("|"))
+        kept.extend(
+            line for line in para.splitlines()
+            if not line.lstrip().startswith(("|", ">")) and not warning.match(line)
+        )
     return "\n".join(kept)
 
 
