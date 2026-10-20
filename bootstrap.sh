@@ -33,7 +33,20 @@ if ! command -v stow &>/dev/null; then
   exit 1
 fi
 
-mapfile -t PACKAGES < <(grep -v '^[[:space:]]*#' "$PKGS_FILE" | grep -v '^[[:space:]]*$')
+# Reads non-empty, non-comment lines of $1 into the array named $2. Plain
+# `while read` instead of mapfile so this runs on macOS's stock bash 3.2.
+read_list() {
+  local line
+  eval "$2=()"
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    line="${line%%#*}"
+    line="${line#"${line%%[![:space:]]*}"}"
+    line="${line%"${line##*[![:space:]]}"}"
+    [[ -n "$line" ]] && eval "$2+=(\"\$line\")"
+  done < "$1"
+}
+
+read_list "$PKGS_FILE" PACKAGES
 
 # Walks the package tree looking for the old manual symlink to remove.
 # Stops recursing as soon as it finds a symlink at $HOME/<rel> -- that's the
@@ -96,7 +109,7 @@ if $TOOLS; then
       brew bundle --file="$MACHINES_DIR/$MACHINE.Brewfile"
     fi
   elif [[ -f "$MACHINES_DIR/$MACHINE.pacman" ]]; then
-    mapfile -t TOOL_PKGS < <(grep -v '^[[:space:]]*#' "$MACHINES_DIR/$MACHINE.pacman" | grep -v '^[[:space:]]*$')
+    read_list "$MACHINES_DIR/$MACHINE.pacman" TOOL_PKGS
     if $DRY_RUN; then
       echo "  would install: ${TOOL_PKGS[*]}"
     else

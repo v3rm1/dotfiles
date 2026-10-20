@@ -5,10 +5,9 @@
 # Export path to root of dotfiles repo
 export CONFIG=${CONFIG:="$HOME/.config"}
 
-# Locale
-export LC_ALL=en_US.UTF-8
+# Locale: LANG only, so individual LC_* categories can still be overridden and
+# minimal containers without en_US.UTF-8 generated don't warn on every command
 export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
 
 # Do not override files using `>`, but it's still possible using `>!`
 set -o noclobber
@@ -49,16 +48,23 @@ export EDITOR=nvim
 
 # history setup
 HISTFILE=$HOME/.zhistory
-SAVEHIST=1000
-HISTSIZE=999
+SAVEHIST=50000
+HISTSIZE=50000
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
+setopt hist_ignore_space   # leading space keeps a command out of history
+setopt hist_reduce_blanks
 setopt hist_verify
 setopt autocd
-# completion using arrow keys (based on history)
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
+# Up/Down search history by the whole typed prefix, not just the first word
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[OA' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+bindkey '^[OB' down-line-or-beginning-search
 
 # direnv settings
 command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
@@ -186,16 +192,13 @@ source ~/.zfuncs
 [[ -f ~/.hf_token ]] && export HF_TOKEN="$(<~/.hf_token)"
 
 
-alias claude-plugin-updates='~/.claude/scripts/check-plugin-updates.sh'
-
 # ------------------------------------------------------------------------------
 # macOS-only (Homebrew, Antigravity IDE)
 # ------------------------------------------------------------------------------
 if [[ "$(uname)" == "Darwin" ]]; then
   _extend_path "/opt/homebrew/sbin"
-  _extend_path "$HOME/.rvm/bin"
   _extend_path "$HOME/Library/Python/3.9/bin"
-  _extend_path "/usr/local/texlive/2023basic/bin/universal-darwin"
+  _extend_path "/Library/TeX/texbin"
   _extend_path "$HOME/.pixi/bin"
 
   # Lynx config

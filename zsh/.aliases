@@ -20,7 +20,8 @@ alias -s toml=nvim
 
 # yay clear unused packages and dependencies
 if command -v yay &>/dev/null; then
-    alias cyay="yay -Rnscu $(yay -Qdtq)"
+    # single quotes: list orphans when run, not once at shell startup
+    alias cyay='yay -Rnscu $(yay -Qdtq)'
 fi
 
 # Refresh portfolio GoatCounter stats for the Obsidian HOME dashboard
