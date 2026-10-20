@@ -48,3 +48,11 @@ cdi () {
     --preview 'eza --tree --level=2 --color=always {} | head -200') \
     && builtin cd "$dir"
 }
+
+# Persistent session on uni-server: mosh for roaming, tmux for state/scrollback.
+# Falls back to ssh when mosh can't connect (e.g. UDP blocked off campus).
+us() {
+  local session="${1:-main}"
+  mosh uni-server -- tmux new -A -s "$session" ||
+    ssh -t uni-server tmux new -A -s "$session"
+}
