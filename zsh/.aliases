@@ -9,7 +9,7 @@ alias n="nvim"
 alias top="btop"
 alias fz="fzf --height 40% --layout reverse"
 alias cat="bat"
-command -v dust &>/dev/null && alias du="dust -H -D"
+command -v dust &>/dev/null && alias du="dust -o si -D"
 # Git shorthands live in ~/.config/zsh-abbr/user-abbreviations (zsh-abbr),
 # so they expand inline and history keeps the full command.
 
