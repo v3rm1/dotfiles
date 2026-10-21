@@ -1,0 +1,33 @@
+[Icon Theme]
+Name=Cyberpunk
+Comment=Neon app icons in the Tokyo Night Night palette (see icons/generate.py)
+Inherits=Adwaita,breeze,hicolor
+Directories=scalable/apps,scalable/places,scalable/mimetypes,scalable/devices
+
+[scalable/apps]
+Size=256
+MinSize=16
+MaxSize=512
+Type=Scalable
+Context=Applications
+
+[scalable/places]
+Size=256
+MinSize=16
+MaxSize=512
+Type=Scalable
+Context=Places
+
+[scalable/mimetypes]
+Size=256
+MinSize=16
+MaxSize=512
+Type=Scalable
+Context=MimeTypes
+
+[scalable/devices]
+Size=256
+MinSize=16
+MaxSize=512
+Type=Scalable
+Context=Devices

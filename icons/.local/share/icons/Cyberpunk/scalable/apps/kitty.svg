@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Cyberpunk kitty icon: neon cat whose eyes are a shell prompt (> _), Tokyo Night Night palette -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16161e"/>
+      <stop offset="1" stop-color="#0c0e14"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bb9af7" stop-opacity="0"/>
+      <stop offset="1" stop-color="#bb9af7" stop-opacity="0.55"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="tile"><rect x="32" y="32" width="448" height="448" rx="96"/></clipPath>
+  </defs>
+
+  <!-- Linux launchers expect near full-bleed icons: 496px tile in 512px canvas -->
+  <g transform="translate(-27.429 -27.429) scale(1.107143)">
+
+  <rect x="32" y="32" width="448" height="448" rx="96" fill="url(#bg)"/>
+
+  <g clip-path="url(#tile)">
+    <!-- synthwave floor grid -->
+    <g stroke="url(#floor)" stroke-width="2" fill="none">
+      <path d="M32 400H480M32 428H480M32 460H480"/>
+      <path d="M256 372L256 480M256 372L160 480M256 372L352 480M256 372L64 480M256 372L448 480M256 372L-32 480M256 372L544 480"/>
+    </g>
+    <!-- glitch bars -->
+    <rect x="60" y="150" width="120" height="6" fill="#ff007c" opacity="0.7"/>
+    <rect x="330" y="300" width="140" height="5" fill="#7dcfff" opacity="0.6"/>
+    <rect x="300" y="96" width="70" height="4" fill="#2ac3de" opacity="0.6"/>
+  </g>
+
+  <!-- chromatic-aberration ghost of the head -->
+  <path d="M132 360V196L172 104L228 172H284L340 104L380 196V360L320 404H192Z"
+        fill="none" stroke="#ff007c" stroke-width="10" stroke-linejoin="round" opacity="0.55" transform="translate(9 -5)"/>
+  <!-- cat head -->
+  <path d="M132 360V196L172 104L228 172H284L340 104L380 196V360L320 404H192Z"
+        fill="#0c0e14" fill-opacity="0.6" stroke="#7dcfff" stroke-width="12" stroke-linejoin="round" filter="url(#glow)"/>
+
+  <!-- eyes: shell prompt -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <path d="M178 236L218 262L178 288" stroke="#ff007c" stroke-width="16"/>
+    <path d="M290 288H340" stroke="#9ece6a" stroke-width="16"/>
+  </g>
+
+  <!-- nose and whiskers -->
+  <path d="M244 318H268L256 332Z" fill="#ff007c" filter="url(#glow)"/>
+  <g stroke="#2ac3de" stroke-width="5" stroke-linecap="round" opacity="0.85">
+    <path d="M200 330L96 316M200 344L100 352"/>
+    <path d="M312 330L416 316M312 344L412 352"/>
+  </g>
+  </g>
+</svg>
