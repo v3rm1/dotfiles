@@ -1,0 +1,34 @@
+{
+  "dankActions": {
+    "enabled": true
+  },
+  "commandRunner": {
+    "enabled": true,
+    "history": [
+      "btop",
+      "kje",
+      "ghostty +validate-config",
+      "yazi",
+      "ghostty",
+      "yz",
+      "top",
+      "chg",
+      "awww",
+      "dolphin",
+      "nemo"
+    ],
+    "terminal": "ghostty"
+  },
+  "dankDesktopWeather": {
+    "enabled": true
+  },
+  "linuxWallpaperEngine": {
+    "enabled": true
+  },
+  "powerUsagePlugin": {
+    "enabled": false
+  },
+  "wallpaperBing": {
+    "enabled": false
+  }
+}

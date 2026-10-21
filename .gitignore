@@ -10,3 +10,9 @@ __pycache__/
 !claude/.claude/
 claude/.claude/scripts/*.log
 !claude/.claude/CLAUDE.md
+
+# DMS runtime state (plugins managed via `dms plugins`)
+dms/.config/DankMaterialShell/.changelog-*
+dms/.config/DankMaterialShell/.firstlaunch
+dms/.config/DankMaterialShell/plugins/
+dms/.config/DankMaterialShell/*.bak
