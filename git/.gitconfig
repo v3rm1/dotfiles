@@ -15,6 +15,12 @@
 [diff]
 	algorithm = histogram
 	colorMoved = default
+	tool = kitty
+[difftool]
+	prompt = false
+	trustExitCode = true
+[difftool "kitty"]
+	cmd = kitten diff \"$LOCAL\" \"$REMOTE\"
 [merge]
 	conflictStyle = zdiff3
 [rerere]

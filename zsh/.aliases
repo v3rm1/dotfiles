@@ -28,3 +28,10 @@ fi
 alias portstats="python3 ~/Documents/projects/portfolio/scripts/analytics_report.py"
 
 # vim: ft=sh
+
+# kitty kittens: only when running directly in kitty (not inside tmux)
+if [[ "$TERM" == "xterm-kitty" ]]; then
+    # copies kitty terminfo and shell integration to the remote host
+    alias ssh="kitten ssh"
+fi
+alias icat="kitten icat"
