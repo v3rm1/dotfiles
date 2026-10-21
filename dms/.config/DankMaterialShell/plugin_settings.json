@@ -17,7 +17,7 @@
       "dolphin",
       "nemo"
     ],
-    "terminal": "ghostty"
+    "terminal": "kitty"
   },
   "dankDesktopWeather": {
     "enabled": true

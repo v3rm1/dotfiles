@@ -51,7 +51,7 @@ vim.o.termguicolors = true
 vim.o.background = "dark"
 
 -- 3. CORE UI (Standard Neovim Groups)
-highlight("Normal", { fg = c.fg, bg = c.bg }) -- bg is "NONE" for Ghostty transparency
+highlight("Normal", { fg = c.fg, bg = c.bg }) -- bg is "NONE" for terminal transparency
 highlight("NormalFloat", { fg = c.fg, bg = "#080808" }) 
 highlight("FloatBorder", { fg = c.surface, bg = "#080808" })
 highlight("ColorColumn", { bg = "#0f0f0f" })

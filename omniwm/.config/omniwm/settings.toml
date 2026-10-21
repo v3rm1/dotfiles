@@ -287,7 +287,7 @@ minHeight = 500.0
 minWidth = 800.0
 
 [[appRules]]
-bundleId = "com.mitchellh.ghostty"
+bundleId = "net.kovidgoyal.kitty"
 id = "7876C9EF-437E-4D4F-9C27-B1B02F4AABCE"
 minHeight = 48.0
 minWidth = 90.0
@@ -326,7 +326,7 @@ id = "9D5B639D-D11D-4371-8456-0381D36A833B"
 
 [[appRules]]
 assignToWorkspace = "3"
-bundleId = "com.mitchellh.ghostty"
+bundleId = "net.kovidgoyal.kitty"
 id = "81B2ECF1-E08A-4C11-8631-17EC9BAC462F"
 
 [[appRules]]

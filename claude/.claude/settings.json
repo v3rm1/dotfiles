@@ -133,6 +133,6 @@
   "theme": "dark-ansi",
   "editorMode": "vim",
   "verbose": false,
-  "preferredNotifChannel": "ghostty",
+  "preferredNotifChannel": "kitty",
   "agentPushNotifEnabled": true
 }

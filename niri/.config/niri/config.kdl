@@ -276,11 +276,12 @@ binds {
     Mod+Shift+Slash hotkey-overlay-title="Show Keybinds" { spawn "dms" "ipc" "keybinds" "toggle" "niri"; }
 
     // Programs
-    Mod+Return hotkey-overlay-title="Terminal" { spawn-sh "ghostty"; }
+    Mod+Return hotkey-overlay-title="Terminal" { spawn-sh "kitty"; }
+    Mod+Grave hotkey-overlay-title="Quick Terminal" { spawn "kitten" "quick-access-terminal"; }
     Mod+Space hotkey-overlay-title="Launcher" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
     Mod+B hotkey-overlay-title="Browser" { spawn "flatpak" "run" "com.brave.Browser"; }
     Mod+Shift+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
-    Mod+Shift+Escape hotkey-overlay-title="Btop" { spawn "ghostty" "-e" "btop"; }
+    Mod+Shift+Escape hotkey-overlay-title="Btop" { spawn "kitty" "btop"; }
     Mod+E hotkey-overlay-title="File Manager" { spawn-sh "nautilus"; }
     Mod+N hotkey-overlay-title="Obsidian notes" { spawn-sh "xdg-open 'obsidian://open?vault=obsidian-dashboard&file=HOME.canvas'";}
 
