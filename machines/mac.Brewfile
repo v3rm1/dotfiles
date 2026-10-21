@@ -42,6 +42,7 @@ brew "shellcheck"
 
 # Window management
 cask "omniwm"
+cask "kitty"
 
 # General
 brew "just"
