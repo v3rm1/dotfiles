@@ -23,7 +23,7 @@ font-family-bold-italic = "InputMono Nerd Font"
 font-size = 15
 
 # Theme settings
-theme = TokyoNight Storm
+theme = TokyoNight Night
 
 # Quick terminal settings
 keybind = global:cmd+`=toggle_quick_terminal

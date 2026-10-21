@@ -1,25 +1,25 @@
 {
-  "id": "tokyoNightStorm",
-  "name": "TokyoNight Storm",
+  "id": "tokyoNightNight",
+  "name": "TokyoNight Night",
   "version": "1.0.0",
-  "author": "Carlos Echenique (built from Tokyo Night Storm palette)",
-  "description": "Official Tokyo Night Storm color scheme - softer contrast storm variant with deep blue-grey surfaces",
+  "author": "Carlos Echenique (built from Tokyo Night Night palette)",
+  "description": "Official Tokyo Night Night color scheme - darkest variant with deep navy surfaces",
   "dark": {
     "primary": "#7aa2f7",
     "primaryText": "#1a1b26",
     "primaryContainer": "#7dcfff",
     "secondary": "#bb9af7",
     "tertiary": "#73daca",
-    "surface": "#24283b",
+    "surface": "#1a1b26",
     "surfaceText": "#c0caf5",
-    "surfaceVariant": "#1f2335",
+    "surfaceVariant": "#16161e",
     "surfaceVariantText": "#a9b1d6",
     "surfaceTint": "#7aa2f7",
-    "background": "#1f2335",
+    "background": "#16161e",
     "backgroundText": "#c0caf5",
     "outline": "#565f89",
-    "surfaceContainerLowest": "#1e2030",
-    "surfaceContainerLow": "#272b3f",
+    "surfaceContainerLowest": "#0c0e14",
+    "surfaceContainerLow": "#1f2231",
     "surfaceContainer": "#292e42",
     "surfaceContainerHigh": "#3b4261",
     "error": "#f7768e",
@@ -50,5 +50,5 @@
     "info": "#3a7d82",
     "success": "#4c663b"
   },
-  "sourceDir": "tokyonight-storm"
+  "sourceDir": "tokyonight-night"
 }

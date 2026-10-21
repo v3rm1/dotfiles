@@ -27,7 +27,7 @@ $custom\
 $line_break\
 $character"""
 
-palette = "tokyonight_storm"
+palette = "tokyonight_night"
 
 [character]
 success_symbol = "[](bold green)"
@@ -290,9 +290,9 @@ symbol = "󱙺 "
 [claude_cost]
 symbol = "󰸦 "
 
-[palettes.tokyonight_storm]
-bg = '#24283b'
-bg_dark = '#1f2335'
+[palettes.tokyonight_night]
+bg = '#1a1b26'
+bg_dark = '#16161e'
 bg_highlight = '#292e42'
 blue = '#7aa2f7'
 blue0 = '#3d59a1'

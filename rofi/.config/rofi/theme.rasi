@@ -1,8 +1,8 @@
-/* Tokyo Night Storm */
+/* Tokyo Night Night */
 
 * {
-  bg-dark:        #1f2335;
-  bg:             #24283b;
+  bg-dark:        #16161e;
+  bg:             #1a1b26;
   bg-highlight:   #292e42;
   fg:             #c0caf5;
   comment:        #565f89;

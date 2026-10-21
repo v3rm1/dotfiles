@@ -86,11 +86,11 @@ if command -v fzf &>/dev/null; then
     --ansi \
     --layout=reverse \
     --border=none \
-    --color=bg+:#2e3c64 \
-    --color=bg:#1f2335 \
+    --color=bg+:#283457 \
+    --color=bg:#16161e \
     --color=border:#29a4bd \
     --color=fg:#c0caf5 \
-    --color=gutter:#1f2335 \
+    --color=gutter:#16161e \
     --color=header:#ff9e64 \
     --color=hl+:#2ac3de \
     --color=hl:#2ac3de \
