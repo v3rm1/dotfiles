@@ -1,0 +1,54 @@
+# noctalia-greeter config: Tokyo Night "liquid glass meets cyberpunk" login screen.
+# System file, not stowed. Install with:
+#   sudo install -o greeter -g greeter -m 640 greeter.toml wallpaper.webp /var/lib/noctalia-greeter/
+# The greeter has no blur or weather support; the frosted neon look comes from wallpaper.webp
+# (generated with ImageMagick from ~/Pictures/Wallpapers/ascii-cat.png).
+
+[session]
+default = "Niri"
+
+[user]
+default = "v3rm1"
+
+[appearance]
+scheme = "Synced"
+theme_mode = "dark"
+password_style = "random"
+hide_logo = true
+power_buttons_position = "bottom-right"
+scheme_selector_position = "hidden"
+corner_radius_scale = 0.7
+font_family = "InputMono Nerd Font"
+
+# Same roles as the shell palette (noctalia/.config/noctalia/palettes/tokyonight-night.json).
+[appearance.palette]
+primary = "#7dcfff"
+on_primary = "#0c0e14"
+secondary = "#ff007c"
+on_secondary = "#0c0e14"
+tertiary = "#bb9af7"
+on_tertiary = "#0c0e14"
+error = "#f7768e"
+on_error = "#0c0e14"
+surface = "#0c0e14"
+on_surface = "#7dcfff"
+surface_variant = "#16161e"
+on_surface_variant = "#bb9af7"
+outline = "#3d59a1"
+shadow = "#000000"
+hover = "#283457"
+on_hover = "#7dcfff"
+
+[appearance.wallpaper]
+path = "/var/lib/noctalia-greeter/wallpaper.webp"
+fill_mode = "crop"
+fill_color = "#0c0e14"
+
+[clock]
+enabled = true
+position = "above-panel"
+time_format = "{:%H:%M}"
+date_format = "%A  %d %B"
+
+[keyboard]
+layout = "us"
