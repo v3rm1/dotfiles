@@ -177,8 +177,6 @@ GLYPHS = {
     "brave-kajebgjangihfbkjfejcanhanjmmbcfd-Default": padlock(O, 200) + Tx(256, 320, "***", 70, C),
     "overleaf": S("M150 370Q150 170 370 140Q350 360 150 370Z M150 370L300 220", G),
     "xdvi": doc(W) + Tx(260, 310, "dvi", 80, C),
-    "danklogo": S("M256 120L374 188V324L256 392L138 324V188Z", P)
-                + S("M210 190H262Q322 190 322 256Q322 322 262 322H210Z", C) + S("M210 256H250", M, 10),
 }
 
 TEMPLATE = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
