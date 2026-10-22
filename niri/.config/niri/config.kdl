@@ -98,7 +98,8 @@ environment {
     QT_QPA_PLATFORMTHEME_QT6 "qt6ct"
 }
 
-// spawn-at-startup "keepassxc" // moved to systemd user unit keepassxc.service, ordered after dms.service
+// spawn-at-startup "keepassxc" // moved to systemd user unit keepassxc.service, ordered after noctalia.service
+// Noctalia shell runs as systemd user unit noctalia.service (dotfiles noctalia/ package)
 
 // spawn-at-startup "waybar"
 // spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
@@ -146,15 +147,15 @@ window-rule {
     draw-border-with-background false
 }
 
-// Phosphor glow: faint P1-green CRT halo on the focused window, plain dark shadow on the rest.
-// Matches the ASCII wallpapers; window-rule wins over dms/colors.kdl.
+// Neon glow: faint Tokyo Night cyan halo on the focused window, plain dark shadow on the rest.
+// Matches the cyan/magenta focus gradient; window-rule wins over theme.kdl.
 window-rule {
     shadow {
         on
         softness 20
         spread 6
         offset x=0 y=0
-        color "#33ff6670"
+        color "#7dcfff70"
         inactive-color "#00000055"
     }
 }
@@ -231,13 +232,20 @@ window-rule {
     default-window-height { proportion 0.5; }
 }
 
-// DMS windows
+// Noctalia settings window
 window-rule {
-    // match app-id=r#"^gnome-calculator$"#
-    // match app-id=r#"^galculator$"#
-    // match app-id=r#"^blueman-manager$"#
-    match app-id=r#"org.quickshell$"# // dms windows
+    match app-id=r#"^dev\.noctalia\.Noctalia$"#
     open-floating true
+    default-column-width { fixed 1300; }
+    default-window-height { fixed 1100; }
+}
+
+// Scratchpad notes (replaces the DMS notepad)
+window-rule {
+    match app-id=r#"^scratchpad$"#
+    open-floating true
+    default-column-width { proportion 0.4; }
+    default-window-height { proportion 0.5; }
 }
 
 // Portal and nautilus
@@ -251,7 +259,7 @@ window-rule {
 
 layer-rule {
     match namespace="^wallpaper$"
-    match namespace="^quickshell$"
+    match namespace="^noctalia-wallpaper"
     place-within-backdrop true
 }
 
@@ -273,14 +281,17 @@ binds {
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
     // Mod+Shift+Slash { show-hotkey-overlay; }
-    Mod+Shift+Slash hotkey-overlay-title="Show Keybinds" { spawn "dms" "ipc" "keybinds" "toggle" "niri"; }
+    Mod+Shift+Slash hotkey-overlay-title="Show Keybinds" { show-hotkey-overlay; }
 
     // Programs
     Mod+Return hotkey-overlay-title="Terminal" { spawn-sh "kitty"; }
     Mod+Grave hotkey-overlay-title="Quick Terminal" { spawn "kitten" "quick-access-terminal"; }
-    Mod+Space hotkey-overlay-title="Launcher" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Mod+Space hotkey-overlay-title="Launcher" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Mod+V hotkey-overlay-title="Clipboard" { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
+    Mod+Shift+C hotkey-overlay-title="Control Centre" { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
+    Mod+Shift+Comma hotkey-overlay-title="Shell Settings" { spawn "noctalia" "msg" "settings-toggle"; }
     Mod+B hotkey-overlay-title="Browser" { spawn "flatpak" "run" "com.brave.Browser"; }
-    Mod+Shift+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
+    Mod+Shift+N hotkey-overlay-title="Notepad" { spawn-sh "kitty --class scratchpad nvim ~/Documents/scratch.md"; }
     Mod+Shift+Escape hotkey-overlay-title="Btop" { spawn "kitty" "btop"; }
     Mod+E hotkey-overlay-title="File Manager" { spawn-sh "nautilus"; }
     Mod+N hotkey-overlay-title="Obsidian notes" { spawn-sh "xdg-open 'obsidian://open?vault=obsidian-dashboard&file=HOME.canvas'";}
@@ -289,11 +300,11 @@ binds {
     Super+Alt+F6 hotkey-overlay-title="Cycle power profiles" { spawn-sh "case $(tlpctl get | grep -oP 'power-saver|balanced|performance') in power-saver) tlpctl balanced;; balanced) tlpctl performance;; *) tlpctl power-saver;; esac"; }
 
     // Lock
-    Mod+Alt+L hotkey-overlay-title="Lock Screen" { spawn "dms" "ipc" "call" "lock" "lock"; }
+    Mod+Alt+L hotkey-overlay-title="Lock Screen" { spawn "noctalia" "msg" "session" "lock"; }
 
     // Power menu
-    XF86PowerOff { spawn "dms" "ipc" "powermenu" "toggle"; }
-    Mod+Shift+Delete { spawn "dms" "ipc" "powermenu" "toggle"; }
+    XF86PowerOff { spawn "noctalia" "msg" "panel-toggle" "session"; }
+    Mod+Shift+Delete { spawn "noctalia" "msg" "panel-toggle" "session"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
@@ -488,8 +499,4 @@ binds {
     Mod+F7 hotkey-overlay-title="Switch to A2DP profile" { spawn-sh "bt_mic_profile a2dp"; }
 }
 
-include "dms/colors.kdl"
-include "dms/outputs.kdl"
-include "dms/cursor.kdl"
-include "dms/windowrules.kdl"
-include "dms/binds.kdl"
+include "theme.kdl"
