@@ -155,29 +155,14 @@ icon_color = "secondary"
 
 [desktop_widgets]
 enabled = true
-widget_order = ["weather_main", "visualizer_main"]
+widget_order = ["visualizer_main"]
 
-[desktop_widgets.widget.weather_main]
-type = "weather"
-output = "DP-1"
-cx = 2300.0
-cy = 160.0
-box_width = 0.0
-box_height = 0.0
-rotation = 0.0
-
-[desktop_widgets.widget.weather_main.settings]
-color = "primary"
-shadow = true
-show_forecast = true
-forecast_days = 3
-
-# Neon circular spectrum under the weather widget; stays visible as a ring when idle.
+# Neon circular spectrum in the top-right corner; fades out when no audio plays.
 [desktop_widgets.widget.visualizer_main]
 type = "fancy_audio_visualizer"
 output = "DP-1"
-cx = 2300.0
-cy = 560.0
+cx = 2320.0
+cy = 300.0
 box_width = 440.0
 box_height = 440.0
 rotation = 0.0
@@ -187,7 +172,7 @@ visualization_mode = "bars_rings"
 sensitivity = 1.5
 rotation_speed = 0.4
 bloom_intensity = 0.8
-fade_when_idle = false
+fade_when_idle = true
 primary_color = "primary"
 secondary_color = "secondary"
 
