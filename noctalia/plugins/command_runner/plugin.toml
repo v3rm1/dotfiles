@@ -1,0 +1,29 @@
+id = "v3rm1/command_runner"
+name = "Command Runner"
+version = "1.0.0"
+plugin_api = 3
+author = "v3rm1"
+license = "MIT"
+icon = "terminal"
+description = "Run shell commands from the launcher (/run), in a terminal or in the background, with history."
+
+[[launcher_provider]]
+id = "run"
+entry = "runner.luau"
+prefix = "run"
+glyph = "terminal"
+include_in_global_search = false
+
+[[setting]]
+key = "terminal"
+type = "string"
+label_key = "settings.terminal.label"
+description_key = "settings.terminal.description"
+default = "kitty --hold"
+
+[[setting]]
+key = "history_size"
+type = "int"
+label_key = "settings.history_size.label"
+default = 50
+min = 0

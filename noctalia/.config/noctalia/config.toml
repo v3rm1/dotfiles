@@ -1,0 +1,221 @@
+# Noctalia v5 shell config (hand-written layer).
+# GUI changes land in ~/.local/state/noctalia/settings.toml and override this file;
+# port anything worth keeping back here. Check with `noctalia config validate`.
+
+[theme]
+mode = "dark"
+source = "custom"
+custom_palette = "tokyonight-night"
+
+[shell]
+font_family = "InputMono Nerd Font"
+corner_radius_scale = 0.7
+time_format = "{:%H:%M}"
+setup_wizard_enabled = false
+polkit_agent = true
+
+# Liquid glass meets cyberpunk: frosted translucent surfaces (niri blur, see theme.kdl),
+# soft corners, neon cyan/magenta rims. Panel borders use the palette outline.
+[shell.panel]
+transparency_mode = "glass"
+
+[shell.shadow]
+alpha = 0.8
+
+[shell.launcher]
+app_grid = true
+sort_by_usage = true
+
+# Global UI size (panels, launcher, settings window); does not affect the bar (own scale).
+[accessibility]
+ui_scale = 1.2
+
+[location]
+auto_locate = false
+address = "Grimstad, Norway"
+latitude = 58.3413
+longitude = 8.5934
+
+[weather]
+enabled = true
+unit = "metric"
+
+[wallpaper]
+enabled = true
+fill_mode = "crop"
+directory = "~/Pictures/Wallpapers"
+
+[wallpaper.default]
+path = "~/Pictures/Wallpapers/ascii-cat.png"
+
+[backdrop]
+enabled = false
+
+[dock]
+enabled = false
+
+[notification]
+border_color = "primary"
+border_width = 1.5
+
+[osd]
+border_color = "secondary"
+border_width = 1.5
+
+[bar]
+order = ["main"]
+
+[bar.main]
+position = "top"
+thickness = 46
+background_opacity = 0.35
+compositor_blur = true
+border = "primary"
+border_width = 1.5
+radius = 16
+margin_ends = 14
+margin_edge = 8
+shadow = true
+font_weight = 600
+scale = 1.3
+font_scale = 1.0
+icon_color = "primary"
+capsule = true
+capsule_fill = "surface_variant"
+capsule_opacity = 0.45
+capsule_border = "outline"
+capsule_border_width = 1.0
+capsule_padding = 10
+capsule_radius = 10.0
+# Glyph-first: status widgets show icons, text only where a value matters.
+start = ["launcher", "workspaces", "taskbar"]
+center = ["media"]
+end = ["tray", "group:status", "group:stats", "weather", "clock", "notifications", "control-center"]
+
+[[bar.main.capsule_group]]
+id = "status"
+members = ["network", "bluetooth", "volume"]
+widget_spacing = 10
+
+[[bar.main.capsule_group]]
+id = "stats"
+members = ["cpu", "ram", "temp"]
+widget_spacing = 10
+
+[widget.workspaces]
+style = "focus_hint"
+show_icons = true
+focused_color = "primary"
+occupied_color = "secondary"
+empty_color = "outline"
+
+[widget.network]
+show_label = false
+
+[widget.volume]
+show_label = false
+
+[widget.taskbar]
+active_indicator_color = "secondary"
+icon_scale = 1.3
+
+[widget.media]
+hide_when_no_media = true
+title_scroll = "on_hover"
+
+[widget.weather]
+show_condition = false
+
+[widget.cpu]
+type = "sysmon"
+stat = "cpu_usage"
+visualization = "none"
+
+[widget.ram]
+type = "sysmon"
+stat = "ram_used"
+visualization = "none"
+
+[widget.temp]
+type = "sysmon"
+stat = "cpu_temp"
+visualization = "none"
+
+[widget.clock]
+color = "secondary"
+icon_color = "secondary"
+capsule_border = "secondary"
+
+[widget.control-center]
+icon_color = "secondary"
+
+[desktop_widgets]
+enabled = true
+
+[desktop_widgets.widget.weather_main]
+type = "weather"
+output = "DP-1"
+cx = 2300.0
+cy = 160.0
+box_width = 0.0
+box_height = 0.0
+rotation = 0.0
+
+[desktop_widgets.widget.weather_main.settings]
+color = "primary"
+shadow = true
+show_forecast = true
+forecast_days = 3
+
+# Lock screen: blurred desktop behind a translucent neon login bar, big clock, weather.
+[lockscreen]
+blurred_desktop = true
+blur_intensity = 0.8
+tint_intensity = 0.35
+
+[lockscreen_widgets]
+enabled = true
+widget_order = ["lockscreen-login-box@DP-1", "lock_clock"]
+
+[lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+type = "login_box"
+output = "DP-1"
+cx = 1280.0
+cy = 1180.0
+
+[lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+layout = "regular"
+show_weather = true
+show_media = true
+background_color = "surface"
+background_opacity = 0.45
+background_radius = 16.0
+input_opacity = 0.6
+input_radius = 10.0
+center_password_text = true
+
+[lockscreen_widgets.widget.lock_clock]
+type = "clock"
+output = "DP-1"
+cx = 1280.0
+cy = 420.0
+box_width = 900.0
+box_height = 300.0
+rotation = 0.0
+
+[lockscreen_widgets.widget.lock_clock.settings]
+clock_style = "digital"
+format = "{:%H:%M}"
+color = "primary"
+shadow = true
+
+[plugins]
+enabled = ["v3rm1/command_runner", "v3rm1/file_search"]
+auto_update = "official"
+
+# Personal plugins live in the dotfiles repo and are loaded read-only from there.
+[[plugins.source]]
+name = "dotfiles"
+kind = "path"
+location = "~/dotfiles/noctalia/plugins"
+enabled = true

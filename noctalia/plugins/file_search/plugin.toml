@@ -1,0 +1,30 @@
+id = "v3rm1/file_search"
+name = "File Search"
+version = "1.0.0"
+plugin_api = 3
+author = "v3rm1"
+license = "MIT"
+icon = "file-search"
+dependencies = ["fd"]
+description = "Search files and folders under your home directory with fd (/f) and open them with xdg-open."
+
+[[launcher_provider]]
+id = "files"
+entry = "search.luau"
+prefix = "f"
+glyph = "file-search"
+include_in_global_search = false
+debounce_ms = 200
+
+[[setting]]
+key = "root"
+type = "string"
+label_key = "settings.root.label"
+default = "~"
+
+[[setting]]
+key = "max_results"
+type = "int"
+label_key = "settings.max_results.label"
+default = 40
+min = 1

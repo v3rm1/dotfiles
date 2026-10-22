@@ -1,0 +1,11 @@
+{
+  "settings": {
+    "max_results": {
+      "label": "Maximum results"
+    },
+    "root": {
+      "label": "Search root"
+    }
+  },
+  "title": "File Search"
+}

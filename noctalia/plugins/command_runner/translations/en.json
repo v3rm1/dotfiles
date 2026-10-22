@@ -1,0 +1,12 @@
+{
+  "settings": {
+    "history_size": {
+      "label": "History size"
+    },
+    "terminal": {
+      "description": "Terminal command line; the shell command is appended as `sh -c <command>`",
+      "label": "Terminal"
+    }
+  },
+  "title": "Command Runner"
+}
