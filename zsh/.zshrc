@@ -213,3 +213,7 @@ fi
 
 # Per-machine overrides, untracked
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+# Man pages: render through bat for syntax highlighting
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
