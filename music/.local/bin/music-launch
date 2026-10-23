@@ -1,0 +1,48 @@
+#!/bin/sh
+# Mod+M in niri: show workspace 3 (music), starting whatever is missing.
+# Layout is one column: cmus (kitty, app-id "music") on top and the cava
+# pixel visualiser (SDL window, app-id "cava") stacked underneath it.
+# Both windows are sent to the workspace by window rules in niri's config.
+vis_conf="$HOME/.config/cava/cmus.conf"
+
+find_window() {
+    niri msg --json windows |
+        jq -r --arg app "$1" 'first(.[] | select(.app_id == $app) | .id) // empty'
+}
+
+# Poll for up to 5 s for a window with the given app-id to appear.
+wait_window() {
+    i=0
+    while [ "$i" -lt 50 ]; do
+        id=$(find_window "$1")
+        if [ -n "$id" ]; then
+            echo "$id"
+            return
+        fi
+        sleep 0.1
+        i=$((i + 1))
+    done
+}
+
+# No explicit workspace switch: niri parses "3" as an index, not the name.
+# Focusing the player window below jumps to wherever the rules put it.
+player=$(find_window music)
+if [ -z "$player" ]; then
+    kitty --class music "$HOME/.local/bin/music" >/dev/null 2>&1 &
+    player=$(wait_window music)
+fi
+[ -n "$player" ] || exit 1
+
+if [ -z "$(find_window cava)" ]; then
+    niri msg action focus-window --id "$player"
+    cava -p "$vis_conf" >/dev/null 2>&1 &
+    vis=$(wait_window cava)
+    if [ -n "$vis" ]; then
+        # The new window opens in its own column to the right; pull it into
+        # the player's column and keep it short.
+        niri msg action consume-or-expel-window-left --id "$vis"
+        niri msg action set-window-height --id "$vis" 25%
+    fi
+fi
+
+niri msg action focus-window --id "$player"

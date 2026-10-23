@@ -91,6 +91,7 @@ layout {
 
 workspace "1"
 workspace "2"
+workspace "3"
 
 environment {
     XDG_CURRENT_DESKTOP "niri"
@@ -248,6 +249,15 @@ window-rule {
     default-window-height { proportion 0.5; }
 }
 
+// Music on workspace 3: cmus (kitty, app-id "music") with the cava SDL visualiser
+// stacked underneath; music-launch (Mod+M) builds the column.
+window-rule {
+    match app-id=r#"^music$"#
+    match app-id=r#"^cava$"#
+    open-on-workspace "3"
+    default-column-width { proportion 1.0; }
+}
+
 // Portal and nautilus
 window-rule {
     match app-id=r#"^xdg-desktop-portal"#
@@ -293,7 +303,7 @@ binds {
     Mod+B hotkey-overlay-title="Browser" { spawn "flatpak" "run" "com.brave.Browser"; }
     Mod+Shift+N hotkey-overlay-title="Notepad" { spawn-sh "kitty --class scratchpad nvim ~/Documents/scratch.md"; }
     Mod+Shift+Escape hotkey-overlay-title="Btop" { spawn "kitty" "btop"; }
-    Mod+M hotkey-overlay-title="Music" { spawn-sh "kitty --class music ~/.local/bin/music"; }
+    Mod+M hotkey-overlay-title="Music" { spawn-sh "~/.local/bin/music-launch"; }
     Mod+E hotkey-overlay-title="File Manager" { spawn-sh "nautilus"; }
     Mod+N hotkey-overlay-title="Obsidian notes" { spawn-sh "xdg-open 'obsidian://open?vault=obsidian-dashboard&file=HOME.canvas'";}
 

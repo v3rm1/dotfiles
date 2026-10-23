@@ -1,0 +1,17 @@
+#!/bin/sh
+# cmus in a tmux session called "music", so playback survives closing the
+# window. Run inside the "music" kitty window opened by music-launch.
+# Quitting cmus ends the session and closes the cava visualiser window.
+session=music
+
+if ! tmux has-session -t "$session" 2>/dev/null; then
+    tmux new-session -d -s "$session" -n player \
+        "cmus; pkill -f 'cava -p $HOME/.config/cava/cmus.conf'; tmux kill-session -t $session"
+    tmux set-option -t "$session" status off
+fi
+
+if [ -n "$TMUX" ]; then
+    tmux switch-client -t "$session"
+else
+    tmux attach-session -t "$session"
+fi

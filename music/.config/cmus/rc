@@ -1,0 +1,26 @@
+# cmus config. Loaded after ~/.config/cmus/autosave, so these win on every start.
+
+# Output / desktop integration
+set output_plugin=pulse
+set mpris=true
+set pause_on_output_change=true
+
+# Playback
+set replaygain=track
+set replaygain_limit=true
+set resume=true
+
+# Library: pick up new files in ~/Music on start (cached files are skipped)
+add -l ~/Music
+set lib_sort=albumartist date album discnumber tracknumber title filename
+set smart_artist_sort=true
+
+# Display
+set start_view=tree
+set follow=true
+set auto_expand_albums_follow=true
+set show_remaining_time=true
+set show_playback_position=true
+set mouse=true
+
+colorscheme tokyonight

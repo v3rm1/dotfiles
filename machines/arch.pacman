@@ -48,3 +48,8 @@ just
 hyperfine
 git-delta
 jq
+
+# Music: cmus player, cava visualiser, MPRIS media keys
+cmus
+cava
+playerctl
