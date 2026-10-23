@@ -228,3 +228,23 @@ name = "dotfiles"
 kind = "path"
 location = "~/dotfiles/noctalia/plugins"
 enabled = true
+
+# Control-centre tiles: defaults with caffeine swapped for the WireGuard VPN
+# toggle (local plugin v3rm1/wireguard).
+[[control_center.shortcuts]]
+type = "wifi"
+
+[[control_center.shortcuts]]
+type = "bluetooth"
+
+[[control_center.shortcuts]]
+type = "v3rm1/wireguard:toggle"
+
+[[control_center.shortcuts]]
+type = "nightlight"
+
+[[control_center.shortcuts]]
+type = "notification"
+
+[[control_center.shortcuts]]
+type = "power_profile"
