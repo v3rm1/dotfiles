@@ -293,6 +293,7 @@ binds {
     Mod+B hotkey-overlay-title="Browser" { spawn "flatpak" "run" "com.brave.Browser"; }
     Mod+Shift+N hotkey-overlay-title="Notepad" { spawn-sh "kitty --class scratchpad nvim ~/Documents/scratch.md"; }
     Mod+Shift+Escape hotkey-overlay-title="Btop" { spawn "kitty" "btop"; }
+    Mod+M hotkey-overlay-title="Music" { spawn-sh "kitty --class music ~/.local/bin/music"; }
     Mod+E hotkey-overlay-title="File Manager" { spawn-sh "nautilus"; }
     Mod+N hotkey-overlay-title="Obsidian notes" { spawn-sh "xdg-open 'obsidian://open?vault=obsidian-dashboard&file=HOME.canvas'";}
 
