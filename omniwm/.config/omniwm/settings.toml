@@ -190,8 +190,8 @@ monitorName = "LEN P27h-10 (2)"
 [statusBar]
 showAppNames = false
 showIcon = true
-showWorkspaceName = false
-useWorkspaceId = false
+showWorkspaceName = true
+useWorkspaceId = true
 
 [workspaceBar]
 autoHide = false
