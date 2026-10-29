@@ -1,0 +1,67 @@
+{
+  "type": "group",
+  "actions": [
+    {
+      "key": "o",
+      "type": "group",
+      "label": "Open app",
+      "actions": [
+        { "key": "t", "type": "application", "value": "/Applications/kitty.app" },
+        { "key": "o", "type": "application", "value": "/Applications/Obsidian.app" },
+        { "key": "z", "type": "application", "value": "/Applications/Zotero.app" },
+        { "key": "b", "type": "application", "value": "/Applications/Google Chrome Canary.app" },
+        { "key": "s", "type": "application", "value": "/Applications/Skim.app" },
+        { "key": "c", "type": "application", "value": "/Applications/Claude.app" },
+        { "key": "f", "type": "application", "value": "/System/Library/CoreServices/Finder.app" },
+        { "key": "g", "type": "application", "value": "/Applications/Goodnotes.app" }
+      ]
+    },
+    {
+      "key": "m",
+      "type": "group",
+      "label": "Messaging",
+      "actions": [
+        { "key": "m", "type": "application", "value": "/Applications/Microsoft Outlook.app" },
+        { "key": "t", "type": "application", "value": "/Applications/Microsoft Teams.app" },
+        { "key": "w", "type": "application", "value": "/Applications/WhatsApp.app" },
+        { "key": "d", "type": "application", "value": "/Applications/Discord.app" },
+        { "key": "z", "type": "application", "value": "/Applications/zoom.us.app" }
+      ]
+    },
+    {
+      "key": "f",
+      "type": "group",
+      "label": "Folder",
+      "actions": [
+        { "key": "d", "type": "folder", "value": "~/Downloads" },
+        { "key": "p", "type": "folder", "value": "~/Documents/projects" },
+        { "key": "u", "type": "folder", "value": "~/Documents/uia-documents" },
+        { "key": "o", "type": "folder", "value": "~/Documents/obsidian-files" },
+        { "key": ".", "type": "folder", "value": "~/dotfiles" }
+      ]
+    },
+    {
+      "key": "u",
+      "type": "group",
+      "label": "URL",
+      "actions": [
+        { "key": "g", "type": "url", "value": "https://github.com" },
+        { "key": "o", "type": "url", "value": "https://www.overleaf.com/project" },
+        { "key": "s", "type": "url", "value": "https://scholar.google.com" },
+        { "key": "c", "type": "url", "value": "https://claude.ai" }
+      ]
+    },
+    {
+      "key": "c",
+      "type": "group",
+      "label": "Command",
+      "actions": [
+        { "key": "d", "type": "command", "label": "Start colima", "value": "/opt/homebrew/bin/colima start" },
+        { "key": "D", "type": "command", "label": "Stop colima", "value": "/opt/homebrew/bin/colima stop" },
+        { "key": "b", "type": "command", "label": "Dump Brewfile", "value": "/opt/homebrew/bin/brew bundle dump --force --file=$HOME/dotfiles/Brewfile" },
+        { "key": "a", "type": "command", "label": "Toggle dark mode", "value": "osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'" },
+        { "key": "s", "type": "command", "label": "Sleep display", "value": "pmset displaysleepnow" }
+      ]
+    }
+  ]
+}
