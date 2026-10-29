@@ -205,9 +205,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
 
   _extend_path "/opt/homebrew/opt/openjdk@17/bin"
 
-  # Antigravity IDE
-  _extend_path "$HOME/.antigravity/antigravity/bin"
-
   alias burp="brew update && brew upgrade && brew doctor && brew cleanup"
 fi
 
