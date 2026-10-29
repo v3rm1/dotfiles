@@ -17,3 +17,11 @@ repos:
       - id: check-added-large-files
       - id: check-toml
       - id: check-yaml
+  - repo: local
+    hooks:
+      - id: check-packages
+        name: every stow package is in a machine profile
+        entry: machines/check-packages.sh
+        language: script
+        pass_filenames: false
+        always_run: true

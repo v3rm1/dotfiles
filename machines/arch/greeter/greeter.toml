@@ -1,6 +1,6 @@
 # noctalia-greeter config: Tokyo Night "liquid glass meets cyberpunk" login screen.
 # System file, not stowed. Install with:
-#   sudo install -o greeter -g greeter -m 640 greeter.toml wallpaper.webp /var/lib/noctalia-greeter/
+#   ./bootstrap.sh arch --system
 # The greeter has no blur or weather support; the frosted neon look comes from wallpaper.webp
 # (generated with ImageMagick from ~/Pictures/Wallpapers/ascii-cat.png).
 

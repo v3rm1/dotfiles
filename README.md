@@ -9,10 +9,13 @@ Run `./bootstrap.sh <machine>` to stow the package set for a given machine
 profile (see `machines/*.pkgs`), or `stow -t ~ <package>` to link one manually.
 Add `--tools` to also install that machine's dev toolchain from
 `machines/<machine>.Brewfile` (macOS) or `machines/<machine>.pacman` (Arch).
+Add `--system` to install files that live outside `$HOME` and cannot be stowed,
+kept in `machines/<machine>/` (e.g. the Arch login greeter; needs sudo).
 
 Machine-specific or private settings stay out of the repo: `~/.gitconfig.local`
 (credential helper, signing) and `~/.ssh/config.local` (private hosts) are
 included by the tracked configs when present.
 
-A pre-commit config runs gitleaks (secret scanning) and shellcheck. Enable it
+A pre-commit config runs gitleaks (secret scanning), shellcheck, and `machines/check-packages.sh`, which fails if a
+package directory is missing from every `machines/*.pkgs` profile. Enable it
 once per clone with `pre-commit install`.

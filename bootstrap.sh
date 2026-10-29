@@ -6,9 +6,11 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MACHINES_DIR="$REPO_ROOT/machines"
 
 usage() {
-  echo "Usage: $0 <machine> [--dry-run] [--tools]" >&2
-  echo "  --tools  also install the machine's dev toolchain" >&2
-  echo "           (machines/<machine>.Brewfile or machines/<machine>.pacman)" >&2
+  echo "Usage: $0 <machine> [--dry-run] [--tools] [--system]" >&2
+  echo "  --tools   also install the machine's dev toolchain" >&2
+  echo "            (machines/<machine>.Brewfile or machines/<machine>.pacman)" >&2
+  echo "  --system  also install system files outside \$HOME (needs sudo)" >&2
+  echo "            (machines/<machine>/, e.g. the arch login greeter)" >&2
   exit 1
 }
 
@@ -17,10 +19,12 @@ MACHINE="$1"
 shift
 DRY_RUN=false
 TOOLS=false
+SYSTEM=false
 for arg in "$@"; do
   case "$arg" in
     --dry-run) DRY_RUN=true ;;
     --tools) TOOLS=true ;;
+    --system) SYSTEM=true ;;
     *) usage ;;
   esac
 done
@@ -117,5 +121,20 @@ if $TOOLS; then
     fi
   else
     echo "  no tool list for $MACHINE" >&2
+  fi
+fi
+
+if $SYSTEM; then
+  echo "== system =="
+  greeter_dir="$MACHINES_DIR/$MACHINE/greeter"
+  if [[ -d "$greeter_dir" ]]; then
+    if $DRY_RUN; then
+      echo "  would install greeter files into /var/lib/noctalia-greeter/"
+    else
+      sudo install -o greeter -g greeter -m 640 \
+        "$greeter_dir/greeter.toml" "$greeter_dir/wallpaper.webp" /var/lib/noctalia-greeter/
+    fi
+  else
+    echo "  no system files for $MACHINE" >&2
   fi
 fi
