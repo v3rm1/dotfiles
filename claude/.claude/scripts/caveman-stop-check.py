@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Stop hook: block the turn from ending when the final reply drifts out of caveman style.
+"""Stop hook: warn when the final reply drifts out of caveman style.
 
 Reads the Stop hook payload on stdin, extracts the last assistant message (from
 `last_assistant_message`, else the transcript), strips code, tables and warning
 blocks, then scores the remaining prose. Blockquotes (quoted third-party text such
 as messages drafted for someone else) are exempt too. On failure it prints a JSON
-`{"decision": "block", "reason": ...}` so Claude rewrites the reply. It never
-blocks twice in a row (`stop_hook_active`), so it cannot loop.
+`{"systemMessage": ...}` so the user sees a warning. It is warn-only: it never
+blocks the turn, because forced rewrites showed the user duplicate replies.
 
 Usage as a checker: caveman-stop-check.py --text FILE  (prints score, exit 1 on fail)
 """
@@ -105,10 +105,7 @@ def main() -> int:
     result = score(last_assistant_text(payload))
     if result["problems"]:
         print(json.dumps({
-            "decision": "block",
-            "reason": "Caveman ultra drift in last reply: " + "; ".join(result["problems"])
-            + ". Rewrite the whole reply in caveman ultra: drop articles and filler, fragments, "
-            "one fact per line. Keep code, paths and exact error strings verbatim.",
+            "systemMessage": "Caveman drift: " + "; ".join(result["problems"]),
         }))
     return 0
 

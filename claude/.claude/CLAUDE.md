@@ -71,3 +71,11 @@ Every chat reply in caveman ultra style — long end-of-task reports included, n
 
 ## britishEnglish
 Use British English spelling in all written output — docs, LaTeX, prose, comments (e.g. "colour", "optimise", "behaviour").
+
+# Data Analysis
+
+## marimoAnalysisDocs
+Whenever data is analysed in a marimo notebook (any project):
+- Before every code cell, add a markdown cell (`hide_code=True`) with a one-line goal of that code, e.g. "Loading and cleaning data", "Analysis of win rate per variant". No "What this cell does / Variables" boilerplate; definitions only where a metric is non-obvious, kept brief.
+- After each group of result cells (table/plot section), add a markdown "Takeaways" cell: results with the actual numbers and CIs, significance (CI excludes 0 or not), and the key conclusions. Mark untested explanations as such; no claims beyond the data.
+- Keep takeaways in sync when results are regenerated.
