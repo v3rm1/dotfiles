@@ -36,6 +36,19 @@
 [help]
 	autocorrect = prompt
 
+# Syntax-aware diffs on demand: `git dft` (diff), `git dlog` (log -p), `git dshow`.
+# Plain `git diff` keeps the default pager so patches stay applyable.
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+	difftool = true
+[alias]
+	dft = difftool --tool=difftastic
+	dlog = -c diff.external=difft log --ext-diff -p
+	dshow = -c diff.external=difft show --ext-diff
+
 # Machine-specific settings (credential helper, signing keys) live here, untracked.
 [include]
 	path = ~/.gitconfig.local

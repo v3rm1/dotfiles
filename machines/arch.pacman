@@ -47,6 +47,7 @@ shellcheck
 just
 hyperfine
 git-delta
+difftastic
 jq
 
 # Music: cmus player, cava visualiser, MPRIS media keys
