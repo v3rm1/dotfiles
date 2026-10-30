@@ -97,4 +97,9 @@ vim.api.nvim_create_user_command("Packsync", function()
     vim.notify("PackSync: removing " .. table.concat(inactive, ", "))
     vim.pack.del(inactive)
 end, { desc = "Remove inactive pack plugins" })
+-- Transparent so kitty's glass shows through; floats stay solid so popup text over code stays readable.
+require("tokyonight").setup({
+    transparent = true,
+    styles = { sidebars = "transparent", floats = "dark" },
+})
 vim.cmd("colorscheme tokyonight-night")

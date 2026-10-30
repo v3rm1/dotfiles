@@ -1,0 +1,31 @@
+# Liquid glass: translucent Tokyo Night chrome around a solid page.
+# niri blurs behind the window (niri/.config/niri/glass.kdl, real glass tier).
+set default-bg              "rgba(26,27,38,0.75)"
+set default-fg              "#c0caf5"
+set statusbar-bg            "rgba(26,27,38,0.75)"
+set statusbar-fg            "#c0caf5"
+set inputbar-bg             "rgba(26,27,38,0.75)"
+set inputbar-fg             "#c0caf5"
+set notification-bg         "rgba(26,27,38,0.75)"
+set notification-fg         "#c0caf5"
+set notification-error-bg   "rgba(26,27,38,0.75)"
+set notification-error-fg   "#f7768e"
+set notification-warning-bg "rgba(26,27,38,0.75)"
+set notification-warning-fg "#e0af68"
+set completion-bg           "rgba(26,27,38,0.75)"
+set completion-fg           "#c0caf5"
+set completion-highlight-bg "#7dcfff"
+set completion-highlight-fg "#1a1b26"
+set highlight-color         "rgba(187,154,247,0.4)"
+set highlight-active-color  "rgba(125,207,255,0.5)"
+set index-bg                "rgba(26,27,38,0.75)"
+set index-fg                "#c0caf5"
+set index-active-bg         "#7dcfff"
+set index-active-fg         "#1a1b26"
+
+# Page recoloured to Tokyo Night and kept solid for reading; hue kept so figure
+# colours stay distinguishable. Toggle with Ctrl+R.
+set recolor                 true
+set recolor-keephue         true
+set recolor-darkcolor       "#c0caf5"
+set recolor-lightcolor      "#1a1b26"

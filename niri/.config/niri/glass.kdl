@@ -1,0 +1,39 @@
+// Liquid glass for every window: compositor blur behind, opacity tiers on top.
+// Look: Tokyo Night base at 75% (drawn by the app itself), medium frost, neon
+// cyan/magenta rim from theme.kdl. Unfocused windows fade further.
+//
+// Tiers (later rules win, so order matters):
+//   1. Fade only (default). Apps that paint solid pages (browsers, Electron,
+//      Zotero, Qt without Kvantum). niri fades the whole window a little so
+//      text stays readable; blur only shows at the edges.
+//   2. Real glass. Apps whose own background is already translucent (kitty,
+//      GTK4 via gtk/.config/gtk-4.0/gtk.css, zathura). niri leaves them fully
+//      opaque and only blurs what is behind them.
+//   3. Unfocused. Applies to both tiers.
+//
+// To add an app: find its app-id with `niri msg windows`, then add a `match`
+// line to tier 2 if the app draws a translucent background (configure that in
+// the app's own package), or do nothing to leave it on the fade-only default.
+
+// 1. Fade only (default for every window).
+window-rule {
+    opacity 0.97
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+// 2. Real glass.
+window-rule {
+    match app-id=r#"^kitty$"#
+    match app-id=r#"^org\.gnome\.Nautilus$"#
+    match app-id=r#"^org\.pwmt\.zathura$"#
+    opacity 1.0
+}
+
+// 3. Unfocused.
+window-rule {
+    match is-active=false
+    opacity 0.9
+}

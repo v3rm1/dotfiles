@@ -1,0 +1,31 @@
+/* Liquid glass for GTK4/libadwaita apps (Nautilus and others).
+ * Tokyo Night at 75% so niri's blur shows through (niri/.config/niri/glass.kdl).
+ * Foreground colours are set too, so text stays readable even if the system
+ * GTK theme is light. Popovers and dialogs stay solid: text over text is not glass.
+ */
+@define-color accent_color #7dcfff;
+@define-color accent_bg_color #7dcfff;
+@define-color accent_fg_color #1a1b26;
+
+@define-color window_bg_color rgba(26, 27, 38, 0.75);
+@define-color window_fg_color #c0caf5;
+@define-color view_bg_color rgba(26, 27, 38, 0.0);
+@define-color view_fg_color #c0caf5;
+@define-color headerbar_bg_color rgba(26, 27, 38, 0.0);
+@define-color headerbar_fg_color #c0caf5;
+@define-color headerbar_backdrop_color rgba(26, 27, 38, 0.0);
+@define-color sidebar_bg_color rgba(22, 22, 30, 0.35);
+@define-color sidebar_fg_color #c0caf5;
+@define-color sidebar_backdrop_color rgba(22, 22, 30, 0.35);
+@define-color card_bg_color rgba(255, 255, 255, 0.04);
+@define-color card_fg_color #c0caf5;
+
+@define-color popover_bg_color #1f2335;
+@define-color popover_fg_color #c0caf5;
+@define-color dialog_bg_color #1f2335;
+@define-color dialog_fg_color #c0caf5;
+
+/* Light top edge, the closest GTK gets to Apple's glass shine. */
+window.background {
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.18);
+}

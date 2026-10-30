@@ -150,12 +150,12 @@ red = 0.3
 [quakeTerminal]
 animationDuration = 0.2
 autoHide = false
-backgroundBlurRadius = 0
+backgroundBlurRadius = 24
 backgroundEffect = "standardBlur"
 enabled = true
 heightPercent = 50.0
 monitorMode = "focusedWindow"
-opacity = 1.0
+opacity = 0.75
 position = "center"
 widthPercent = 50.0
 

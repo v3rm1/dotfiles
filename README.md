@@ -19,3 +19,7 @@ included by the tracked configs when present.
 A pre-commit config runs gitleaks (secret scanning), shellcheck, and `machines/check-packages.sh`, which fails if a
 package directory is missing from every `machines/*.pkgs` profile. Enable it
 once per clone with `pre-commit install`.
+
+The liquid glass look (translucent Tokyo Night with blur and a neon rim) is set
+per app. On Arch, `niri/.config/niri/glass.kdl` holds the opacity and blur tiers
+and explains how to add an app.
