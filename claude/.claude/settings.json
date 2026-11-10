@@ -15,7 +15,12 @@
       "Bash(tlmgr)"
     ],
     "deny": [
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "mcp__xerj__xerj_field_report",
+      "mcp__xerj__xerj_corpus_feedback",
+      "mcp__xerj__xerj_hub_find",
+      "mcp__xerj__xerj_hub_def",
+      "mcp__xerj__xerj_hub_ask"
     ],
     "defaultMode": "auto"
   },
@@ -97,7 +102,8 @@
     "code-simplifier@claude-plugins-official": true,
     "caveman@caveman": true,
     "academic-research-skills@academic-research-skills": false,
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "context-mode@context-mode": true
   },
   "extraKnownMarketplaces": {
     "claude-plugins-official": {
@@ -116,6 +122,12 @@
       "source": {
         "source": "github",
         "repo": "Imbad0202/academic-research-skills"
+      }
+    },
+    "context-mode": {
+      "source": {
+        "source": "github",
+        "repo": "mksglu/context-mode"
       }
     }
   },
