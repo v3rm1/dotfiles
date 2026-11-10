@@ -61,6 +61,16 @@ Sources used: <memory note + date / MLflow experiment name / files>
 
 Then summarise the top problems in chat. Offer to apply the suggested fixes; when the user agrees, edit the `.tex` files, recompile (see the `overleaf-paper-sync` skill), and re-run the check on the edited sections.
 
+## 5. Check the bibliography
+
+Citations are claims too. Run the checker on the paper's `.bib`, limited to keys the paper cites:
+
+```bash
+python3 ~/.claude/skills/paper-claims-check/scripts/check_bib.py refs.bib --tex main.tex sections/*.tex --out bib-check.md
+```
+
+It compares each entry with Crossref (by DOI, or by title when the DOI is missing) and Semantic Scholar (by title), and reports: DOIs that do not resolve, missing DOIs with a confident match, title, year or first-author mismatches, arXiv preprints that have a published version, and keys cited in the `.tex` but absent from the `.bib`. It never edits the `.bib`. Unauthenticated Semantic Scholar allows about one request per second, so a 100-entry bibliography takes two to three minutes; set `S2_API_KEY` to go faster. Semantic Scholar does not link every workshop or extended-abstract version to its preprint (VDN at AAMAS 2018 is one example), so "no problems" is not proof that a preprint is unpublished. Add the flagged entries to the claims report under a `Bibliography` heading, and keep `bib-check.md` out of commits.
+
 ## Notes
 
 - Never "fix" a number by rounding toward the claim. If the data says 68.2 vs 68.9, the claim is parity, not a win.

@@ -31,7 +31,15 @@ cd <paper> && /Library/TeX/texbin/latexmk -pdf -interaction=nonstopmode -halt-on
 - `Overfull \hbox` larger than ~10pt — visible text running into the margin.
 - `There were multiply-defined labels`.
 
-Report these; fix the ones caused by your own edits. Extra TeX packages belong in `~/Library/texmf/tex/latex/`, not in the repo, so Overleaf stays clean.
+Report these; fix the ones caused by your own edits.
+
+Then lint the sources you touched with `chktex` (catches wrong dashes, missing `~` before `\cite`/`\ref`, unbalanced brackets, spacing after abbreviations):
+
+```bash
+/Library/TeX/texbin/chktex -q -n1 -n8 -n24 -n36 <edited>.tex
+```
+
+`-n1 -n8 -n24 -n36` silence the noisiest false positives (command terminated with space, dash length in ranges, `\label` spacing, bracket spacing in maths). Fix warnings in lines you edited; list the rest for the user rather than reformatting collaborators' text. BasicTeX does not ship `chktex`; if the binary is missing, ask the user to run `sudo /Library/TeX/texbin/tlmgr install chktex`. Extra TeX packages belong in `~/Library/texmf/tex/latex/`, not in the repo, so Overleaf stays clean.
 
 ## Commit
 
@@ -47,7 +55,7 @@ Never commit or push in `~/Documents/obsidian-files/obsidian-dashboard`. The use
 
 ## latexdiff on request
 
-To show reviewers or supervisors what changed since a baseline commit or tag. BasicTeX does not ship `latexdiff`/`latexpand`; if `/Library/TeX/texbin/latexdiff-vc` is missing, ask the user to run `sudo /Library/TeX/texbin/tlmgr install latexdiff latexpand` first.
+To show reviewers or supervisors what changed since a baseline commit or tag. BasicTeX does not ship `latexdiff`/`latexpand`; if `/Library/TeX/texbin/latexdiff-vc` is missing, ask the user to run `sudo /Library/TeX/texbin/tlmgr install latexdiff latexpand chktex` first (one command installs all three).
 
 ```bash
 cd <paper>
